@@ -64,6 +64,7 @@ input[type='password'] {
   margin-bottom: 20px;
   width: 368px;
   border: 1px solid #ccc;
+  border-radius: 10px;
 }
 /* End CSS input - Enrio Hernanda */
 
@@ -88,6 +89,7 @@ button[type='submit']:hover {
 #txt_sdhAkun {
   font-size: 13px;
   color: #4e4949;
+  margin-left: 80px;
 }
 /* End CSS sudah punya akun - Enrio Hernanda */
 
