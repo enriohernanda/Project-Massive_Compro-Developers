@@ -53,6 +53,7 @@ form {
 label {
   color: #4e4949;
   margin-bottom: 10px;
+  font-size: 16px;
 }
 /* End CSS label - Enrio Hernanda */
 
@@ -62,6 +63,7 @@ input[type='password'] {
   padding: 10px;
   margin-bottom: 20px;
   width: 368px;
+  height: 23px;
   border: 1px solid #ccc;
   border-radius: 10px;
 }
@@ -75,6 +77,7 @@ button[type='submit'] {
   border: none;
   border-radius: 12px;
   cursor: pointer;
+  font-size: 16px;
 }
 /* End CSS button login - Enrio Hernanda */
 
@@ -86,34 +89,46 @@ button[type='submit']:hover {
 
 /* CSS lupa password - Enrio Hernanda */
 .forgot-password {
-  font-size: 14px;
-  color: #4e4949;
+  font-size: 12px;
+  color: #eda145;
   text-decoration: none;
   align-self: flex-end;
   margin-bottom: 10px;
 }
 /* End CSS lupa password - Enrio Hernanda */
 
+/* CSS hover lupa password - Enrio Hernanda */
+.forgot-password :hover {
+  color: #6b52a4;
+}
+/* End CSS hover lupa password - Enrio Hernanda */
+
 /* CSS belum punya akun - Enrio Hernanda */
 #txt_blmAkun {
-  font-size: 13px;
+  font-size: 12px;
   color: #4e4949;
-  margin-left: 80px;
+  margin-left: 90px;
 }
 /* End CSS belum punya akun - Enrio Hernanda */
 
 /* CSS untuk pindah ke halaman daftar - Enrio Hernanda */
 .register-link {
-  font-size: 13px;
+  font-size: 12px;
   color: #eda145;
   text-decoration: none;
 }
 /* End CSS untuk pindah ke halaman daftar - Enrio Hernanda */
 
+/* CSS hover register link - Enrio Hernanda */
+.register-link :hover {
+  color: #6b52a4;
+}
+/* End CSS hover register link - Enrio Hernanda */
+
 /* CSS button skip now - Enrio Hernanda */
 .btn_skip {
   font-family: 'Poppins', sans-serif;
-  font-size: 24px;
+  font-size: 20px;
   color: #4e4949;
   text-decoration: none;
   position: absolute;
@@ -122,4 +137,10 @@ button[type='submit']:hover {
   display: block;
   padding: 5px 10px;
 }
-/* End CSS button skip now Enrio Hernanda */
+/* End CSS button skip now - Enrio Hernanda */
+
+/* CSS hover button skip now - Enrio Hernanda */
+.btn_skip :hover {
+  color: white;
+}
+/* End CSS hover button skip now - Enrio Hernanda */
