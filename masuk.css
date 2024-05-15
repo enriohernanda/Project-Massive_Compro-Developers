@@ -8,7 +8,7 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-size: cover;
+  background-size: 100% 100%;
   margin: 0;
   padding: 0;
 }
@@ -55,10 +55,6 @@ label {
   margin-bottom: 10px;
 }
 /* End CSS label - Enrio Hernanda */
-
-placeholder {
-  font-family: 'Poppins', sans-serif;
-}
 
 /* CSS input - Enrio Hernanda */
 input[type='email'],
