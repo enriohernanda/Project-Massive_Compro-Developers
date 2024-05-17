@@ -1,0 +1,105 @@
+/* Import Font Poppins - Enrio Hernanda */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+/* End Import Font Poppins - Enrio Hernanda */
+
+/* CSS Navbar - Enrio Hernanda */
+.navbar {
+  height: 80px;
+  margin: 15px;
+  border-radius: 66px;
+  border: 2cm;
+}
+/* End CSS Navbar - Enrio Hernanda */
+
+/* CSS Logo Navbar - Enrio Hernanda */
+#logo_navbar {
+  width: 130px;
+  height: 33px;
+}
+/* End CSS Logo Navbar - Enrio Hernanda */
+
+/* CSS Toggler - Enrio Hernanda */
+.navbar-toggler {
+  border: none;
+  font-size: 1.25rem;
+}
+
+.navbar-toggler:focus .btn-close:focus {
+  box-shadow: none;
+  outline: none;
+}
+/* End CSS Toggler -Enrio Hernanda */
+
+/* CSS button navbar - Enrio Hernanda */
+.navbar ul li a {
+  color: white;
+  font-weight: 700;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+}
+
+.navbar ul li a:hover {
+  color: #6b52a4;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background-color: #eda145;
+  visibility: hidden;
+  transition: 0.3s ease-in-out;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  width: 100%;
+  visibility: visible;
+}
+/* End CSS button navbar - Enrio Hernanda */
+
+/* CSS Content Slide - Enrio Hernanda */
+.content-slides #background_slides {
+  width: 100%;
+  position: relative;
+}
+
+.img-slide img {
+  position: absolute;
+  top: 40%;
+  left: 25%;
+  width: 50%;
+  z-index: 1;
+}
+
+.prev,
+.next {
+  cursor: pointer;
+  position: absolute;
+  top: 60%;
+  width: auto;
+  padding: 16px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  background-color: black;
+}
+
+.next {
+  right: 0;
+  border-radius: 0 3px 3px 0;
+}
+
+.pre:hover,
+.next:hover {
+  background-color: white;
+  color: black;
+}
+/* End CSS Content Slide - Enrio Hernanda */
