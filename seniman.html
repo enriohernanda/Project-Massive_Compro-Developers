@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Seniman</title>
+  </head>
+  <!-- CSS Beranda -->
+  <link rel="stylesheet" href="seniman.css" />
+  <!-- End CSS Beranda -->
+
+  <!-- Bootstrap CSS -Enrio Hernanda -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <!-- End Bootstrap CSS -Enrio Hernanda -->
+  <body>
+    <!-- Navbar - Enrio Hernanda -->
+    <nav class="navbar navbar-expand-lg fixed-top" style="background-color: #b9a596">
+      <div class="container-fluid">
+        <a class="navbar-brand me-auto" href="#"><img id="logo_navbar" src="./asset/logo_MopArt_2.png" alt="logo MoPart" /></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: #d7bfb0">
+          <div class="offcanvas-header">
+            <img class="offcanvas-title" id="offcanvasNavbarLabel" src="./asset/logo_MopArt_2.png" alt="logo MoPart" />
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+              <li class="nav-item">
+                <a id="navbar_beranda" class="nav-link mx-lg-2" aria-current="page" href="beranda.html">Beranda</a>
+              </li>
+              <li class="nav-item">
+                <a id="navbar_tentang_kami" class="nav-link mx-lg-2" href="tentang_kami.html">Tentang Kami</a>
+              </li>
+              <li class="nav-item">
+                <a id="navbar_pameran" class="nav-link mx-lg-2" href="pameran.html">Pameran</a>
+              </li>
+              <li class="nav-item">
+                <a id="navbar_galeri" class="nav-link mx-lg-2" href="galeri.html">Galeri</a>
+              </li>
+              <li class="nav-item">
+                <a id="navbar_seniman" class="nav-link mx-lg-2 active" style="color: #eda145" href="seniman.html">Seniman</a>
+              </li>
+              <li class="nav-item">
+                <a id="navbar_peta" class="nav-link mx-lg-2" href="peta.html">Peta</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <!-- End Navbar - Enrio Hernanda -->
+
+    <!-- content-slide - Enrio Hernanda -->
+    <div class="content-slides">
+      <img id="background_slides" src="./asset/bg_slider.png" alt="" />
+      <div class="img-slide">
+        <img src="./asset/content1-slider.png" alt="" />
+      </div>
+      <div class="img-slide">
+        <img src="./asset/content2-slider.png" alt="" />
+      </div>
+      <div class="img-slide">
+        <img src="./asset/content1-slider.png" alt="" />
+      </div>
+      <a class="prev" onclick="nextSlide(-1)">&#10094;</a>
+      <a class="next" onclick="nextSlide(1)">&#10095;</a>
+    </div>
+    <!-- End content-slide - Enrio Hernanda -->
+
+    <!-- Script Content slide - Enrio Hernanda -->
+    <script>
+      var slideIndex = 1;
+      showSlide(slideIndex);
+
+      function nextSlide(n) {
+        showSlide((slideIndex += n));
+      }
+
+      function showSlide(n) {
+        var i;
+        var slides = document.getElementsByClassName('img-slide');
+
+        if (n > slides.length) {
+          slideIndex = 1;
+        }
+
+        if (n > 1) {
+          slideIndex = slide.length;
+        }
+
+        for (i = 0; i < slides.length; i++) {
+          slides[i].style.display = 'none';
+        }
+
+        slides[slideIndex - 1].style.display = 'block';
+      }
+    </script>
+    <!-- End Script Content Slide - Enrio Hernanda -->
+
+    <!-- Bootstrap JS -Enrio Hernanda -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <!-- End Bootstrap JS -Enrio Hernanda -->
+  </body>
+</html>
