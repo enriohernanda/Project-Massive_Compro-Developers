@@ -7,7 +7,7 @@
   height: 80px;
   margin: 15px;
   border-radius: 66px;
-  border: 2cm;
+  border: solid 1px #f7f7f7;
 }
 /* End CSS Navbar - Enrio Hernanda */
 
@@ -103,3 +103,61 @@
   color: black;
 }
 /* End CSS Content Slide - Enrio Hernanda */
+
+/* CSS Search input - Enrio Hernanda */
+.search-input {
+  position: relative;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+.input::placeholder {
+  font-size: 24px;
+  font-family: 'Poppins', sans-serif;
+  color: #bab8b8;
+  font-weight: 600;
+}
+
+.input {
+  width: 999px;
+  padding: 20px;
+  border-radius: 30px;
+  border: solid 1px rgb(223, 223, 223);
+  outline: none;
+}
+
+.search-input a img {
+  position: absolute;
+  top: 50%;
+  left: 930px;
+  transform: translate(0, -50%);
+}
+/* End CSS Search input - Enrio Hernanda */
+
+/* CSS button masuk, button daftar - Enrio Hernanda */
+.btn_masuk,
+.btn_daftar {
+  position: relative;
+  background-color: white;
+  color: #eda145;
+  padding: 20px 10px;
+  width: 100px;
+  border: solid 1px rgb(223, 223, 223);
+  border-radius: 30px;
+  font-size: 16px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn_masuk {
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.btn_masuk:hover,
+.btn_daftar:hover {
+  background-color: #eda145;
+  color: white;
+}
+/* End CSS button masuk, button daftar - Enrio Hernanda */
