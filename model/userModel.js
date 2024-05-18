@@ -55,7 +55,11 @@ const images = sequelize.define('images', {
     },
     id_user : {
         type : DataTypes.INTEGER,
-        allowNull : false
+        allowNull : false,
+        references: {
+            model : users,
+            key : 'id'
+        }
     },
     image_name : {
         type : DataTypes.STRING,
@@ -109,11 +113,17 @@ const messages =  sequelize.define('messages', {
     },
     id_user_sender :{
         type : DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: users,
+            key: 'id'}
     },
     id_user_receiver :{
         type : DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: users,
+            key: 'id'}
     },
     message: {
         type : DataTypes.TEXT,
@@ -133,7 +143,10 @@ const notifications = sequelize.define('notifications', {
     },
     id_user : {
         type: DataTypes.INTEGER,
-        allowNull: false
+        allowNull: false,
+        references: {
+            model: users,
+            key: 'id'}
     },
     title : {
         type : DataTypes.STRING,
@@ -147,6 +160,7 @@ const notifications = sequelize.define('notifications', {
         defaultValue : Sequelize.literal('CURRENT_TIMESTAMP')
     }
 }) 
+
 const followers = sequelize.define('followers',{
     id:{
         type: DataTypes.INTEGER,
@@ -155,11 +169,18 @@ const followers = sequelize.define('followers',{
     },
     id_following_user : {
         type: DataTypes.INTEGER,
-        allowNull : false
+        allowNull : false,
+        references: {
+            model: users,
+            key: 'id'
+        }
     },
     id_followed_user : {
         type: DataTypes.INTEGER,
-        allowNull : false
+        allowNull : false,
+        references: {
+            model: users,
+            key: 'id'}
     }
 })
 
@@ -183,11 +204,17 @@ const likes = sequelize.define('likes',{
     },
     id_user_like :{
         type: DataTypes.INTEGER,
-        allowNull:false
+        allowNull:false,
+        references: {
+            model: users,
+            key: 'id'}
     },
     id_user_liked: {
         type: DataTypes.INTEGER,
-        allowNull:false
+        allowNull:false,
+        references: {
+            model: users,
+            key: 'id'}
     },
     id_image : {
         type:DataTypes.INTEGER,
@@ -204,15 +231,24 @@ const collections = sequelize.define('collections', {
     },
     id_user:{
         type:DataTypes.INTEGER,
-        allowNull:false
+        allowNull:false,
+        references: {
+            model: users,
+            key: 'id'}
     },
     id_user_collected:{
         type: DataTypes.INTEGER,
-        allowNull:false
+        allowNull:false,
+        references: {
+            model: users,
+            key: 'id'}
     },
-    idImage:{
+    id_image:{
         type:DataTypes.INTEGER,
-        allowNull:false
+        allowNull:false,
+        references: {
+            model: images,
+            key: 'id'}
     }
 })
 
