@@ -70,9 +70,10 @@
 
 .img-slide img {
   position: absolute;
-  top: 40%;
-  left: 25%;
-  width: 50%;
+  top: 42%;
+  left: 27%;
+  height: 303px;
+  width: 600px;
   z-index: 1;
 }
 
@@ -97,7 +98,7 @@
   border-radius: 0 3px 3px 0;
 }
 
-.pre:hover,
+.prev:hover,
 .next:hover {
   background-color: white;
   color: black;

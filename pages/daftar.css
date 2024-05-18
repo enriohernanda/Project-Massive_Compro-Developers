@@ -4,7 +4,7 @@
 
 /* CSS background pada body - Enrio Hernanda */
 body {
-  background-image: url('./asset/bg_masuk_daftar.png');
+  background-image: url('../asset/bg_masuk_daftar.png');
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
