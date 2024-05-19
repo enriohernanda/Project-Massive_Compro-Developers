@@ -69,13 +69,7 @@
     </div>
     <!-- End content-slide - Enrio Hernanda -->
 
-    <div class="search-input">
-      <input type="text" placeholder="Selamat Datang," name="text" class="input" />
-      <a href=""><img src="../asset/icon_search.png" alt="" /></a>
-      <button onclick="keHalamanMasuk()" class="btn_masuk" type="submit">Masuk</button>
-      <button onclick="keHalamanDaftar()" class="btn_daftar" type="submit">Daftar</button>
-    </div>
-
+    
     <!-- Script Content slide - Enrio Hernanda -->
     <script>
       var slideIndex = 1;
@@ -109,5 +103,30 @@
     <!-- Bootstrap JS -Enrio Hernanda -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <!-- End Bootstrap JS -Enrio Hernanda -->
+    
+    <!-- Search  -->
+    <div class="search-input">
+      <input type="text" placeholder="Selamat Datang," name="text" class="input" />
+      <a href=""><img src="../asset/icon_search.png" alt="" /></a>
+      <button onclick="keHalamanMasuk()" class="btn_masuk" type="submit">Masuk</button>
+      <button onclick="keHalamanDaftar()" class="btn_daftar" type="submit">Daftar</button>
+    </div>
+    <!--End search -->
+
+    <!-- script masuk dan daftar -->
+    <script>
+      // Script function button masuk
+      function keHalamanMasuk() {
+        window.location.href = 'masuk.html';
+      }
+      // End Script function button masuk
+
+      // Script function button daftar 
+      function keHalamanDaftar() {
+        window.location.href = 'daftar.html';
+      }
+      // Script function button masuk
+    </script>
+    <!-- end script masuk dan daftar -->
   </body>
 </html>
