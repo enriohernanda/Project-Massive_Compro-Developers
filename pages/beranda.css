@@ -1,5 +1,5 @@
-body{
-  background-color: #F7F7F7
+body {
+  background-color: #f7f7f7;
 }
 
 /* Import Font Poppins - Enrio Hernanda */
@@ -203,3 +203,59 @@ body{
 /* End CSS Konten - Enrio Hernanda */
 
 /* Footer - Enrio Hernanda */
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 185px;
+  background-color: #eda145;
+  color: #fff;
+  padding: 0 20px;
+  border-top-left-radius: 50px;
+  border-top-right-radius: 50px;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo-mopart-footer {
+  width: 160px;
+  height: 50px;
+}
+
+.icon-social {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.icon-social a {
+  text-decoration: none;
+}
+
+.logo-ig-footer,
+.logo-fb-footer,
+.logo-github-footer {
+  width: 44px;
+  height: 45px;
+  margin-left: 0;
+}
+
+.text-container {
+  display: flex;
+  align-items: right;
+  clear: both;
+  margin-top: 10px;
+}
+
+.text {
+  font-size: 18px;
+  text-align: left;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+/* End Footer - Enrio Hernanda */
