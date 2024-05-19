@@ -20,6 +20,9 @@ const users = sequelize.define('users',{
         unique: true,
         allowNull: false
     },
+    photo_profile : {
+        type : DataTypes.STRING
+    },
     professi :{
         type : DataTypes.STRING
     },
@@ -83,6 +86,14 @@ const developers = sequelize.define('developers', {
     image : {
         type : DataTypes.STRING,
         allowNull : false
+    },
+    updatedAt : {
+        type : DataTypes.DATE,
+        defaultValue : DataTypes.NOW
+    },
+    createdAt : {
+        type : DataTypes.DATE,
+        defaultValue : DataTypes.NOW
     }
 })
 
