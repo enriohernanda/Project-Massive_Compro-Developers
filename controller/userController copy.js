@@ -1,179 +1,187 @@
 // const {users, followers, collections, contactus, countrys, likes, images, messages, notifications, userToken} = require('../model/userModel')
+// const { Op } = require('sequelize')
+// const { signToken } = require('../Middleware/authMiddleware')
 
 // // Status response back only { Success, Created, Failed and Not Found}  
 // // Success code is 200, Failed code status is 400 and Not Found code status is 404
 // // buat di server .jsnya ulang lagi
-const { signToken } = require('../Middleware/authMiddleware')
-const { Op } = require('sequelize')
-const { users } = require('../model/userModel')
 
-const createUser = async (req, res, next) => {
-    try {
-        const {username , email, password} = req.query
-        const validation = await getUserValidationForId(email, password)
-        if(validation.id){
-            console.log('email already exist')
-            return res.status(400).json({message : 'Email already registered'})
-        }
-        const newUser = await users.create({
-            id : '', 
-            username : username,
-            email : email, 
-            password : password
-        })
-        const token = signToken({id : newUser.id, username : newUser.username, role : 'user'})
-        req.token = token
-        req.id = newUser.id
-        req.message = 'user created successfully'
-        return next()
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({
-            status : 'error',
-            message : 'internal was error'})
-    }
-}
+// const createUser = async (req, res) => {
+//     try {
+//         const {username , email, password} = req.query
+//         console.log(req.query.username)
+//         const validation = await getUserValidation(email, password)
+//         if(validation.id){
+//             return res.status(400).json({message : 'Email already registered'})
+//         }
+//         const newUser = await users.create({
+//             id : '', 
+//             username : username,
+//             email : email, 
+//             password : password
+//         })
+//         const token = await signToken({id : newUser.id, username : newUser.username, role : 'user'})
+//         const createToken = await userToken.create({
+//             id : '',
+//             user_id : newUser.id,
+//             token : token
+//         })
+//         console.log('Success')
+//         res.status(201).json({
+//             message : 'User created successfully',
+//             token : createToken.token
+//         })
+//     } catch (error) {
+//         res.status(500).json({error : `Something went wrong`})
+//     }
+// }
+// const getUsers = async (req, res) => {
+//     const { startUserID, direction } = req.query
+//     if (!startUserID || !direction){
+//         return res.status(400).json({message: 'startUserID or direction is required'})
+//     }
+//     const operator = direction === 'forward'? Op.gte : Op.lte;
+//     const order = direction === 'forward'? 'DESC' : 'ASC';
+//     try {
+//         const result = await users.findAll({
+//             where:{
+//                 id : {
+//                     [operator] : startUserID
+//                 }
+//             },    
+//             attributes : ['id', 'username', 'photo_profile'],
+//             limit: 16
+//         })
+//         const isLast = await users.findAll({
+//             where : {
+//                 id : {
+//                     [operator] : startUserID
+//                 }
+//             }, 
+//             attributes : ['id'],
+//             order : [['id', order]],
+//             limit : 17
+//         })
+//         const isLastResult = isLast.length < 17 ;
+//         res.status(200).json({
+//             isLast : isLastResult,
+//             result : result
+//         })
+//     } catch (error) { 
+//         res.status(500).json({
+//             messages : 'Internal server error'
+//         })
+//     }
+// } 
 
-const getUserValidationForId = async (email, password) => {
-    try {
-        const result = await users.findOne({
-            where:{  
-                email: email
-            }, attributes : ['id', 'password'],
-        })
-        if(result){
-            const validationPassword = result.password === password? true : false;
-            if(validationPassword){
-                return result
-            }
-        }
-       return 'error'
-    } catch (error) {
-        console.log(error)
-        return 'error'
-    }
-}
+// const getUserValidationForId = async (email, password) => {
+//     try {
+//         const result = await users.findOne({
+//             where:{  
+//                 email: email
+//             }, attributes : ['id', 'password'],
+//         })
+//         const validationPassword = result.password === password? true : false;
+//         console.log(result.id)
+//         console.log(validationPassword)
+//         if(validationPassword){
+//             return result.id
+//         }
+//        return 'error'
+//     } catch (error) {
+//         console.log(error)
+//         return 'error'
+//     }
+// }
 
-const getUserValidation = async (req, res, next) => {
-    try {
-        const {email, password} = req.query
-        if(!email || !password){
-            return res.status(400).json({
-                status : "error",
-                message : 'email or password is required'
-            })
-        }
-        console.log(email, password)
-        const validation = await getUserValidationForId(email, password)
-        console.log(validation.id,'====validasi====')
-        if (validation.id){
-            const result = await users.findOne({
-                where:{  
-                    id: validation.id 
-                }, attributes : ['username'],
-            })
-            console.log(result.username)
-            const token = signToken({id: validation.id, username: result.username, role : 'user'})
-            req.token = token
-            req.id = validation.id
-            req.message = 'user successfully loged'
-            console.log("error kah============================")
-            return next()
-        }
-        res.status(404).json({
-            status: 'Not Found',
-            message : 'email or password is havent registerd'
-        })
-    } catch (error) {
-        console.log(error)
-        // res.status(500).json({
-        //     status : 'error',
-        //     message : 'internal was error'})
-    }
-}
-// Mendapatkan data user pribadi
-const getDataUser = async (req, res, next) => {
-    try {
-        const { userId } = req.query
-        if (!userId) {
-            return res.status(400).json({
-                status : 'failed',
-                message : 'userId is required'
-            })
-        }
-        const result = await users.findOne({
-            where : {
-                id: userId
-            },
-            attributes : ['id', 'username', 'photo_profile','country', 'professi','created','facebook','instagram','x','whatsapp','youtube']
-        })
-        if (result) {
-            console.log(result)
-            req.userdata = result
-            return next()
-        }
-        console.log("salah")
-        return res.status(404).json({
-            status: 'failed',
-            message: 'User is not found'
-        })
-    } catch (error) {
-        console.log(error)
-        res.status(500).json({
-            status : 'error',
-            message : 'internal was error'})
-    }
-}
+// const getUserValidation = async (req, res) => {
+//     try {
+//         const { token } = req.query
+//         veryfyToken
+//         console.log('Req value ',email, password)
+//         const result = await getUserValidationForId(email, password)
+//         if (result.id){
+//             const result = await users.findOne({
+//                 where:{  
+//                     password : password,
+//                     email: email 
+//                 }, attributes : ['username', 'email', 'password'],
+//             })
+//             console.log(result, 'Text')
+//             if(result)
+//                 return res.status(200).json({
+//                     status : 'Founded',
+//                     message: 'Logged',
+//                     result : result,
+//             })
+//         }
+//         res.status(404).json({
+//             status: 'Not Found',
+//             message : 'User Email and Password Not Found'
+//         })
+//     } catch (error) {
+//         console.log(error)
+//         res.status(404).json(error)
+//     }
+// }
 
-const getUsers = async (req, res) => {
-    const { startUserId, direction } = req.query
-    if (!startUserId || !direction){
-        return res.status(400).json({message: 'startUserId or direction is required'})
-    }
-    const operator = direction === 'forward'? Op.gte : Op.lte;
-    const order = direction === 'forward'? 'DESC' : 'ASC';
-    try {
-        const result = await users.findAll({
-            where:{
-                id : {
-                    [operator] : startUserId
-                }
-            },    
-            attributes : ['id', 'username', 'photo_profile'],
-            limit: 16
-        })
-        const isLast = await users.findAll({
-            where : {
-                id : {
-                    [operator] : startUserId
-                }
-            }, 
-            attributes : ['id'],
-            order : [['id', order]],
-            limit : 17
-        })
-        const isLastResult = isLast.length < 17 ;
-        res.status(200).json({
-            isLast : isLastResult,
-            result : result
-        })
-    } catch (error) { 
-        res.status(500).json({
-            messages : 'Internal server error'
-        })
-    }
-} 
-    
-module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
+// const getProfile = async (req, res) => {
+//     try {
+//         const { email, password } = req.query
+//         console.log('Req value ',email, password)
+//         const result = await getUserValidationForId(email, password)
+//         if (result.id){
+//             const result = await users.findOne({
+//                 where:{  
+//                     password : password,
+//                     email: email 
+//                 }, attributes : ['username', 'email', 'password'],
+//             })
+//             console.log(result, 'Text')
+//             if(result)
+//                 return res.status(200).json({
+//                     status : 'Founded',
+//                     message: 'Logged',
+//                     result : result,
+//             })
+//         }
+//         res.status(404).json({
+//             status: 'Not Found',
+//             message : 'User Email and Password Not Found'
+//         })
+//     } catch (error) {
+//         console.log(error)
+//         res.status(404).json(error)
+//     }
+// }
 
+// const getUser = async (req, res) => {
+//     try {
+//         const { id } = req.query
+//         const result = await users.findAll({
+//             where : {
+//                 id: id
+//             },
+//             attributes : ['id', 'username', 'professi' ]
+//         })
+//         if(result.lenght > 0){
+//             res.status(200).json(result)
+//         }
+//     } catch (error) {
+//         res.status(404).json({
+//             status: 'Not Found',
+//             message : 'User Email and Password Not Found'
+//         })
+//     }
+// }	
 
 // const getUserImgs = async (req, res) => {
 //     try {
-//         const { userId, imageId, idImgStart } = req.query
+//         const { idUser, imageId, idImgStart } = req.query
 //         const result = images.findAll({
 //             where:{
 //                 id : imageId,
-//                 user_id : userId,
+//                 user_id : idUser,
 //                 attributes : [''],
 //                 limit: 3
 //          }
@@ -231,8 +239,8 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 
 // const getUserImgDetail = async (req, res) => {
 //     try {
-//         const { userId, imageId } = req.query
-//         const result = await images.findAll({where : {id : imageId,user_id : userId}}) 
+//         const { idUser, imageId } = req.query
+//         const result = await images.findAll({where : {id : imageId,user_id : idUser}}) 
 //         res.status(200).json(result)
 //     } catch (error) { 
 //         res.status().json({
@@ -244,10 +252,10 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 
 // const getCollection = async (req, res) => {
 //     try {
-//         const {userId, } = req.query
+//         const {idUser, } = req.query
 //         const result = await collections.findAll({
 //             where : {
-//                 user_id : userId 
+//                 user_id : idUser 
 //             }, attributes : ['collected_user_id','image_id']
 //         })
 //         res.status(200).json(result)
@@ -275,10 +283,10 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 
 // const getNotifications = async (req, res) => {
 //     try {
-//         const { userId } = req.query
+//         const { idUser } = req.query
 //         const results = await notifications.findAll({
 //             where: {
-//                 user_id : userId
+//                 user_id : idUser
 //             }, attributes : ['title', 'message', 'timestamp']})
 //             res.status(200).json(results)
 //     } catch (error) {
@@ -291,9 +299,9 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 
 // const getCountFollowers = async (req, res) => {
 //     try {
-//         const { userId } = req.query
+//         const { idUser } = req.query
 //         const { count, row } = await followers.findAndCountAll({
-//             id_followed_user : userId
+//             id_followed_user : idUser
 //         })
 //         res.status(200).json(count)
 //     } catch (error) {
@@ -306,10 +314,10 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 
 // const getCountFolloweds = async (req, res) => {
 //     try {
-//         const { userId } = req.query
+//         const { idUser } = req.query
 //         const { count, row } = await followers.findAndCountAll({
 //             where : {
-//                 id_follower_user:userId
+//                 id_follower_user:idUser
 //             }
 //         }) 
 //         res.status(200).json(count)
@@ -323,10 +331,10 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 
 // const getListFollowers = async (req, res) => {
 //     try {
-//         const { userId } = req.query
+//         const { idUser } = req.query
 //         const result = await followers.findAll({
 //             where: {
-//                 id_followed_user: userId
+//                 id_followed_user: idUser
 //             },attributes : ['id_following_user']
 //         }) 
 //         res.status(500).json(result)
@@ -339,10 +347,10 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 // } 
 // const getListFollowed = async (req, res) => {
 //     try {
-//         const { userId } = req.query
+//         const { idUser } = req.query
 //         const result = await followers.findAll({
 //             where : {
-//                 id_followed_user : userId
+//                 id_followed_user : idUser
 //             }
 //         })
 //         res.status(200).json(result) 
@@ -356,14 +364,14 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 // } 
 // const getLike = async (req, res) => {
 //     try {
-//         const { userId, imageId } = req.query
+//         const { idUser, imageId } = req.query
 //         const result = await likes.findAll({
-//             liked_by_user_id:userId,
+//             liked_by_user_id:idUser,
 //             image_id:imageId
 //         })
 //         res.status(200).json({
 //             status: 'Found',
-//             message: `userId : ${userId} Liked Image with imageId : ${imageId}`
+//             message: `idUser : ${idUser} Liked Image with imageId : ${imageId}`
 //         })
 //     } catch (error) {
 //         res.status().json({
@@ -374,10 +382,10 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 // }
 // const getLastImage = async (req, res) => {
 //     try {
-//         const { userId, imageName } = req.query
+//         const { idUser, imageName } = req.query
 //         const result =  await images.findOne({
 //             where : {
-//                 user_id: userId, image_name : imageName
+//                 user_id: idUser, image_name : imageName
 //             }, order : [['image_id', 'DESC']]
 //         })
 //         if (result === 1) {
@@ -395,11 +403,11 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 
 // const validationImageName = async (req, res) => {
 //     try {
-//         const userId = req.query.userId
+//         const idUser = req.query.idUser
 //         const imageName = req.query.imageName
 //         const result = await images.findAll({
 //             where : {
-//                 user_id : userId, image_name : imageName
+//                 user_id : idUser, image_name : imageName
 //             }
 //         })
 //         if (result >= 1) {
@@ -427,9 +435,9 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 // }
 // const createImageRecord = async (req, res) => {
 //     try {
-//         const userId = req.body.userId;
+//         const userId = req.body.idUser;
 //         const imageName = req.body.imageName;
-//         console.log(req.body.userId);
+//         console.log(req.body.idUser);
 
 //         const validationName = await images.findOne({
 //             where: { user_id: userId, image_name: imageName },
@@ -481,8 +489,8 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 // } 
 // const createFollower = async (req, res) => {
 //     try {
-//         const { userId ,idUserFollowed} = req.query;
-//         result = await followers.create({id : '',id_following_user: userId ,id_followed_user : idUserFollowed})
+//         const { idUser ,idUserFollowed} = req.query;
+//         result = await followers.create({id : '',id_following_user: idUser ,id_followed_user : idUserFollowed})
 //     } catch (error) {
 //         res.status().json({
 //             status : 'Failed',
@@ -492,10 +500,10 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 // } 
 // const createCollection = async (req, res) => {
 //     try {
-//         const { userId, iduserCollected , imageId } = req.query;
+//         const { idUser, iduserCollected , imageId } = req.query;
 //         result = await collections.create({
 //             where : {
-//                 user_id: userId, collected_user_id : iduserCollected, image_id : imageId
+//                 user_id: idUser, collected_user_id : iduserCollected, image_id : imageId
 //             }
 //         })
 //     } catch (error) {
@@ -508,10 +516,10 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 
 // const deleteFollower = async (req, res) => {
 //     try {
-//         const {userId, idUserFollowed} = req.query;
+//         const {idUser, idUserFollowed} = req.query;
 //         result = await followers.destroy({
 //             where:{
-//                 id_following_user:userId, id_followed_user:idUserFollowed
+//                 id_following_user:idUser, id_followed_user:idUserFollowed
 //             }})
 //         if(result === 0){
 //             return res.status().json({
@@ -521,7 +529,7 @@ module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
 //         }
 //         res.status(200).json({
 //             status :'success',
-//             messages: `id user :${userId} Success unfollow user with id${idUserFollowed}`
+//             messages: `id user :${idUser} Success unfollow user with id${idUserFollowed}`
 //         })
 //     } catch (error) {
 //         res.status().json({
