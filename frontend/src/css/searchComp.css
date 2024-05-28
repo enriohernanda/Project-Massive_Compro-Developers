@@ -1,0 +1,30 @@
+/* Search Bar CSS */
+.search-bar {
+  margin: 25px auto;
+  position: relative;
+  width: 100%;
+  max-width: 1220px;
+}
+
+.input-search::placeholder {
+  font-size: 24px;
+  color: var(--color-search-bar);
+  font-weight: 500;
+}
+
+.input-search {
+  padding: 20px;
+  width: 100%;
+  border-radius: 30px;
+  border: solid 1px rgb(223, 223, 223);
+  outline: none;
+}
+
+.search-icon {
+  position: absolute;
+  top: 20%;
+  right: 20px;
+  transform: translateY(-20%);
+}
+
+/* End Search Bar CSS */

@@ -1,0 +1,98 @@
+/* body {
+  background-image: url('../assets/bg-masuk.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: 100% 100%;
+  margin: 0;
+  padding: 0;
+} */
+
+.isi_form_lupa_pass {
+  position: absolute;
+  margin-top: 50px;
+  margin-left: 60px;
+}
+
+.icon-lupa-pass {
+  width: 135px;
+  height: 124px;
+  margin-bottom: 5px;
+  margin-left: 110px;
+}
+
+.judul-lupa-pass {
+  color: var(--color-heading-text);
+  font-size: 24px;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.sub-lupa-pass {
+  color: var(--color-text);
+  font-weight: 500;
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.form-lupa-pass {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.label-lupa-pass {
+  color: var(--color-heading-text);
+  margin-bottom: 10px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.input-email-lupa-pass,
+.input-password-lupa-pass {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 16px;
+  width: 368px;
+  height: 53px;
+}
+
+.input-email-lupa-pass,
+.input-password-lupa-pass::placeholder {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+#btn_lupa-pass {
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 12px;
+  padding: 10px 20px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#btn_lupa-pass:hover {
+  background-color: #6b52a4;
+}
+
+.back-link {
+  text-align: center;
+  font-weight: bold;
+  font-size: 12px;
+  color: var(--secondary-color);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.back-link:hover {
+  color: #6b52a4;
+}
