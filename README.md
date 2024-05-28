@@ -5,3 +5,4 @@ yang harus diinstall untuk menjalankan react js
 - npx create-react-app . (pakai "." agar langsung terinstall di foldernya)
 - npm install react-bootstrap bootstrap
 - npm install react-router-dom
+- npm start (untuk menjalankan projeknya)
