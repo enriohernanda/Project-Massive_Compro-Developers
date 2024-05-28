@@ -7,7 +7,6 @@
   --secondary-color: #eda145;
   --navbar-color-text: #fafafa;
   --navbar-hover-color-text: #6e4abf;
-  --background-navbar-color: #a9998a;
   --color-text: #4e4949;
   --color-search-bar: #908b8b;
   --color-heading-text: #383434;
@@ -18,7 +17,7 @@
   position: fixed;
   padding: 15px 0 15px 0;
   width: 100%;
-  background-color: var(--background-navbar-color);
+  background-color: var(--secondary-color);
 }
 
 .navbar .nav-link a {
@@ -30,7 +29,7 @@
 }
 
 .navbar .nav-link a:hover {
-  color: var(--secondary-color);
+  color: #8e6ddc;
 }
 
 .navbar .nav-link .active {
@@ -50,9 +49,9 @@
 }
 
 .btn_masuk:hover {
-  background-color: var(--secondary-color);
+  background-color: var(--navbar-color-text);
   border: solid 2px white;
-  color: var(--navbar-color-text);
+  color: var(--secondary-color);
 }
 /* End Navbar CSS */
 
