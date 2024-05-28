@@ -24,9 +24,4 @@ export const navLinks = [
     path: 'seniman',
     text: 'Seniman',
   },
-  {
-    id: 6,
-    path: 'peta',
-    text: 'Peta',
-  },
 ];
