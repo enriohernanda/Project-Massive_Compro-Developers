@@ -57,26 +57,12 @@ const TentangKami = () => {
             <h2>Profile Pembuat Website</h2>
           </div>
         </div>
-        <div className="foto row justify-content-center">
-          <div className="col-md-3 mb-3">
-            <CardPembuatWeb image={pembuatFemale} nama="Rachel" sebagai="Hustler" />
-          </div>
-          <div className="col-md-3 mb-3">
-            <CardPembuatWeb image={pembuatMale} nama="Enrio" sebagai="Hacker" />
-          </div>
-          <div className="col-md-3 mb-3">
-            <CardPembuatWeb image={pembuatMale} nama="Bayu" sebagai="Hustler" />
-          </div>
-          <div className="col-md-3 mb-3">
-            <CardPembuatWeb image={pembuatMale} nama="Ferry" sebagai="Hacker" />
-          </div>
-          <div className="col-md-3 mb-3">
-            <CardPembuatWeb image={pembuatMale} nama="Aulia" sebagai="Hustler" />
-          </div>
-          <div className="col-md-3 mb-3">
-            <CardPembuatWeb image={pembuatMale} nama="Duta" sebagai="Hustler" />
-          </div>
-        </div>
+        <CardPembuatWeb image={pembuatFemale} nama="Rachel" sebagai="Hustler" />
+        <CardPembuatWeb image={pembuatMale} nama="Enrio" sebagai="Hacker" />
+        <CardPembuatWeb image={pembuatMale} nama="Bayu" sebagai="Hustler" />
+        <CardPembuatWeb image={pembuatMale} nama="Ferry" sebagai="Hacker" />
+        <CardPembuatWeb image={pembuatMale} nama="Aulia" sebagai="Hustler" />
+        <CardPembuatWeb image={pembuatMale} nama="Duta" sebagai="Hustler" />
       </div>
       <div className="hubungi-kami">
         <h2>Hubungi Kami</h2>
