@@ -91,6 +91,31 @@
   text-align: left;
   margin-top: 1rem;
 }
+
+/* Konten button like & save */
+.btn_ls {
+  justify-content: flex-end;
+  margin-left: 700px;
+}
+
+.btn_ls button {
+  background-color: var(--secondary-color);
+  border: none;
+  border-radius: 20px;
+  width: 64px;
+  height: 50px;
+}
+
+.btn_ls button:hover {
+  background-color: var(--secondary-color);
+}
+
+.btn_ls button img {
+  margin-left: 2px;
+  margin-top: 0px;
+}
+/* End Konten button like & save */
+
 /* End Konten beranda CSS */
 
 /* CSS Card Pembuat Website */
@@ -459,6 +484,10 @@
 
   .text {
     text-align: center;
+  }
+
+  .btn_ls {
+    margin-left: 0px;
   }
 }
 /* End CSS Footer */

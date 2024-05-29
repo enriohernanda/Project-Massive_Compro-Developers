@@ -2,6 +2,7 @@ import SearchComp from '../components/SearchComp';
 import SlideHeaderComp from '../components/SlideHeaderComp';
 import konten from '../assets/konten-beranda.png';
 import FooterComp from '../components/FooterComp';
+import ButtonLSComp from '../components/ButtonLSComp';
 
 const Beranda = () => {
   return (
@@ -23,6 +24,9 @@ const Beranda = () => {
           gambarya dapat direproduksi dalam berbagai tulisan tinjauan di seluruh dunia. Sejak 1994, dua versi terpisah dari Jeritan ini dicuri oleh pencuri-pencuri karya seni, tetapi akhirnya keduanya telah ditemukan kembali. Pada tanggal 2
           Mei 2012, lukisan The Scream terjual sebesar US$ 119.922.500 atau setara dengan Rp 1,079 triliun dalam pelelangan di rumah lelang Sotheby's, New York.[2]
         </p>
+        <div className="btngroup">
+          <ButtonLSComp />
+        </div>
       </div>
       <FooterComp />
     </div>
