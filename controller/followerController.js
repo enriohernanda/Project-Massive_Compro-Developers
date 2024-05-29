@@ -4,8 +4,18 @@ const createFollower = async (req, res) => {
     try {
         const {followedUserId} = req.query
         const userId = req.decoded.id
-        if (!userId || !followedUserId) {
-            return res.status(400).json({message: 'userId or followedUserId is required'})
+        if (!userId || !followedUserId || followedUserId == userId) {
+            return res.status(400).json({message: 'userId or followedUserId is required or something went wrong'})
+        }
+        const validation = await followers.findOne({
+            where : {
+                following_user_id : userId,
+                followed_user_id : followedUserId 
+            },
+            attributes : ['id']
+        })
+        if (validation.id) {
+            return res.status(400).json({status : 'error',message : 'you have been followed'})
         }
         const result = await followers.create({
             id: '',
@@ -87,7 +97,7 @@ const geUserFollowerList = async (req, res, next) => {
 
 const countFollowerAndFollowed = async (req, res, next) => {
     try {
-        const { userId } = req.query
+        const userId  = req.query.userId ? req.query.userId  : req.decoded.id ;
         if ( !userId)   {
             return res.status(400).json({message : 'userId is required'})
         }

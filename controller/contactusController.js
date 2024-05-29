@@ -12,9 +12,10 @@ const createForm = async (req, res) => {
             email : email,
             message : message
         })
-        res.status(201).json({})
+        res.status(201).json({status : 'success'})
     } catch (error) {
-        
+        console.log(error)
+        res.status(500).json({status : 'error'})
     }   
 }
 
@@ -29,8 +30,10 @@ const getForm = async (req, res) => {
                 id : idForm
             }
         })
+        res.status(200).json(result)
     } catch (error) {
-        
+        console.log(error)
+        res.status(500).json({status : 'error'})
     }
 }
 

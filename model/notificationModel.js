@@ -17,7 +17,6 @@ const notifications = sequelize.define('notifications', {
     },
     title : {
         type : DataTypes.STRING,
-        allowNull: false
     },
     message:{
         type: DataTypes.TEXT,
@@ -29,8 +28,8 @@ const notifications = sequelize.define('notifications', {
 }, {
     indexes : [
         {
-            name : 'index_user_id',
-            fields : ['user_id']
+            name : 'index_id_and_user_id',
+            fields : ['id','user_id']
         }
     ]
 }) 

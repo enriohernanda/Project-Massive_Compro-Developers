@@ -23,6 +23,7 @@ const collections = sequelize.define('collections', {
             model: users,
             key: 'id'}
     },
+    // Collected_user_id mungkin tidak berguna
     image_id:{
         type:DataTypes.INTEGER,
         allowNull:false,
@@ -34,15 +35,15 @@ const collections = sequelize.define('collections', {
     indexes : [
         {
             name : 'index_user_id',
-            fields : 'user_id'
+            fields : ['user_id']
         },
         {
             name : 'index_collected_user_id',
-            fields : 'collected_user_id'
+            fields : ['collected_user_id']
         },
         {
             name : 'index_image_id',
-            fields : 'image_id'
+            fields : ['image_id']
         }]  
 })
 

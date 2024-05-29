@@ -2,7 +2,7 @@ const {notifications} = require('../model/notificationModel')
 
 const singleCreateNotification = async (req, res, next) => {
     try {
-        const userId = req.id
+        const userId = req.userId
         if (req.messagedata) {
             const messagedata = req.messagedata
             const newrecord = await notifications.create({

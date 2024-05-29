@@ -11,25 +11,39 @@ const createMessage = async (req, res, next) => {
             const RoomId = await messages.findOne({
                 where : {
                     [Op.or] : [
-                        {
-                            [Op.or] : [
-                                {receiver_user_id : senderuserId},
-                                {sender_user_id : receiverUserId},
-                            ]
-                        },
-                        {
-                            [Op.or] : [
-                                {receiver_user_id : receiverUserId},
-                                {sender_user_id : senderuserId}
-                            ]
-                        }   
+                                {receiver_user_id : senderuserId,
+                                sender_user_id : receiverUserId},
+
+                                {receiver_user_id : receiverUserId,
+                                sender_user_id : senderuserId}
+
                     ]
-                }
+                },
+                attributes : ['message_room_id']
             })
-            if (RoomId) {
+            //     where : {
+            //         [Op.or] : [
+            //             {
+            //                 [Op.or] : [
+            //                     {receiver_user_id : senderuserId},
+            //                     {sender_user_id : receiverUserId},
+            //                 ]
+            //             },
+            //             {
+            //                 [Op.or] : [
+            //                     {receiver_user_id : receiverUserId},
+            //                     {sender_user_id : senderuserId}
+            //                 ]
+            //             }   
+            //         ]
+            //     },
+            //     attributes : ['message_room_id']
+            // })
+            console.log(RoomId.message_room_id,'dwadawdwa')
+            if (RoomId.message_room_id) {
                 const result = await messages.create({
                     id : '',
-                    message_room_id : RoomId,
+                    message_room_id : RoomId.message_room_id,
                     sender_user_id : senderuserId,
                     receiver_user_id : receiverUserId,
                     message : message
@@ -41,7 +55,9 @@ const createMessage = async (req, res, next) => {
                 }
                 return next()
             }
+
             var latestRoomId = await messages.max('message_room_id')
+            console.log(latestRoomId,'walallw')
             const newLatestRoomId = latestRoomId? latestRoomId + 1 : 1;
             const result = await messages.create({
                 id : '',
@@ -79,14 +95,32 @@ const createMessage = async (req, res, next) => {
 
 const getMessage = async (req, res) => {
     try {
-        const {startMessageId, messageRoomId, direction} = req.query
+        const {startMessageId,senderUserId, direction} = req.query
+        var messageRoomId = req.query.messageRoomId
         const userId = req.decoded.id
+        const receiverUserId = req.decoded.id
         if (!messageRoomId || !req.messageRoomId) {
-            return res.status(400).json({message : 'messageRoomId is required'})
+            // return res.status(400).json({message : 'messageRoomId is required'})
+            RoomId = await messages.findOne({
+                where : {
+                    [Op.or] : [
+                        {
+                            receiver_user_id : senderUserId,
+                            sender_user_id : receiverUserId
+                        },
+                        {
+                            receiver_user_id : receiverUserId,
+                            sender_user_id : senderUserId
+                        }
+                    ]
+                },
+                attributes : ['message_room_id']
+            })
+            messageRoomId = RoomId.message_room_id
         }
         if (!startMessageId) {
             // get Latest Message by startMessageIdId = 0
-            const result = messages.findAll({
+            const result = await messages.findAll({
                 where : {
                     message_room_id : messageRoomId,
                 },
@@ -94,15 +128,17 @@ const getMessage = async (req, res) => {
                 order : [['id', 'DESC']],
                 limit : 20
             })
+            console.log('aneh 2')
             return res.status(200).json(result)
         }
+        console.log('aneh 1')
         if (!messageRoomId) {
             if (!userId) {
                 return res.status(400).json({
                     message : 'receiverUserId is required'
                 })
             }
-            const listRoom = messages.findAll({
+            const listRoom = await messages.findAll({
                 attributes : [
                     [Sequelize.fn('DISTINCT', Sequelize.col('message_room_id')), 'message_room_id'],
                     'sender_user_id',

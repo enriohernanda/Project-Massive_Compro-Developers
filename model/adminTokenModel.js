@@ -1,6 +1,6 @@
 const sequelize = require('../config/config')
 const { Sequelize, DataTypes } = require('sequelize');
-const { admin } = require('./adminModel')
+const { admins } = require('./adminModel')
 
 const adminToken = sequelize.define('adminToken', {
     id : {
@@ -12,7 +12,7 @@ const adminToken = sequelize.define('adminToken', {
         type : DataTypes.INTEGER,
         allowNull : false,
         references: {
-            model : admin,
+            model : admins,
             key : 'id'
         }
     },

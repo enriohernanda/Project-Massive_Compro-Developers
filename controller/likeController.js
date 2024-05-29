@@ -1,9 +1,11 @@
+const { where } = require('sequelize')
 const {likes} = require('../model/likeModel')
 
 const createLike = async (req, res) => {
     try {
-        const { idUserLiked, imageId } = req.query
+        const { imageId } = req.query
         const userId = req.decoded.id
+        const idUserLiked = req.imageownerid? req.imageownerid: req.query.userId 
         const result = await likes.create({
             id : '',
             liked_by_user_id : userId,
@@ -11,8 +13,9 @@ const createLike = async (req, res) => {
             image_id : imageId
         })
         if (result) {
-            
+            return res.status(200).json({status : 'success'})
         }
+        res.status(400).json({status : 'failed'})
     } catch (error) {
         console.log(error)
         res.status(500).json({
@@ -25,6 +28,16 @@ const deletelike = async (req, res) => {
     try {
         const { imageId } = req.query
         const userId = req.decoded.id
+        if (!imageId) {
+            res.status(400).json({message: 'imageid is required'})
+        }
+        const result = likes.destroy({
+            where : {
+                liked_by_user_id : userId,
+                image_id : imageId
+            }
+        })
+        res.status(200).json({status: 'success'})
     } catch (error) {
         console.log(error)
         res.status(500).json({
@@ -36,7 +49,17 @@ const deletelike = async (req, res) => {
 const getlike = async (req, res) => {
     try {
         const { imageId } = req.query
-        const userId = req.decoded.id
+        const userId = req.query.userId? req.query.userId : req.decoded.id ; 
+        if(!imageId){
+            return res.status(400).json({message : 'imageid is required'})
+        }
+        const result = await likes.findOne({
+            where : {
+                liked_by_user_id : userId,
+                image_id : imageId 
+            }
+        })
+        res.status(200).json(req.imagedata, req.usercollection, result)
     } catch (error) {
         console.log(error)
         res.status(500).json({

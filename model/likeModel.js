@@ -22,6 +22,7 @@ const likes = sequelize.define('likes',{
             model: users,
             key: 'id'}
     },
+    // liked user id liked buat apa cobak
     image_id : {
         type:DataTypes.INTEGER,
         allowNull:false
@@ -30,11 +31,11 @@ const likes = sequelize.define('likes',{
     indexes : [
         {
             name : 'index_user_id_like',
-            fields : 'liked_by_user_id'
+            fields : ['liked_by_user_id']
         },
         {
             name : 'index_user_id_liked',
-            fields : 'liked_user_id'
+            fields : ['liked_user_id']
         }
     ]
 })

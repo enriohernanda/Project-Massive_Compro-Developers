@@ -4,13 +4,13 @@
 // // Success code is 200, Failed code status is 400 and Not Found code status is 404
 // // buat di server .jsnya ulang lagi
 const { signToken } = require('../Middleware/authMiddleware')
-const { Op } = require('sequelize')
+const { Op, where } = require('sequelize')
 const { users } = require('../model/userModel')
 
 const createUser = async (req, res, next) => {
     try {
         const {username , email, password} = req.query
-        const validation = await getUserValidationForId(email, password)
+        const validation = await getUserValidationForGetId(email, password)
         if(validation.id){
             console.log('email already exist')
             return res.status(400).json({message : 'Email already registered'})
@@ -23,7 +23,7 @@ const createUser = async (req, res, next) => {
         })
         const token = signToken({id : newUser.id, username : newUser.username, role : 'user'})
         req.token = token
-        req.id = newUser.id
+        req.userId = newUser.id
         req.message = 'user created successfully'
         return next()
     } catch (error) {
@@ -34,7 +34,7 @@ const createUser = async (req, res, next) => {
     }
 }
 
-const getUserValidationForId = async (email, password) => {
+const getUserValidationForGetId = async (email, password) => {
     try {
         const result = await users.findOne({
             where:{  
@@ -64,7 +64,7 @@ const getUserValidation = async (req, res, next) => {
             })
         }
         console.log(email, password)
-        const validation = await getUserValidationForId(email, password)
+        const validation = await getUserValidationForGetId(email, password)
         console.log(validation.id,'====validasi====')
         if (validation.id){
             const result = await users.findOne({
@@ -75,7 +75,7 @@ const getUserValidation = async (req, res, next) => {
             console.log(result.username)
             const token = signToken({id: validation.id, username: result.username, role : 'user'})
             req.token = token
-            req.id = validation.id
+            req.userId = validation.id
             req.message = 'user successfully loged'
             console.log("error kah============================")
             return next()
@@ -86,15 +86,15 @@ const getUserValidation = async (req, res, next) => {
         })
     } catch (error) {
         console.log(error)
-        // res.status(500).json({
-        //     status : 'error',
-        //     message : 'internal was error'})
+        res.status(500).json({
+            status : 'error',
+            message : 'internal was error'})
     }
 }
 // Mendapatkan data user pribadi
 const getDataUser = async (req, res, next) => {
     try {
-        const { userId } = req.query
+        const userId = req.decoded.id? req.decoded.id : req.query.userId
         if (!userId) {
             return res.status(400).json({
                 status : 'failed',
@@ -112,8 +112,7 @@ const getDataUser = async (req, res, next) => {
             req.userdata = result
             return next()
         }
-        console.log("salah")
-        return res.status(404).json({
+        res.status(404).json({
             status: 'failed',
             message: 'User is not found'
         })
@@ -163,8 +162,59 @@ const getUsers = async (req, res) => {
         })
     }
 } 
+
+const EmailValidation = async (req, res) => {
+    try {
+        const { email } = req.query
+        const validation = users.findOne({
+            where : {
+                email : email
+            }
+        })
+        if (validation) {
+            return res.status(200).json({status : 'success', email : email})
+        }
+        return res.status(200).json({status : 'failed'})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            status : 'error',
+            message : 'internal was error'})
+    }
+}
     
-module.exports = { createUser, getUserValidation, getDataUser ,getUsers}
+const UpdateNewUserPassword = async (req, res) => {
+    try {
+        const {newPassword } = req.query
+        if (!newPassword) {
+            return res.status(400).json({message: 'password is required'})
+        }
+        const validation = users.findOne({
+            where : {
+                email : email,
+                password : newPassword
+            }
+        })
+        if (validation) {
+            return res.status(400).json({message : 'please input new password'})
+        }
+        const user = findOne({
+            where : {
+                email : email
+            }
+        })       
+        await user.update({password : newPassword})
+        await user.save()
+        return res.status(200).json({message : 'update new password sucessfully' })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            status : 'error',
+            message : 'internal was error'})
+    }
+}
+
+module.exports = { createUser, getUserValidation, getDataUser ,getUsers, EmailValidation, UpdateNewUserPassword}
 
 
 // const getUserImgs = async (req, res) => {
