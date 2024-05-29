@@ -401,6 +401,7 @@
 }
 
 .intro h2 {
+  margin-top: 0;
   color: var(--color-heading-text);
   font-size: 20px;
   text-align: center;
@@ -409,6 +410,8 @@
 }
 
 .intro p {
+  margin-right: 10px;
+  margin-bottom: 30px;
   color: var(--color-text);
   font-size: 14px;
   text-align: center;
@@ -426,9 +429,9 @@
   box-sizing: border-box;
   position: absolute;
   background: rgb(27, 27, 27, 0.5);
-}
+} */
 
-.slider-pameran:hover .intro {
+/* .slider-pameran:hover .intro {
   height: 230px;
 }
 
