@@ -66,7 +66,7 @@
   border: solid 1px rgb(223, 223, 223);
   border-radius: 30px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .konten-beranda img {
@@ -189,7 +189,7 @@
   border: solid 1px rgb(223, 223, 223);
   border-radius: 30px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .konten-tentang-1 img {
@@ -225,7 +225,7 @@
   border: solid 1px rgb(223, 223, 223);
   border-radius: 30px;
   box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
-  margin-bottom: 40px;
+  margin-bottom: 30px;
 }
 
 .konten-tentang-2 img {
@@ -363,6 +363,90 @@
   background-color: #6b52a4;
 }
 /* End Konten Tentang Kami CSS */
+
+/* Konten Pameran CSS */
+.konten-pameran {
+  margin: 25px auto;
+  max-width: 1220px;
+  width: 100%;
+  padding: 20px;
+  background: white;
+  text-align: center;
+  border: solid 1px rgb(223, 223, 223);
+  border-radius: 30px;
+  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.konten-pameran h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--color-heading-text);
+  margin-top: 20px;
+  text-align: center;
+}
+
+#heading-trending {
+  margin-top: 70px;
+}
+
+/* Card Pameran CSS */
+.slider-pameran {
+  margin-bottom: 30px;
+}
+
+.card-pameran img {
+  display: block;
+  width: 100%;
+}
+
+.intro h2 {
+  color: var(--color-heading-text);
+  font-size: 20px;
+  text-align: center;
+  /* visibility: hidden;
+  opacity: 0; */
+}
+
+.intro p {
+  color: var(--color-text);
+  font-size: 14px;
+  text-align: center;
+  /* visibility: hidden;
+  opacity: 0; */
+}
+
+/* .intro {
+  border-radius: 30px;
+  margin-left: 15px;
+  text-align: left;
+  height: auto;
+  width: 100%;
+  padding: 6px;
+  box-sizing: border-box;
+  position: absolute;
+  background: rgb(27, 27, 27, 0.5);
+}
+
+.slider-pameran:hover .intro {
+  height: 230px;
+}
+
+.slider-pameran:hover h2 {
+  opacity: 1;
+  visibility: visible;
+}
+
+.slider-pameran:hover p {
+  opacity: 1;
+  visibility: visible;
+} */
+
+.slider-pameran .card-pameran:hover {
+  cursor: pointer;
+}
+/* End Card Pameran CSS */
+/* End Konten Pameran CSS */
 
 /* CSS Seniman */
 .profil-seniman {
