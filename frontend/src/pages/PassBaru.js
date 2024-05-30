@@ -32,6 +32,9 @@ const PassBaru = () => {
         </form>
       </div>
       <img src={image} alt="" className="ms-auto masuk-image align-self-end d-block" height={'600px'} width={'52%'} />
+      <a className="btn_skip" onClick={() => navigate('/')}>
+        Skip Now
+      </a>
     </div>
   );
 };
