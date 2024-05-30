@@ -4,10 +4,12 @@ import FooterComp from '../components/FooterComp';
 import CardSeniman from '../components/CardSeniman';
 import pembuatMale from '../assets/pembuat-male.png';
 import pembuatFemale from '../assets/pembuat-female.png';
+import NavbarComp from '../components/NavbarComp';
 
 const Seniman = () => {
   return (
     <div>
+      <NavbarComp />
       <SlideHeaderComp />
       <SearchComp />
       <div className="profil-seniman text-center">

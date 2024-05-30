@@ -3,10 +3,12 @@ import SlideHeaderComp from '../components/SlideHeaderComp';
 import konten from '../assets/konten-beranda.png';
 import FooterComp from '../components/FooterComp';
 import ButtonLSComp from '../components/ButtonLSComp';
+import NavbarComp from '../components/NavbarComp';
 
 const Beranda = () => {
   return (
     <div>
+      <NavbarComp />
       <SlideHeaderComp />
       <SearchComp />
       <div className="konten-beranda">

@@ -10,10 +10,12 @@ import foto6 from '../assets/galeri-6.png';
 import foto7 from '../assets/galeri-7.png';
 import foto8 from '../assets/galeri-8.png';
 import foto9 from '../assets/galeri-9.png';
+import NavbarComp from '../components/NavbarComp';
 
 const Galeri = () => {
   return (
     <div>
+      <NavbarComp />
       <SlideHeaderComp />
       <SearchComp />
       <div className="galeri">

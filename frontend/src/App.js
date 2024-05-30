@@ -16,7 +16,7 @@ import NavbarComp from './components/NavbarComp';
 function App() {
   return (
     <div>
-      <NavbarComp />
+      {/* <NavbarComp /> */}
       <Routes>
         <Route path="/" Component={Beranda} />
         <Route path="/daftar" Component={Daftar} />
