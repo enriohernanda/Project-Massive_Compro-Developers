@@ -1,12 +1,14 @@
 // Import CSS Daftar
 import '../css/daftar.css';
 
+import image from '../assets/bg_login.png';
+
 import { useNavigate } from 'react-router-dom';
 
 const Daftar = () => {
   let navigate = useNavigate();
   return (
-    <div className="App">
+    <div className="daftar-bg">
       <div className="isi_form">
         <h2 className="judul-daftar">Selamat Datang</h2>
         <form className="form-daftar">
@@ -34,6 +36,7 @@ const Daftar = () => {
           </p>
         </form>
       </div>
+      <img src={image} alt="" className="ms-auto masuk-image align-self-end d-block" height={'600px'} width={'52%'} />
     </div>
   );
 };

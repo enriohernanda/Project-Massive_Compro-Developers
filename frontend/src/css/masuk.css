@@ -1,17 +1,23 @@
-/* body {
-  background-image: url('../assets/bg-masuk.png');
-  background-position: center;
+.masuk-bg > * {
+  flex-basis: 1;
+}
+
+.masuk-image {
   background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: 100% 100%;
   margin: 0;
   padding: 0;
-} */
+}
+
+@media (max-width: 897px) {
+  .masuk-image {
+    visibility: hidden;
+  }
+}
 
 .isi_form {
   position: absolute;
-  margin-top: 80px;
-  margin-left: 60px;
+  margin-top: 90px;
+  margin-left: 8vw;
 }
 
 .judul-masuk {
@@ -53,7 +59,7 @@
 }
 
 a.forgot-password {
-  color: var(--secondary-color);
+  color: var(--color-text);
   text-decoration: none;
   font-size: 12px;
   font-weight: bold;
