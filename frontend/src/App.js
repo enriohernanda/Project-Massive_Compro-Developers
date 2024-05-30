@@ -11,6 +11,8 @@ import TentangKami from './pages/TentangKami';
 import Pameran from './pages/Pameran';
 import Galeri from './pages/Galeri';
 import Seniman from './pages/Seniman';
+import Profile from './pages/Profile';
+import LihatSemua from './pages/LihatSemua';
 import NavbarComp from './components/NavbarComp';
 
 function App() {
@@ -27,6 +29,8 @@ function App() {
         <Route path="/pameran" Component={Pameran} />
         <Route path="/galeri" Component={Galeri} />
         <Route path="/seniman" Component={Seniman} />
+        <Route path="/profil" Component={Profile} />
+        <Route path="/lihat-semua" Component={LihatSemua} />
       </Routes>
     </div>
   );
