@@ -1,6 +1,6 @@
 import SearchComp from '../components/SearchComp';
 import SlideHeaderComp from '../components/SlideHeaderComp';
-import konten from '../assets/konten-beranda.png';
+import konten from '../assets/header-1.png';
 import FooterComp from '../components/FooterComp';
 import ButtonLSComp from '../components/ButtonLSComp';
 import NavbarComp from '../components/NavbarComp';
@@ -12,7 +12,9 @@ const Beranda = () => {
       <SlideHeaderComp />
       <SearchComp />
       <div className="konten-beranda">
-        <img src={konten} alt="The Scream" />
+        <div className='imagecover'>
+          <img className='image' src={konten} alt="The Scream" />
+        </div>
         <h2>The Scream</h2>
         <p>
           Jeritan (bahasa Norwegia: Skrik, 1893; judul bahasa Inggris: The Scream) adalah sebutan untuk empat buah versi lukisan ekspresionis oleh seniman Norwegia Edward Munch yang menjadi sumber inspirasi bagi banyak pelukis lainnya dalam

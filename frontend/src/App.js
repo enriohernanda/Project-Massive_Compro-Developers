@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 import LihatSemua from './pages/LihatSemua';
 import NavbarComp from './components/NavbarComp';
 
+
 function App() {
   return (
     <div>
