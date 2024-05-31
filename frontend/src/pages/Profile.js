@@ -1,7 +1,4 @@
-import SlideHeaderComp from '../components/SlideHeaderComp';
-import SearchComp from '../components/SearchComp';
 import FooterComp from '../components/FooterComp';
-import CardPameran from '../components/CardPameran';
 import NavbarComp from '../components/NavbarComp';
 
 
@@ -48,7 +45,7 @@ const Profile = () => {
             </div>
         </div>
             <div className='fileupload'>
-
+            <img />
             </div>
         <FooterComp />
     </div>
