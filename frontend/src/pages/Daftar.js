@@ -1,29 +1,56 @@
 // Import CSS Daftar
 import '../css/daftar.css';
 
-import image from '../assets/bg_login.png';
-
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
+import { useContext, useState } from 'react';
 
 const Daftar = () => {
+  
+  const { registration } = useContext(AuthContext)
   let navigate = useNavigate();
+  const [username, setUsername] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    await registration(username, email, password)
+  }
   return (
     <div className="daftar-bg">
       <div className="isi_form">
         <h2 className="judul-daftar">Selamat Datang</h2>
-        <form className="form-daftar">
+        <form className="form-daftar" onSubmit={handleSubmit}>
           <label className="label-daftar" htmlFor="nama">
             Nama
           </label>
-          <input type="text" id="nama" name="nama" className="input-nama-daftar" placeholder="Masukan nama anda" />
+          <input 
+            type="text" 
+            id="nama" 
+            name="nama" 
+            value={username}
+            onChange={(e) =>setUsername(e.target.value)}
+            className="input-nama-daftar" placeholder="Masukan nama anda" />
           <label className="label-daftar" htmlFor="email">
             Email
           </label>
-          <input type="email" id="email" name="email" className="input-email-daftar" placeholder="Masukan email anda" />
+          <input 
+            type="email" 
+            id="email" 
+            name="email" 
+            value={email}
+            onChange={(e) =>setEmail(e.target.value)}
+            className="input-email-daftar" placeholder="Masukan email anda" />
           <label className="label-masuk" htmlFor="password">
             Password
           </label>
-          <input type="password" id="password" name="password" className="input-password-daftar" placeholder="Buat kata sandi anda" />
+          <input 
+            type="password" 
+            id="password" 
+            name="password" 
+            value={password}
+            onChange={(e) =>setPassword(e.target.value)}
+            className="input-password-daftar" placeholder="Buat kata sandi anda" />
           <button id="btn_daftar" type="submit">
             {/* onClick={() => navigate('/masuk')} */}
             Daftar
@@ -37,9 +64,9 @@ const Daftar = () => {
         </form>
       </div>
       <img src={image} alt="" className="ms-auto masuk-image align-self-end d-block" height={'600px'} width={'52%'} />
-      <a className="btn_skip" onClick={() => navigate('/')}>
-        Skip Now
-      </a>
+          <a className="btn_skip" onClick={() => navigate('/')}>
+            Skip Now
+          </a>
     </div>
   );
 };
