@@ -1,12 +1,20 @@
 // Import CSS Masuk
 import '../css/masuk.css';
-
 import image from '../assets/bg_login.png';
-
 import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { AuthContext } from '../context/AuthContext';
+import { useContext } from 'react';
 
 const Masuk = () => {
+  const { login } = useContext(AuthContext)
   let navigate = useNavigate();
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    await login(email, password)
+  }
   return (
     <div className=".masuk-bg">
       <div className="isi_form">
@@ -14,19 +22,32 @@ const Masuk = () => {
           Selamat Datang <br />
           Kembali
         </h2>
-        <form className="form-masuk">
+        <form className="form-masuk" onSubmit={handleSubmit}>
           <label className="label-masuk" htmlFor="email">
             Email
           </label>
-          <input type="email" id="email" name="email" className="input-email-masuk" placeholder="Masukan email anda" />
+          <input type="email" 
+            id="email" 
+            name="email" 
+            className="input-email-masuk" 
+            placeholder="Masukan email anda"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)} />
           <label className="label-masuk" htmlFor="password">
             Password
           </label>
-          <input type="password" id="password" name="password" className="input-password-masuk" placeholder="Masukkan password anda" />
+          <input type="password" 
+            id="password" 
+            name="password" 
+            className="input-password-masuk" 
+            placeholder="Masukkan password anda" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}/>
           <a className="forgot-password" onClick={() => navigate('/lupa-password')}>
             Lupa Password?
           </a>
           <button id="btn_masuk" type="submit">
+            {/* {onclick = {}} */}
             {/* onClick={() => navigate('/')} */}
             Masuk
           </button>
