@@ -11,9 +11,9 @@ import TentangKami from './pages/TentangKami';
 import Pameran from './pages/Pameran';
 import Galeri from './pages/Galeri';
 import Seniman from './pages/Seniman';
-import Profile from './pages/Profile';
 import LihatSemua from './pages/LihatSemua';
 import NavbarComp from './components/NavbarComp';
+import Profile from './pages/Profile'
 
 
 function App() {

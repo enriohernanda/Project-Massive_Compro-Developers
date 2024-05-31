@@ -18,7 +18,8 @@ const Profile = () => {
   console.log(url)
   
     return(
-    <div className='bodyprofile'>
+        <div className='bodyprofile'>
+        <NavbarComp />
         <div className='mainprofile'>
             <div className='profileboard'>
                 <img className='photoprofile' src={url} />
