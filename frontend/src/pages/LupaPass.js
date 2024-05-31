@@ -1,6 +1,7 @@
 // Import Lupa Pass CSS
 import '../css/lupaPass.css';
 
+import image from '../assets/bg_login.png';
 import icon from '../assets/icon-warning.png';
 
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 const LupaPass = () => {
   let navigate = useNavigate();
   return (
-    <div className="App">
+    <div className="lupapass-bg">
       <div className="isi_form_lupa_pass">
         <img className="icon-lupa-pass" src={icon} alt="lupa password" />
         <h2 className="judul-lupa-pass">Lupa Kata Sandi</h2>
@@ -29,6 +30,10 @@ const LupaPass = () => {
           </a>
         </form>
       </div>
+      <img src={image} alt="" className="ms-auto masuk-image align-self-end d-block" height={'600px'} width={'52%'} />
+      <a className="btn_skip" onClick={() => navigate('/')}>
+        Skip Now
+      </a>
     </div>
   );
 };

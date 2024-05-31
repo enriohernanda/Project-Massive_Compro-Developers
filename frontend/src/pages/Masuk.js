@@ -1,12 +1,14 @@
 // Import CSS Masuk
 import '../css/masuk.css';
 
+import image from '../assets/bg_login.png';
+
 import { useNavigate } from 'react-router-dom';
 
 const Masuk = () => {
   let navigate = useNavigate();
   return (
-    <div className="App">
+    <div className=".masuk-bg">
       <div className="isi_form">
         <h2 className="judul-masuk">
           Selamat Datang <br />
@@ -36,6 +38,10 @@ const Masuk = () => {
           </p>
         </form>
       </div>
+      <img src={image} alt="" className="ms-auto masuk-image align-self-end d-block" height={'600px'} width={'52%'} />
+      <a className="btn_skip" onClick={() => navigate('/')}>
+        Skip Now
+      </a>
     </div>
   );
 };

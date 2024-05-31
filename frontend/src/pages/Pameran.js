@@ -12,10 +12,12 @@ import konten3 from '../assets/pameran-terbaru3.png';
 import konten4 from '../assets/pameran-trending1.png';
 import konten5 from '../assets/pameran-trending2.png';
 import konten6 from '../assets/pameran-trending3.png';
+import NavbarComp from '../components/NavbarComp';
 
 const Pameran = () => {
   return (
     <div>
+      <NavbarComp />
       <SlideHeaderComp />
       <SearchComp />
       <div className="konten-pameran">

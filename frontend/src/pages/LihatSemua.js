@@ -2,7 +2,7 @@ import FooterComp from '../components/FooterComp';
 import NavbarComp from '../components/NavbarComp';
 import SlideHeaderComp from '../components/SlideHeaderComp';
 
-const Profile = () => {
+const LihatSemua = () => {
   return (
     <div>
       <NavbarComp />
@@ -12,4 +12,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default LihatSemua;

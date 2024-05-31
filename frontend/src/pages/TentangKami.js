@@ -7,10 +7,12 @@ import CardPembuatWeb from '../components/CardPembuatWeb';
 import pembuatMale from '../assets/pembuat-male.png';
 import pembuatFemale from '../assets/pembuat-female.png';
 import iconHubKami from '../assets/icon-hubungi-kami.png';
+import NavbarComp from '../components/NavbarComp';
 
 const TentangKami = () => {
   return (
     <div>
+      <NavbarComp />
       <SlideHeaderComp />
       <SearchComp />
       <div className="konten-tentang-1">

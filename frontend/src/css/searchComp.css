@@ -27,4 +27,14 @@
   transform: translateY(-20%);
 }
 
+@media (max-width: 640px) {
+  .input-search {
+    height: 60px;
+  }
+
+  .input-search::placeholder {
+    font-size: 12px;
+  }
+}
+
 /* End Search Bar CSS */
