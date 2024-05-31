@@ -2,12 +2,26 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { navLinks } from '../data/Data';
 import { NavLink } from 'react-router-dom';
 import icon from '../assets/icon-mopart.png';
-
+import defaultprofile from '../assets/pembuat-male.png'
 import { useNavigate } from 'react-router-dom';
+
+import { AuthContext } from '../context/AuthContext';
+import { useContext, useState } from 'react';
 
 const NavbarComp = () => {
   let navigate = useNavigate();
-
+  const {isAuth, userid, photo_profile, logout} = useContext(AuthContext)
+  const url = photo_profile? photo_profile : defaultprofile 
+  const [dropdownvisible, setdropdownvisible] = useState(false)
+  console.log(url)
+  const handleClickLogout = () =>{
+    logout()
+    setdropdownvisible(!dropdownvisible)
+    navigate('/')
+  }
+  const handleClickDropdown = () =>{
+     setdropdownvisible(!dropdownvisible)
+  }
   return (
     <Navbar expand="lg">
       <Container>
@@ -27,10 +41,27 @@ const NavbarComp = () => {
               );
             })}
           </Nav>
-          <div className="text-center">
-            <button className="btn_masuk" onClick={() => navigate('/masuk')}>
-              Masuk
-            </button>
+          <div>
+            {isAuth? (
+                <div className="cover-profile">
+                  <img className='photo-profile'
+                    src={url} onClick={handleClickDropdown}/>
+                    {dropdownvisible && (
+                    <div className="dropdown">
+                      <a onClick={() => navigate('/profile')}>Profile</a>
+                      <a href="">Notification</a>
+                      <a href="">Message</a>
+                      <a onClick={handleClickLogout}>Logout</a>
+                    </div>)}
+                </div>
+            ) : (
+              <div className="text-center">
+              <button className="btn_masuk" onClick={() => navigate('/masuk')}>
+                Masuk
+              </button>
+            </div> 
+            )}
+
           </div>
         </Navbar.Collapse>
       </Container>
