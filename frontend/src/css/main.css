@@ -17,7 +17,10 @@
   position: fixed;
   padding: 15px 0 15px 0;
   width: 100%;
+  padding:20px ;
+  height: 100px;
   background-color: var(--secondary-color);
+  
 }
 
 .navbar .nav-link a {
@@ -48,6 +51,47 @@
   font-weight: 500;
 }
 
+.cover-profile{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 200px;
+  position: absolute;
+  top: 0%;
+  margin: 0%;
+  right: 0%;
+}
+
+.photo-profile {
+  cursor: pointer;
+  border-radius: 100%;
+  background-color: #f7f7f7;
+  margin: 4.5%;
+  width: 40%;
+  max-height: auto;
+  border: 0.2vw solid #28C763;
+}
+
+.dropdown{
+  margin-top: 40px;
+  display: none;
+  width: fit-content;
+  background-color: #f7f7f7;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 14px 14px 30px 0 gray;
+  padding: 29px;
+  position: absolute;
+  z-index: 10;
+}
+
+.dropdown a{
+  margin: 10px;
+  text-decoration: none;
+  font-style: normal;
+  cursor: pointer;
+}
+
 .btn_masuk:hover {
   background-color: var(--navbar-color-text);
   border: solid 2px white;
@@ -69,11 +113,32 @@
   margin-bottom: 30px;
 }
 
-.konten-beranda img {
+/* .konten-beranda img {
   max-width: 100%;
   height: auto;
   float: left;
   margin-top: 10px;
+} */
+.imagecover{
+  height: 705px;
+  width: 474px;
+  overflow: hidden;
+  position: relative;
+  float: left;
+  border-radius: 10%;
+  margin: 30px;
+}
+
+.imagecover img{
+  border-radius: 10%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% ,-50%);
 }
 
 .konten-beranda h2 {
@@ -490,6 +555,77 @@
   height: auto;
 }
 /* End CSS Galeri */
+
+/* CSS Profile */
+.bodyprofile{
+  background-color: #F4F4F4;
+
+}
+.mainprofile{
+  padding: 3%;
+  display: flex;
+  justify-content: center;
+  gap: 2%;
+
+}
+
+.profileboard{
+  border: 1px solid #F7F7F7;
+  background-color: white;
+  border-radius: 20px;
+  width: 37%;
+  height: 868px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.15);
+  float: left;
+}
+
+.photoprofile {
+  cursor: pointer;
+  border-radius: 100%;
+  background-color: #f7f7f7;
+  margin: 4.5%;
+  width: 118px;
+  height: 118px;
+  max-height: auto;
+  border: 0.2vw solid #28C763;
+}
+.followercontainer{
+  display: flex;
+}
+.socialcontainer{
+  display: flex;
+}
+.leftfloat{
+  float: left;
+}
+.rightfloat{
+  float: right;
+}
+
+.userimage{
+  width: 63%;
+  height: 868px;
+  border: 1px solid #F7F7F7;
+  background-color: white;
+  box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.15);
+  float: right;
+  border-radius: 20px;
+}
+
+.fileupload{
+  margin: 2.57%;
+  margin-top: 0%;
+  height: 868px;
+  border: 1px solid #F7F7F7;
+  background-color: white;
+  box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.25);
+  border-radius: 20px;
+}
+
+/* End CSS Profile */
 
 /* CSS Footer */
 .footer {
