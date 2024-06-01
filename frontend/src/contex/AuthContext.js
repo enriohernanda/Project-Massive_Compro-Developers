@@ -58,6 +58,7 @@ export const AuthProvider = ({children}) => {
    const logout = async () => {
     try {
         const token = localStorage.getItem('token')
+        console.log(token)
         const response = await axios.delete('http://localhost:4000/api/user/unauthorization', { params : {token : token} }) 
         if (response.data.status === 'success') {
             setAuth(false)
