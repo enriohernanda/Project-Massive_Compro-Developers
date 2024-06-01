@@ -742,7 +742,8 @@
   cursor: pointer;
 }
 .fileupload-form{
-  transition: height 0.2s ease-in;
+  transition: height 133s ease-in-out;
+  transition-duration: 1333ms;
 }
 
 .fileupload-form p{
@@ -783,6 +784,13 @@
   margin: 20px;
   float: right;
   right: 0%;
+  border: 2px solid #eda145;
+}
+.button-container button:hover{
+  transition-duration: 1333ms;
+  background-color: white;
+  color: #eda145;
+  border: 2px solid #eda145;
 }
 /* End CSS Profile */
 

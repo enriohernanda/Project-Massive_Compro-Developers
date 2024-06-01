@@ -14,12 +14,16 @@ import konten3 from '../assets/header-3.png';
 import uploadicon1 from '../assets/file upload 1.png';
 import uploadicon2 from '../assets/file upload 2.png';
 import arrow from '../assets/arrow.png'
+import { isVisible } from '@testing-library/user-event/dist/utils';
 const Profile = () => {
   const navigate = useNavigate();
   const {isAuth, userid, photo_profile} = useContext(AuthContext)
+  const [visibleform, setvisibleform] = useState(false)
   const url = photo_profile? photo_profile : defaultprofile 
   console.log(url)
-  
+  const handlevisibleform = () =>{
+    setvisibleform(!visibleform)
+  }
     return(
         <div className='bodyprofile'>
         <NavbarComp />
@@ -93,20 +97,23 @@ const Profile = () => {
         </div>
 
         <div className='fileupload-cover'>
-            <div className='fileupload'>
-                <img src={uploadicon1}/>
+            <div className='fileupload' onClick={handlevisibleform}>
+            {visibleform ? (<img src={uploadicon2} onClick={handlevisibleform}/> ) : (<img src={uploadicon1} onClick={handlevisibleform}/>) }
+                
             </div>
-            <div className='fileupload-form'>
-                <p>File</p>
-                <input type='file' className='input' placeholder='Masukkan judul anda'></input>
-                <p>Judul</p>
-                <input className='input' placeholder='Masukkan judul anda'></input>
-                <p>Deskripsi</p>
-                <textarea className='input' placeholder='Masukkan deskripsi anda'></textarea>
-                <div className='button-container'>
-                    <button>Kirim</button>
+            {visibleform && (
+                <div className='fileupload-form'>
+                    <p>File</p>
+                    <input type='file' className='input' placeholder='Masukkan judul anda'></input>
+                    <p>Judul</p>
+                    <input className='input' placeholder='Masukkan judul anda'></input>
+                    <p>Deskripsi</p>
+                    <textarea className='input' placeholder='Masukkan deskripsi anda'></textarea>
+                    <div className='button-container'>
+                        <button>Kirim</button>
+                    </div>
                 </div>
-            </div>
+            )}
         </div>
         <FooterComp />
     </div>
