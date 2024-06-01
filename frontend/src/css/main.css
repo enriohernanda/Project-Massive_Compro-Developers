@@ -582,13 +582,13 @@
   float: left;
 }
 
-.photoprofile {
+.profileboard .photoprofile {
   cursor: pointer;
   border-radius: 100%;
   background-color: #f7f7f7;
   margin: 4.5%;
   width: 118px;
-  height: 718px;
+  height: 118px;
   max-height: auto;
   border: 0.2vw solid #28C763;
 }
@@ -619,6 +619,11 @@
   float: left;
 }
 
+.leftfloat p{
+  font-weight: bold;
+  font-family: 'poppins';
+}
+
 .rightfloat{
   float: right;
   width: fit-content;
@@ -639,6 +644,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .userimage{
   width: 63%;
   height: 868px;
@@ -647,27 +653,137 @@
   box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.15);
   float: right;
   border-radius: 20px;
+  padding: 40px;
+}
+
+.latestimage, .collectedimage{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 10px;
+  gap: 20px;
+}
+
+.imagecover-list{
+  cursor: pointer;
+  height: 250px;
+  width: 267px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10%;
+
+}
+
+.leftfloat-inline, .rightfloat-inline{
+  display: inline;
+  width: 100%;
+  font-weight: bold;
+}
+
+.leftfloat-inline{
+  padding: 20px;
+  float: left;
+  font-size: large;
+  margin-top: 20px;
+}
+
+.rightfloat-inline{
+  float: right;
+  text-decoration: underline;
+  text-align: right;
+  padding-right: 20px;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.image-lists{
+  border-radius: 10%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50% ,-50%);
+}
+
+.fileupload-cover{
+  margin: 0 2.57% 2.57% 2.57%; 
 }
 
 .fileupload{
-  margin: 2.57%;
+  padding: 5%;
   margin-top: 0%;
   height: fit-content;
   border: 1px solid #F7F7F7;
   background-color: white;
+  position: relative;
   box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.25);
   border-radius: 20px;
   display: flex;
   justify-content: center;
-  padding: 5%;
+  z-index: 3;
+}
+
+.fileupload-form{
+  transform: translateY(-30px);
+  box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.25);
+  border-radius: 20px;
+  background-color: #F4F4F4;
+  z-index: 2;
+  padding: 40px;
 }
 
 .fileupload img{
-  width: 40%;
-  height: 40%;
+  width: 30%;
+  height: 30%;
   cursor: pointer;
 }
+.fileupload-form{
+  transition: height 0.2s ease-in;
+}
 
+.fileupload-form p{
+  font-size: 24px;
+  font-style: var(--secondary-color);
+  color: #eda145;
+}
+
+.input{
+  border: 2px solid var(--secondary-color);
+  border-style: dashed;
+  width: 100%;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0);
+  outline: none; 
+}
+
+.fileupload-form textarea{
+  min-height: 314px;
+}
+
+.button-container{
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.fileupload-form .button-container button{
+  padding: 10px;
+  padding-left: 30px;
+  padding-right: 30px;
+  background-color: #eda145;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  margin: 20px;
+  float: right;
+  right: 0%;
+}
 /* End CSS Profile */
 
 /* CSS Footer */

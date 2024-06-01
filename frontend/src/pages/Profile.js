@@ -8,7 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { useContext, useState } from 'react';
 
-import uploadicon from '../assets/file upload.png'
+import konten1 from '../assets/header-1.png';
+import konten2 from '../assets/header-2.png';
+import konten3 from '../assets/header-3.png';
+import uploadicon1 from '../assets/file upload 1.png';
+import uploadicon2 from '../assets/file upload 2.png';
 import arrow from '../assets/arrow.png'
 const Profile = () => {
   const navigate = useNavigate();
@@ -21,7 +25,7 @@ const Profile = () => {
         <NavbarComp />
         <div className='mainprofile'>
             <div className='profileboard'>
-                <img className='photoprofile' src={url} />
+                <img className='photoprofile' src={url} alt='photo-profile' />
                 <p className='username'>Satomi</p>
                 <p className='country'>Indonesia</p>
                 <p className='professi'>Designer</p>
@@ -59,12 +63,51 @@ const Profile = () => {
                 </div>
             </div>
             <div className='userimage'>
-
+                <div className='leftfloat-inline' >Upload Terakhir</div>
+                <div className='rightfloat-inline'>Lihat Semua</div>
+                <div className='latestimage'>
+                    <div className='imagecover-list'>
+                        <img className='image-lists' src={konten1} alt="The Scream" />
+                    </div>
+                    <div className='imagecover-list'>
+                        <img className='image-lists' src={konten2} alt="The Scream" />
+                    </div>
+                    <div className='imagecover-list'>
+                        <img className='image-lists' src={konten3} alt="The Scream" />
+                    </div>
+                </div>
+                <div className='leftfloat-inline'>Koleksi</div>
+                <div className='rightfloat-inline'>Lihat Semua</div>
+                <div className='collectedimage'>
+                    <div className='imagecover-list'>
+                        <img className='image-lists' src={konten1} alt="The Scream" />
+                    </div>
+                    <div className='imagecover-list'>
+                        <img className='image-lists' src={konten2} alt="The Scream" />
+                    </div>
+                    <div className='imagecover-list'>
+                        <img className='image-lists' src={konten3} alt="The Scream" />
+                    </div>
+                </div>
             </div>
         </div>
+
+        <div className='fileupload-cover'>
             <div className='fileupload'>
-            <img src={uploadicon}/>
+                <img src={uploadicon1}/>
             </div>
+            <div className='fileupload-form'>
+                <p>File</p>
+                <input type='file' className='input' placeholder='Masukkan judul anda'></input>
+                <p>Judul</p>
+                <input className='input' placeholder='Masukkan judul anda'></input>
+                <p>Deskripsi</p>
+                <textarea className='input' placeholder='Masukkan deskripsi anda'></textarea>
+                <div className='button-container'>
+                    <button>Kirim</button>
+                </div>
+            </div>
+        </div>
         <FooterComp />
     </div>
     )
