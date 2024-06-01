@@ -52,7 +52,7 @@ export const getProfile = async (authstatus, userid, token) => {
 // create form contact us
 export const createForm = async (username, email, message) => {
     try {
-        const response = await api.post('/api/contactus', {params : {username : username, email, email : message}})
+        const response = await api.post('/api/contactus', {params : {username : username, email : email ,message : message}})
         return response.data
     } catch (error) {
         console.log(error)
@@ -62,7 +62,7 @@ export const createForm = async (username, email, message) => {
 
 export const getUserProfile = async (username, email, message) => {
     try {
-        const response = await api.post('/api/user/profile', {params : {username : username, email, email : message}})
+        const response = await api.post('/api/user/profile', {params : {username : username, email : email ,message : message}})
         return response.data
     } catch (error) {
         console.log(error)
