@@ -1,6 +1,7 @@
 cara menginstal library yang dibutuhkan 
 - buka terminal di directori interface atau di Project-Massive_Compro-Developers
 - ketik npm instal (untuk menginstal semua dependecy yang dibutuhkan untuk backend)
+- ketik node server.js (untuk menjalankan server.js di directori interface)
 
 yang harus diinstall untuk menjalankan react js
 - buka folder Project-Massive-Compro-Developers
