@@ -13,7 +13,6 @@ const createCollection = async (req, res) =>{
         const result = await collections.create({
             id: '',
             user_id : userId,
-            collected_user_id : idUserCollected,
             image_id : imageId
         })
         if (result) {
@@ -36,7 +35,6 @@ const deleteCollection = async (req, res) =>{
         const result = await collections.destroy({
             where :{
                 user_id : userId,
-                collected_user_id : idUserCollected,
                 image_id : imageId
             }
         })
@@ -79,16 +77,20 @@ const getListImageCollection = async (req, res, next) => {
         if (!userId) {
             return res.status(400).json({message : 'user id is required'})
         } 
-        const result = collections.findAll({
+        const result = await collections.findAll({
             where : {
                 user_id : userId
             },
-            attributes : ['collected_user_id', 'image_id']
+            // attributes : ['collected_user_id', 'image_id']
+            attributes : ['image_id']
         })
-        req.collectionlist = result
+        // [{{Image_id:2}, Image_id:2}] array menampung object dengan key image_id
+        const array = result.map(item => item.image_id);
+        console.log(array)
+        req.collectionlist = array
         return next()
     } catch (error) {
-        
+        console.log(error)
     }
 }
 

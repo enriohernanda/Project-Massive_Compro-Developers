@@ -6,10 +6,12 @@
 const { signToken } = require('../Middleware/authMiddleware')
 const { Op, where } = require('sequelize')
 const { users } = require('../model/userModel')
+const {domain} = require('../config/domain')
 
 const createUser = async (req, res, next) => {
     try {
-        const {username , email, password} = req.query
+        const {username , email, password} = req.body
+        console.log(username, email, password)
         const validation = await getUserValidationForGetId(email, password)
         if(validation.id){
             console.log('email already exist')
@@ -24,6 +26,8 @@ const createUser = async (req, res, next) => {
         const token = signToken({id : newUser.id, username : newUser.username, role : 'user'})
         req.token = token
         req.userId = newUser.id
+        req.username = newUser.username
+        req.photoprofile = newUser.photo_profile
         req.message = 'user created successfully'
         return next()
     } catch (error) {
@@ -56,13 +60,17 @@ const getUserValidationForGetId = async (email, password) => {
 
 const getUserValidation = async (req, res, next) => {
     try {
-        const {email, password} = req.query
+        const {email, password} = req.body
+        console.log('=============================')
+        console.log(req.query.email, req.body.password, '=========')
         if(!email || !password){
+            console.log('=============================5')
             return res.status(400).json({
                 status : "error",
                 message : 'email or password is required'
             })
         }
+        console.log('=============================2')
         console.log(email, password)
         const validation = await getUserValidationForGetId(email, password)
         console.log(validation.id,'====validasi====')
@@ -70,12 +78,14 @@ const getUserValidation = async (req, res, next) => {
             const result = await users.findOne({
                 where:{  
                     id: validation.id 
-                }, attributes : ['username'],
+                }, attributes : ['id','username','photo_profile'],
             })
             console.log(result.username)
             const token = signToken({id: validation.id, username: result.username, role : 'user'})
             req.token = token
             req.userId = validation.id
+            req.username = result.username
+            req.photoprofile = result.photo_profile
             req.message = 'user successfully loged'
             console.log("error kah============================")
             return next()
@@ -94,7 +104,9 @@ const getUserValidation = async (req, res, next) => {
 // Mendapatkan data user pribadi
 const getDataUser = async (req, res, next) => {
     try {
-        const userId = req.decoded.id? req.decoded.id : req.query.userId
+        console.log(req.query.userId ,'-=====')
+        const userId = req.query.userId
+        console.log(req.body.userId, '=======')
         if (!userId) {
             return res.status(400).json({
                 status : 'failed',
@@ -151,10 +163,15 @@ const getUsers = async (req, res) => {
             order : [['id', order]],
             limit : 17
         })
+        const array = result.map(user => ({
+            id : user.id,
+            username : user.username,
+            photo : user.photo_profile? `${domain}/image/${user.id}/profile.jpg` : '' 
+        }))
         const isLastResult = isLast.length < 17 ;
         res.status(200).json({
             isLast : isLastResult,
-            result : result
+            result : array
         })
     } catch (error) { 
         res.status(500).json({

@@ -11,17 +11,22 @@ const signToken = (user) => {
 }
 
 const veryfyToken = (req, res, next) => {
+    console.log('walllawe delete')
     console.log(req.body.token)
     console.log(req.query.token)
+    console.log(req.params.token)
+    console.log(req.body)
     const tokenquery = req.query.token
     const token = tokenquery ? tokenquery : req.body.token ;
     // const now = new DATE.currenttimw
     console.log(token)
-    const { authstatus } = req.query
-    if (authstatus === false) {
-        return next()
-    }
+    // const { authstatus } = req.query
+    // if (authstatus === false) {
+    //     return next()
+    // }
     if(!token){
+        console.log('walllawe delete')
+        console.log('walllawe delete')
         return res.status(400).json({message : 'token is missing'});
     }
     console.log(secretKey)
@@ -39,7 +44,7 @@ const veryfyToken = (req, res, next) => {
         return "error"
     }   
     if (!req.decoded) {
-        return res.status(400).json({message: 'token is invalid'})
+        return res.status(400).json({status : 'error' , message: 'token is invalid'})
     }
     return next()
 }
@@ -49,7 +54,7 @@ const OptionalValidationToken = (req, res, next) => {
     console.log(req.query.token)
     const { authstatus } = req.query
     if (authstatus === false || !authstatus ) {
-        req.query.userId = 0
+        // req.query.userId = 0
         return next()
     }
     const tokenquery = req.query.token
@@ -63,9 +68,11 @@ const OptionalValidationToken = (req, res, next) => {
     try {
         jwt.verify(token, secretKey, (err, decoded) => {
             if (err) {
+                console.log(decoded,'e',err)
                 return 'token is invalid'
             }
             if (!decoded.id || !decoded.username || !decoded.role) {
+                console.log(decoded,'w',err)
                 return 'token is invalid'
             }
             return req.decoded = decoded
@@ -74,7 +81,7 @@ const OptionalValidationToken = (req, res, next) => {
         return "error"
     }   
     if (!req.decoded) {
-        return res.status(400).json({message: 'token is invalid'})
+        return res.status(400).json({status : 'error', message: 'token is invalid'})
     }
     return next()
 }

@@ -22,6 +22,9 @@ const collectionController = require('./controller/collectionController')
 const adminController = require('./controller/adminController')
 const adminTokenController = require('./controller/adminTokenController')
 
+const cors = require('cors')
+app.use(cors())
+
 // app.use(bodyParser.urlencoded({extended : true}))
 app.use(express.urlencoded({extended : true}))
 // app.use(bodyParser.json())
@@ -31,8 +34,8 @@ const PORT = process.env.PORT || portNumber
 
 app.get('/image/:folder/:filename', (req, res) => {
     const {folder, filename} = req.params;
-    const filepath = path.join(__dirname, folder, filename);
-
+    const filepath = path.join(__dirname,'uploads', folder, filename);
+    console.log(filepath)
     if (fs.existsSync(filepath)) {
         res.sendFile(filepath)
     } else {
@@ -48,12 +51,12 @@ app.get('/image/:folder/:filename', (req, res) => {
 app.post('/api/user/registration', userController.createUser, notificationController.singleCreateNotification, userTokenController.createdTokenDB)
 
 // authorisasi required email and password
-app.post('/api/user/authorization', userController.getUserValidation, userTokenController.createdTokenDB)
+app.post('/api/user/authentication', userController.getUserValidation, userTokenController.createdTokenDB)
 
 // validasi token localstorage required only token
 app.post('/api/user/validation', veryfyToken,  (req, res)=>{
     return res.status(200).json({
-        status: "success",
+        status : "success",
         message : 'logged'
     })
 })
@@ -62,18 +65,23 @@ app.post('/api/user/validation', veryfyToken,  (req, res)=>{
 app.get('/api/users', userController.getUsers)
 
 // delete token by userId
+// app.delete('/api/user/unauthorization',  userTokenController.deleteTokenDB)
+// app.delete('/api/user/unauthorization', (req, res) => {
+//     res.status(200).json({status : 'success'})
+// })
 app.delete('/api/user/unauthorization', veryfyToken, userTokenController.deleteTokenDB)
 
 // getting user's data profile like (imagedata , userdata, followerdata) required (userId, imageId, direction <for image direction>, )
-app.get('/api/user/profile', OptionalValidationToken, userController.getDataUser, countryController.getCountryNameById, imageController.getUserImages, followerController.countFollowerAndFollowed , (req, res) =>{
-    const url = req.userdata.photo_profile? `${domain}/image/${req.userdata.user_id}/profile.jpg` : '0' ;
+app.get('/api/user/profile', userController.getDataUser, countryController.getCountryNameById,collectionController.getListImageCollection, imageController.getCollectionUserImagesLimit3, imageController.getLatestUserImagesLimit3, followerController.countFollowerAndFollowed , (req, res) =>{
+    const url = req.userdata.photo_profile? `${domain}/image/${req.userdata.id}/profile.jpg` : '0' ;
     req.userdata.photo_profile = url
     console.log(req.imagedata,'dawdaw')
     res.status(200).json({
-        datauser : req.userdata,
-        dataimage : req.imagedata,
-        datafollower : req.countfollowed,
-        datafollowed : req.countfollower
+        userdata : req.userdata,
+        imagedata : req.imagedata,
+        imagecollection : req.imagecollection,
+        follower : req.countfollowed,
+        followed : req.countfollower
     })
 })
 
@@ -110,6 +118,12 @@ app.post('/api/image', veryfyToken, upload.single('image'), followerController.g
 
 // get all images limit 3 required imageId and direction
 app.get('/api/image', imageController.getImages)
+
+// get all images limit 30 required imageId and direction
+app.get('/api/user/image', imageController.getUserImages)
+
+// get all images limit 30 required imageId and direction
+app.get('/api/user/collection',collectionController.getListImageCollection, imageController.getUserCollectionImage)
 
 // create collection required imageId, token
 app.put('/api/collection',veryfyToken, imageController.getImageOwnerIdByImageId, collectionController.createCollection)

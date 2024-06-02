@@ -2,7 +2,7 @@ const {contactus} = require('../model/contactusModel')
 
 const createForm = async (req, res) => {
     try {
-        const { name, email, message } = req.query
+        const { name, email, message } = req.body
         if (!name || !email || !message) {
             return res.status(400).json({message : 'name or email or message is required'})
         }

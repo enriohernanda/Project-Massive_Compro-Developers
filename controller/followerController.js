@@ -97,7 +97,8 @@ const geUserFollowerList = async (req, res, next) => {
 
 const countFollowerAndFollowed = async (req, res, next) => {
     try {
-        const userId  = req.query.userId ? req.query.userId  : req.decoded.id ;
+        const userId  = req.query.userId ? req.query.userId : req.decoded.id ;
+        // const userId  = req.decoded.id ? req.decoded.id : req.query.userId ;
         if ( !userId)   {
             return res.status(400).json({message : 'userId is required'})
         }
@@ -105,6 +106,7 @@ const countFollowerAndFollowed = async (req, res, next) => {
             where : {
                 followed_user_id : userId
             }
+
         })
         const countFollowed = await followers.count({
             where : {
@@ -113,7 +115,7 @@ const countFollowerAndFollowed = async (req, res, next) => {
         })
         console.log(countFollowed,"followed")
         req.countfollowed = countFollowed? countFollowed: 0;
-        req.countfollower = countFollower? countFollowed: 0;
+        req.countfollower = countFollower? countFollower: 0;
         return next()
     } catch (error) {
         console.log(error)

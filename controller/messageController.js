@@ -4,7 +4,7 @@ const { messages } = require('../model/messageModel')
 
 const createMessage = async (req, res, next) => {
     try {
-        const {messageRoomId, receiverUserId, message} = req.query
+        const {messageRoomId, receiverUserId, message} = req.body
         const senderuserId = req.decoded.id
         console.log(senderuserId)
         if (!messageRoomId) {

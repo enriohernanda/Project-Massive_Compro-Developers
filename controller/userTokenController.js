@@ -1,4 +1,5 @@
 const {userToken} = require('../model/userTokenModel')
+const {domain} = require('../config/domain')
 
 
 const createdTokenDB = async (req, res) => {
@@ -13,10 +14,20 @@ const createdTokenDB = async (req, res) => {
             user_id : userId,
             token : token
         })
-        res.status(201).json({
-            message : message,
-            token : token
-        })
+        const urlPhotoProfile = req.photoprofile? `http://${domain}/image/${userId}/profile.jpg` : '' ;
+        console.log(urlPhotoProfile,'=======KKKKKK')
+        if (result){
+            return res.status(201).json({
+                status : 'success',
+                message : message,
+                userid : userId,
+                username : req.username,
+                photoprofile : urlPhotoProfile,
+                token : token
+            })
+        }
+        res.status(400).json({status : 'failed', messsage : 'invalid data user'})
+
     } catch (error) {
         console.log(error)
         res.status(500).json({
@@ -37,9 +48,9 @@ const deleteTokenDB = async (req, res) => {
         })
         console.log(result) 
         if (result) {
-            
+            return res.status(200).json({status: 'success'})
         }
-        res.status(200).json({status: 'success'})
+        res.status(400).json({status: 'failed', message : 'token is invalid 2'})
     } catch (error) {
         console.log(error)
         res.status(500).json({

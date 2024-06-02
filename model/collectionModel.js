@@ -16,13 +16,6 @@ const collections = sequelize.define('collections', {
             model: users,
             key: 'id'}
     },
-    collected_user_id:{
-        type: DataTypes.INTEGER,
-        allowNull:false,
-        references: {
-            model: users,
-            key: 'id'}
-    },
     // Collected_user_id mungkin tidak berguna
     image_id:{
         type:DataTypes.INTEGER,

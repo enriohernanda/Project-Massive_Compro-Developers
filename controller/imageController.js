@@ -55,7 +55,8 @@ const getImages = async (req, res, next) => {
 
 const getUserImages = async (req, res, next) => {
     const { imageId, direction } = req.query
-    const userId = req.query.userId ? req.query.userId  : req.decoded.id;
+    const userId = req.query.userId;
+    console.log(userId)
     if (!userId || !imageId || !direction){
         // return res.status(400).json({message: 'imageId or direction is required'})
         req.imagedata = 'not found' 
@@ -72,7 +73,171 @@ const getUserImages = async (req, res, next) => {
                 user_id : userId
             },    
             attributes : ['id','user_id', 'image_name', 'description'],
-            limit:3
+            limit:30,
+            order : [['id', order]]
+        })
+        if (result.length > 0) {
+            const isLast = await images.findAll({
+                where : {
+                    id : {
+                        [operator] : imageId
+                    }
+                }, 
+                attributes : ['id'],
+                order : [['id', order]],
+                limit : 31
+            })
+            const arrayresult = result.map(image => ({
+                url : `${domain}/image/${userId}/${image.id}.jpg`,
+                user_id : image.user_id,
+                name : image.image_name,
+                description : image.description
+            }))
+            console.log(arrayresult)
+            const isLastResult = isLast.length < 31 ;
+            req.imagedata = arrayresult
+            req.islast = isLastResult
+            res.status(200).json({imagedata: arrayresult, isLast : isLastResult})
+        }
+        console.log(result, "===========")
+        req.imagedata = 'not found' 
+        console.log(req.imagedata)
+        return next()
+    } catch (error) { 
+        console.log(error)
+        res.status(500).json({
+            status : 'error',
+            message : 'internal was error'})
+    }
+} 
+
+const getUserCollectionImage = async (req, res) => {
+    const { direction } = req.query
+    const imageId = req.collectionlist
+    const userId = req.query.userId ? req.query.userId  : req.decoded.id;
+    if (!userId || !imageId || !direction){
+        // return res.status(400).json({message: 'imageId or direction is required'})
+        req.imagedata = 'not found' 
+        // return next()
+        console.log('error')
+        return res.status(400).json({status: 'error'})
+    }
+    const operator = Op.in
+    const order = 'ASC';
+    try {
+        const result = await images.findAll({
+            where:{
+                id : {
+                    [operator] : imageId
+                },
+            },    
+            attributes : ['id','user_id', 'image_name', 'description'],
+            limit:30,
+            order : [['id', order]]
+        })
+        if (result.length > 0) {
+            const isLast = await images.findAll({
+                where : {
+                    id : {
+                        [operator] : imageId
+                    }
+                }, 
+                attributes : ['id'],
+                order : [['id', order]],
+                limit : 31
+            })
+            const arrayresult = result.map(image => ({
+                url : `${domain}/image/${image.user_id}/${image.id}.jpg`,
+                user_id : image.user_id,
+                name : image.image_name,
+                description : image.description
+            }))
+            console.log(arrayresult)
+            const isLastResult = isLast.length < 31 ;
+            req.imagedata = arrayresult
+            req.islast = isLastResult
+            return res.status(200).json({imagedata: arrayresult, isLast : isLastResult})
+        }
+        console.log(result, "===========")
+        req.imagedata = 'not found' 
+        console.log(req.imagedata)
+        res.status(404).json({status : 'failed', imagedata : req.imagedata})
+    } catch (error) { 
+        console.log(error)
+        res.status(500).json({
+            status : 'error',
+            message : 'internal was error'})
+    }
+} 
+
+const getCollectionUserImagesLimit3 = async (req, res, next) => {
+    const { direction } = req.query
+    const imageId = req.collectionlist
+    const userId = req.query.userId ? req.query.userId  : req.decoded.id;
+    if (!userId || !imageId || !direction){
+        // return res.status(400).json({message: 'imageId or direction is required'})
+        req.imagedata = 'not found' 
+        console.log('error')
+        return next()
+        // return res.status(400).json({status: 'error'})
+    }
+    const operator = Op.in
+    const order = 'ASC';
+    try {
+        const result = await images.findAll({
+            where:{
+                id : {
+                    [operator] : imageId
+                },
+            },    
+            attributes : ['id','user_id', 'image_name', 'description'],
+            limit: 3,
+            order : [['id', order]]
+        })
+        if (result.length > 0) {
+            const arrayresult = result.map(image => ({
+                url : `${domain}/image/${image.user_id}/${image.id}.jpg`,
+                user_id : image.user_id,
+                name : image.image_name,
+                description : image.description
+            }))
+            console.log(arrayresult)
+            req.imagecollection = arrayresult
+            return next()
+        }
+        console.log(result, "===========")
+        req.imagecollection = 'not found' 
+        console.log(req.imagedata)
+        return next()
+    } catch (error) { 
+        console.log(error)
+        res.status(500).json({
+            status : 'error',
+            message : 'internal was error'})
+    }
+} 
+
+const getLatestUserImagesLimit3 = async (req, res, next) => {
+    const { imageId, direction } = req.query
+    const userId = req.query.userId ? req.query.userId  : req.decoded.id;
+    if (!userId || !imageId || !direction){
+        // return res.status(400).json({message: 'imageId or direction is required'})
+        req.imagedata = 'not found' 
+        return next()
+    }
+    const operator = Op.gte
+    const order = 'DESC'
+    try {
+        const result = await images.findAll({
+            where:{
+                id : {
+                    [operator] : imageId
+                },
+                user_id : userId
+            },    
+            attributes : ['id','user_id', 'image_name', 'description'],
+            order : [['id', order]],
+            limit:3 
         })
         if (result.length > 0) {
             const isLast = await images.findAll({
@@ -86,7 +251,7 @@ const getUserImages = async (req, res, next) => {
                 limit : 4
             })
             const arrayresult = result.map(image => ({
-                url : `${domain}/image/${userId}/${imageId}.jpg`,
+                url : `${domain}/image/${userId}/${image.id}.jpg`,
                 user_id : image.user_id,
                 name : image.image_name,
                 description : image.description
@@ -237,4 +402,5 @@ const getImageOwnerIdByImageId = async (req, res, next) => {
         })
     }
 }
-module.exports = { getImages, getUserImages ,getImageDetail, createImageRecord, getImageByName, getImageOwnerIdByImageId}
+
+module.exports = { getImages, getUserImages ,getImageDetail, createImageRecord, getImageByName, getImageOwnerIdByImageId, getLatestUserImagesLimit3, getUserCollectionImage, getCollectionUserImagesLimit3}

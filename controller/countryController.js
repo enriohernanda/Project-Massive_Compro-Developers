@@ -1,3 +1,4 @@
+const { where } = require('sequelize')
 const {countrys} = require('../model/countryModel')
 
 const getCountrysList = (req, res) => {
@@ -20,8 +21,18 @@ const getCountrysList = (req, res) => {
 const getCountryNameById = async (req, res, next) => {
     try {
         const countryId = req.userdata.country
-        const country_name = await countrys.findByPk(countryId)
-        req.userdata.country = country_name
+
+        if (!countryId) {
+            req.userdata.country = 'indonesia'
+            return next()
+        }
+        const country_name = await countrys.findOne({
+            where : {
+                id : countryId
+            },
+            attributes : ['name']
+        })
+        req.userdata.country = country_name.name
         return next()
     } catch (error) {
         console.log(error)
