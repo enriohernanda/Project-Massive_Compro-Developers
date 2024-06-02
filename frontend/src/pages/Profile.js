@@ -28,6 +28,7 @@ const Profile = () => {
   const [imagedata, setimagedata] = useState([])
   const [followed, setfollowed] = useState(0)
   const [follower, setfollower] = useState(0)
+  const [trigerprofile, settrigerprofile] = useState(true)
   const url = photo_profile? photo_profile : defaultprofile 
   console.log(url)
 
@@ -45,7 +46,7 @@ const Profile = () => {
         }
     }
     fetchdata()
-  }, [isAuth, token])
+  }, [isAuth, token, trigerprofile])
 
   const handlevisibleform = () =>{
     setvisibleform(!visibleform)
@@ -60,6 +61,7 @@ const Profile = () => {
     } catch (error) {
         console.log(error)
     }
+    settrigerprofile(!trigerprofile)
   }
     return(
         <div className='bodyprofile'>
@@ -105,18 +107,14 @@ const Profile = () => {
             </div>
             <div className='userimage'>
                 <div className='leftfloat-inline' >Upload Terakhir</div>
-                <div className='rightfloat-inline'>Lihat Semua</div>
+                <div className='rightfloat-inline' onClick={() => navigate('/images')}>Lihat Semua</div>
                 <div className='latestimage'>
-                    {/* {imagedata ? } */}
-                    <div className='imagecover-list'>
-                        <img className='image-lists' src={konten1} alt="The Scream" />
-                    </div>
-                    <div className='imagecover-list'>
-                        <img className='image-lists' src={konten2} alt="The Scream" />
-                    </div>
-                    <div className='imagecover-list'>
-                        <img className='image-lists' src={konten3} alt="The Scream" />
-                    </div>
+                    {imagedata.map((image, index) => (
+                        <div className='imagecover-list' key={index}>
+                            {console.log(image.url)}
+                            <img className='image-lists' src={`http://${image.url}`} alt="The Scream" />
+                        </div>
+                    ))}
                 </div>
                 <div className='leftfloat-inline'>Koleksi</div>
                 <div className='rightfloat-inline' >Lihat Semua</div>

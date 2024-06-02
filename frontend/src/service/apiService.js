@@ -42,7 +42,7 @@ export const getImages = async (imageId, direction) => {
 export const getProfile = async (authstatus, userid, token) => {
     try {
         console.log(token)
-        const response = await api.get('/api/user/profile', {params : {authstatus: authstatus, userId : userid, token : token}})
+        const response = await api.get('/api/user/profile', {params : {authstatus: authstatus, userId : userid, token : token, direction : 'forward', imageId : 1}})
         return response.data
     } catch (error) {
         console.log(error)
