@@ -15,6 +15,8 @@ import LihatSemua from './pages/LihatSemua';
 import NavbarComp from './components/NavbarComp';
 import Profile from './pages/Profile'
 import Images from './pages/Images'
+import Koleksi from './pages/Koleksi'
+
 function App() {
   return (
     <div>
@@ -32,6 +34,7 @@ function App() {
         <Route path="/profil" Component={Profile} />
         <Route path="/lihat-semua" Component={LihatSemua} />
         <Route path="/images" Component={Images} />
+        <Route path="/koleksi" Component={Koleksi} />
       </Routes>
     </div>
   );

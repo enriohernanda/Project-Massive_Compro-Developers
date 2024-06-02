@@ -48,7 +48,7 @@ const NavbarComp = () => {
                     src={url} onClick={handleClickDropdown}/>
                     {dropdownvisible && (
                     <div className="dropdown">
-                      <a onClick={() => navigate('/profil')}>Profile</a>
+                      <a onClick={() => navigate(`/profil?id=${userid}`)}>Profile</a>
                       <a href="">Notification</a>
                       <a href="">Message</a>
                       <a onClick={handleClickLogout}>Logout</a>

@@ -16,13 +16,13 @@ import uploadicon2 from '../assets/file upload 2.png';
 import arrow from '../assets/arrow.png'
 import { useLocation } from 'react-router-dom'
 
-import { getUserImagesByLatest } from '../service/apiService';
+import { getUserCollectionImage } from '../service/apiService';
 
-const Images = () => {
+const Koleksi = () => {
     const location = useLocation() 
     const navigate = useNavigate()
     const [imagedata, setimagedata] = useState([])
-    const [userId, setUserId] = useState(1)
+    const [userId, setUserId] = useState()
     const [imageId, setImageId] = useState(1)
     const [userparams, setuserparams] = useState()
     
@@ -36,7 +36,7 @@ const Images = () => {
     const fetchdata = async() =>{
         try {
             console.log(userparams, '========================')
-            const response = await getUserImagesByLatest(userparams, imageId)
+            const response = await getUserCollectionImage(userparams)
             setimagedata(response.imagedata)
             console.log(response)
         } catch (error) {
@@ -45,28 +45,24 @@ const Images = () => {
     }
     fetchdata()
 }, [userparams, location.search])
-
     return (
-        <div className='images-body'>
+        <div className='collection-body'>
             <NavbarComp />
             <div className='nav-back'>
                 <button onClick={() => navigate(`/profil?id=${userparams}`)}>Kembali</button>
             </div>
             <div className='images-main'>
-                <div className='leftfloat-inline' >Upload Terakhir</div><br/>
-                <div className='images-cover'>
-                    <div className='imagecover-list'>
-                        {imagedata.map((image, index) => (
-                            <div className='imagecover' key={index}>
-                                <img className='image' src={`http://${image.url}`} alt="The Scream" />
-                            </div>
-                        ))}
-                    </div>
+                <div className='leftfloat-inline' >Upload Terakhir</div>
+                <div className='imagecover-list'>
+                    {imagedata.map((image, index) => (
+                        <div className='imagecover' key={index}>
+                            <img className='image' src={`http://${image.url}`} alt="The Scream" />
+                        </div>
+                    ))}
                 </div>
-
             </div>
             <FooterComp />
         </div>
     )
 }
-export default Images
+export default Koleksi

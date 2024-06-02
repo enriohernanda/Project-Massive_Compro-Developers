@@ -185,7 +185,7 @@
 
 /* CSS Card Pembuat Website */
 .cardSeni {
-  border: 1px solid hsl(0, 0%, 80%);
+  border: 1px solid rgba(229, 225, 225, 0.6);
   border-radius: 10px;
   box-shadow: 5px 5px 5px hsla(0, 0%, 0%, 0.1);
   padding: 20px;
@@ -196,10 +196,14 @@
 }
 
 .cardSeni .cardImgSeniman {
-  max-width: 60%;
+  width: 150px;
   height: auto;
-  border-radius: 10px;
+  border-radius: 100%;
   margin-bottom: 10px;
+}
+
+.cardSeni:hover {
+  transform: scale(1.11);
 }
 
 .cardSeni .namaSeniman {
@@ -580,6 +584,7 @@
   flex-direction: column;
   box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.15);
   float: left;
+  padding: 20px;
 }
 
 .profileboard .photoprofile {
@@ -597,6 +602,7 @@
   font-weight:bolder;
   font-size: large;
 }
+
 .hr{
   height: 2px;
   width: 90%;
@@ -666,10 +672,12 @@
   gap: 20px;
 }
 
-.imagecover-list{
+.latestimage .imagecover-list, .collectedimage .imagecover-list{
   cursor: pointer;
   height: 250px;
-  width: 267px;
+  /* min-width: 207px; */
+  width: 33%;
+  max-width: 270px;
   overflow: hidden;
   position: relative;
   border-radius: 10%;
@@ -787,6 +795,7 @@
   float: right;
   right: 0%;
   border: 2px solid #eda145;
+  font-weight: bolder;
 }
 .button-container button:hover{
   transition-duration: 1333ms;
@@ -798,13 +807,14 @@
 
 /* CSS Images */
 
-.nav-back{
+.images-body .nav-back{
   height: auto;
   padding: 10px;
   background-color: white;
+  box-shadow: 20px 0 20px 0 gray;
 }
 
-.nav-back button{
+.images-body .nav-back button{
   border: 0px solid wheat;
   font-weight: bolder;
   background-color: #ffffff;
@@ -815,26 +825,37 @@
     background-color: #F4F4F4;
   }
 
-  .images-main{
+  .images-body .images-main{
     background-color: #ffffff;
     padding: 20px;
     margin: 20px;
-    border-radius: 30px;
+    min-height: 90vh;
+    border-radius: 3%;
     box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.25);
   }
-
-  .images-main .imagecover-list{
+ 
+  .images-body .images-main .images-cover{
     display: flex;
     width: 100%;
     height: fit-content;
-    flex-direction: row;
-    justify-content:center;
-    gap: 0px;
-    padding: 0%;
-    
+    padding: auto;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
   }
 
-  .images-main .imagecover-list .imagecover{
+  .images-body .images-main .images-cover .imagecover-list{
+    border-radius: 0%;
+    display: flex;
+    width: fit-content;
+    height: fit-content;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: auto;
+    padding: 0%;
+  }
+
+  .images-body .images-main .images-cover .imagecover-list .imagecover{
     cursor: pointer;
     height: 290px;
     width: 400px;
@@ -845,7 +866,71 @@
     padding: 0%;
   }
 
-  .image{
+  .images-body .images-main .images-cover .imagecover-list .imagecover .image{
+    border-radius: 10%;
+     width: 100%;
+     height: 100%;
+     position: absolute;
+     object-fit: cover;
+     object-position: center;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50% ,-50%);
+  }
+/* End CSS Images */
+
+/* CSS Images */
+
+.collection-body .nav-back{
+  height: auto;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 20px 0 20px 0 gray;
+}
+
+.collection-body .nav-back button{
+  border: 0px solid wheat;
+  font-weight: bolder;
+  background-color: #ffffff;
+  padding: 5px;
+  text-decoration: underline;
+}
+  .collection-body{
+    background-color: #F4F4F4;
+  }
+
+  .collection-body .images-main{
+    background-color: #ffffff;
+    padding: 20px;
+    margin: 20px;
+    min-height: 90vh;
+    border-radius: 3%;
+    box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.25);
+  }
+  
+  .collection-body .images-main .imagecover-list{
+    border-radius: 0%;
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    flex-wrap: wrap;
+    justify-content:space-around;
+    gap: 0px;
+    padding: 0%;
+  }
+
+  .collection-body .images-main .imagecover-list .imagecover{
+    cursor: pointer;
+    height: 290px;
+    width: 400px;
+    overflow: hidden;
+    position: relative;
+    border-radius: 10%;
+    margin: 10px;
+    padding: 0%;
+  }
+
+  .collection-body .images-main .imagecover-list .imagecover .image{
     border-radius: 10%;
      width: 100%;
      height: 100%;

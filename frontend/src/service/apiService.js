@@ -39,10 +39,42 @@ export const getImages = async (imageId, direction) => {
 } 
 
 // get all images limit 3 required imageId and direction
-export const getProfile = async (authstatus, userid, token) => {
+export const getUserImagesByLatest = async (userId, imageId) => {
     try {
-        console.log(token)
-        const response = await api.get('/api/user/profile', {params : {authstatus: authstatus, userId : userid, token : token, direction : 'forward', imageId : 1}})
+        console.log(userId)
+        const response = await api.get('/api/user/image', {params : {userId : userId, imageId : imageId, direction : 'forward'}})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+export const getUserCollectionImage = async (userId) => {
+    try {
+        const response = await api.get('/api/user/collection', {params : {userId : userId, direction : 'forward'}})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+// get all images limit 3 required imageId and direction
+export const getProfile = async (authstatus, id) => {
+    try {
+        const userid = parseInt(id)
+        console.log(authstatus, id,userid,'================')
+        const response = await api.get('/api/user/profile', {params : {authstatus: authstatus, userId : userid, direction : 'forward', imageId : 1}})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+// get all users limit 16 required imageId and direction
+export const getUsers = async () => {
+    try {
+        const startUserID = 1
+        const response = await api.get('/api/users', {params : {startUserId : startUserID, direction : 'forward'}})
         return response.data
     } catch (error) {
         console.log(error)
