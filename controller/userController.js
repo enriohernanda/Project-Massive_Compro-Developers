@@ -91,7 +91,7 @@ const getUserValidation = async (req, res, next) => {
             return next()
         }
         res.status(404).json({
-            status: 'Not Found',
+            status: 'not found',
             message : 'email or password is havent registerd'
         })
     } catch (error) {

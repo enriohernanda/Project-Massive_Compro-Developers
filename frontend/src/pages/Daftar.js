@@ -28,7 +28,8 @@ const Daftar = () => {
           <input 
             type="text" 
             id="nama" 
-            name="nama" 
+            name="nama"
+            required 
             value={username}
             onChange={(e) =>setUsername(e.target.value)}
             className="input-nama-daftar" placeholder="Masukan nama anda" />
@@ -39,6 +40,7 @@ const Daftar = () => {
             type="email" 
             id="email" 
             name="email" 
+            required
             value={email}
             onChange={(e) =>setEmail(e.target.value)}
             className="input-email-daftar" placeholder="Masukan email anda" />
@@ -48,7 +50,8 @@ const Daftar = () => {
           <input 
             type="password" 
             id="password" 
-            name="password" 
+            name="password"
+            required 
             value={password}
             onChange={(e) =>setPassword(e.target.value)}
             className="input-password-daftar" placeholder="Buat kata sandi anda" />
@@ -64,7 +67,7 @@ const Daftar = () => {
           </p>
         </form>
       </div>
-      <img src={image} alt="" className="ms-auto masuk-image align-self-end d-block" height={'600px'} width={'52%'} />
+      <img src={image} id="background-login" alt="" className="ms-auto masuk-image align-self-end d-block" height={'600px'} width={'52%'} />
           <a className="btn_skip" onClick={() => navigate('/')}>
             Skip Now
           </a>

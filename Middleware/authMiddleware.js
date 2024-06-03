@@ -53,8 +53,12 @@ const OptionalValidationToken = (req, res, next) => {
     console.log(req.body.token)
     console.log(req.query.token)
     const { authstatus } = req.query
-    if (authstatus === false || !authstatus ) {
+    console.log(req)
+    console.log(req.query.authstatus)
+    if (authstatus === 'false' || !authstatus ) {
         // req.query.userId = 0
+        // req.decoded.id = 1
+        console.log(req.query.token)
         return next()
     }
     const tokenquery = req.query.token

@@ -30,6 +30,7 @@ export const AuthProvider = ({children}) => {
             }
         } catch (error) {
             console.log(error)
+            alert(error.response.data.message)
         }
     }
 
@@ -52,14 +53,16 @@ export const AuthProvider = ({children}) => {
             }
         } catch (error) {
             console.log(error)
+            alert(error.response.data.message)
         }
     }
     
-   const logout = async () => {
+    const logout = async () => {
     try {
         const token = localStorage.getItem('token')
         const response = await axios.delete('http://localhost:4000/api/user/unauthorization', { params : {token : token} }) 
         if (response.data.status === 'success') {
+            console.log('========== Erroe 3 ')
             setAuth(false)
             setToken('')
             setUserId()
@@ -90,11 +93,14 @@ useEffect (() => {
     const urldata = localStorage.getItem('photoprofile')
     const useriddata = localStorage.getItem('userid')
     if (authstatus && tokendata && urldata && useriddata) {
+        console.log(tokendata)
+        console.log('========== Erroe auth 1 ')
         setAuth(authstatus)
         setToken(tokendata)
         setUserId(useriddata)
         setUserphoto_profile(urldata)
     }
+    console.log('========== Erroe 2 ')
 },[])
    return (
        <AuthContext.Provider value={{isAuth, token, username, userid, photo_profile, registration, login, logout}} >

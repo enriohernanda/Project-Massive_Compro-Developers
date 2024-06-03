@@ -52,11 +52,14 @@ const deleteCollection = async (req, res) =>{
 
 const getCollection = async (req, res, next) => {
     try {
-        const {imageId} = req.query
-        const userId = req.query.userId ? req.query.userId : req.decoded.id ;
+        const {imageId, authstatus} = req.query
         if(!imageId){
             return res.status(400).json({message : 'imageid is required'})
         }
+        if (authstatus === 'false') {
+            return next()
+        }
+        const userId = req.decoded.id 
         const result = await collections.findOne({
             where : {
                 id : imageId ,

@@ -278,8 +278,7 @@ const getImageDetail = async (req, res, next) => {
         const { imageId } = req.query
         console.log(req.query)
         console.log(req.body)
-        console.log(req.params)
-        const userId = req.query.userId ? req.query.userId : req.decoded.id;
+        console.log(imageId)
         if (!imageId) {
             return res.status(400).json({
                 status : 'failed',
@@ -288,12 +287,11 @@ const getImageDetail = async (req, res, next) => {
         }
         const result = await images.findOne({
             Where : {
-                id : imageId,
-                user_id : userId
+                id : imageId
             },
-            attributes : ['id','image_name','description']
+            attributes : ['id','user_id', 'image_name','description']
         })
-        const url = `${domain}/image/${userId}/${imageId}.jpg`
+        const url = `${domain}/image/${result.user_id}/${imageId}.jpg`
         if (result) {
             req.imagedata = {urlimage : url, image_name : result.image_name, description : result.description}
             // res.status(200).json({url : url, image_name : result.image_name, description : result.description})

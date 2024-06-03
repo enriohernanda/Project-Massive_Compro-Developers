@@ -19,9 +19,11 @@ export const createImage = async (formdata, token, name, description, image) => 
 
 
 // get image detail required authstatus, imageId, userId or token
-export const getimagedetail = async (authstatus, imageId, token) => {
+export const getimagedetail = async (authstatus, imageId, token, userid) => {
     try {
-        const response = await api.get('/api/image/detail',  {params :{authstatus : authstatus, imageId : imageId, token : token}})
+        console.log(authstatus)
+        const userId = userid 
+        const response = await api.get('/api/image/detail',  {params :{authstatus : authstatus, imageId : imageId, token : token, userId : userId}})
         return response.data
     } catch (error) {
         console.log(error)

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 03 Jun 2024 pada 02.28
+-- Waktu pembuatan: 03 Jun 2024 pada 15.09
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -93,6 +93,13 @@ CREATE TABLE `countrys` (
   `updatedAt` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data untuk tabel `countrys`
+--
+
+INSERT INTO `countrys` (`id`, `name`, `createdAt`, `updatedAt`) VALUES
+(1, 'Indonesia', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+
 -- --------------------------------------------------------
 
 --
@@ -142,7 +149,7 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id`, `user_id`, `image_name`, `description`, `status`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 'The Scream', 'Jeritan (bahasa Norwegia: Skrik, 1893; judul bahasa Inggris: The Scream) adalah sebutan untuk empat buah versi lukisan ekspresionis oleh seniman Norwegia Edward Munch yang menjadi sumber inspirasi bagi banyak pelukis lainnya dalam aliran ini. Lukisan ini dianggap oleh banyak orang sebagai karyanya yang paling penting. Sebagian lagi mengatakan lukisan ini melambangkan manusia modern yang tercekam oleh serangan angst kecemasan eksistensial, dengan cakrawala yang diilhami oleh senja yang merah, yang dilihat setelah letusan Gunung Krakatau pada 1883.[1]Lansekap di belakang adalah Oslofjord, yang dilihat dari bukit Ekeberg. Kata skrik dalam bahasa Norwegia biasanya diterjemahkan menjadi \"scream\" (jeritan), namun kata ini juga mempunyai akar kata yang sama dengan kata bahasa Inggris shriek. Kadang-kadang lukisan ini disebut juga The Cry (\"Tangisan\").\n\nVersi tempera di atas karton (berukuran 83,5 x 66 cm) yang sebelumnya terdapat di Museum Munch, Oslo, Norwegia (lihat galeri), dan sebuah lukisan minyak, tempera, dan pastel di atas karton (ukuran 91 x 73,5 cm) di Galeri Nasional (tampak di sebelah kanan), juga di Oslo. Versi ketiga juga dimiliki oleh Museum Munch, dan yang keempat dimiliki oleh Petter Olsen. Munch belakangan juga menerjemahkan gambar ini ke dalam bentuk litograf (lihat galeri), sehingga gambarya dapat direproduksi dalam berbagai tulisan tinjauan di seluruh dunia. Sejak 1994, dua versi terpisah dari Jeritan ini dicuri oleh pencuri-pencuri karya seni, tetapi akhirnya keduanya telah ditemukan kembali. Pada tanggal 2 Mei 2012, lukisan The Scream terjual sebesar US$ 119.922.500 atau setara dengan Rp 1,079 triliun dalam pelelangan di rumah lelang Sotheby\'s, New York.[2]', NULL, '2024-06-03 00:20:02', '2024-06-03 00:20:02');
+(1, 1, 'The Scream', 'Jeritan (bahasa Norwegia: Skrik, 1893; judul bahasa Inggris: The Scream) adalah sebutan untuk empat buah versi lukisan ekspresionis oleh seniman Norwegia Edward Munch yang menjadi sumber inspirasi bagi banyak pelukis lainnya dalam aliran ini. Lukisan ini dianggap oleh banyak orang sebagai karyanya yang paling penting. Sebagian lagi mengatakan lukisan ini melambangkan manusia modern yang tercekam oleh serangan angst kecemasan eksistensial, dengan cakrawala yang diilhami oleh senja yang merah, yang dilihat setelah letusan Gunung Krakatau pada 1883.[1]Lansekap di belakang adalah Oslofjord, yang dilihat dari bukit Ekeberg. Kata skrik dalam bahasa Norwegia biasanya diterjemahkan menjadi \"scream\" (jeritan), namun kata ini juga mempunyai akar kata yang sama dengan kata bahasa Inggris shriek. Kadang-kadang lukisan ini disebut juga The Cry (\"Tangisan\").<br>\n\nVersi tempera di atas karton (berukuran 83,5 x 66 cm) yang sebelumnya terdapat di Museum Munch, Oslo, Norwegia (lihat galeri), dan sebuah lukisan minyak, tempera, dan pastel di atas karton (ukuran 91 x 73,5 cm) di Galeri Nasional (tampak di sebelah kanan), juga di Oslo. Versi ketiga juga dimiliki oleh Museum Munch, dan yang keempat dimiliki oleh Petter Olsen. Munch belakangan juga menerjemahkan gambar ini ke dalam bentuk litograf (lihat galeri), sehingga gambarya dapat direproduksi dalam berbagai tulisan tinjauan di seluruh dunia. Sejak 1994, dua versi terpisah dari Jeritan ini dicuri oleh pencuri-pencuri karya seni, tetapi akhirnya keduanya telah ditemukan kembali. Pada tanggal 2 Mei 2012, lukisan The Scream terjual sebesar US$ 119.922.500 atau setara dengan Rp 1,079 triliun dalam pelelangan di rumah lelang Sotheby\'s, New York.[2]', NULL, '2024-06-03 00:20:02', '2024-06-03 00:20:02');
 
 -- --------------------------------------------------------
 
@@ -197,7 +204,10 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `user_id`, `title`, `message`, `timestamp`, `createdAt`, `updatedAt`) VALUES
-(1, 1, 'WELCOME TO MUSIUM OF ART', 'user was created successfully', '2024-06-03 00:10:39', '2024-06-03 00:10:39', '2024-06-03 00:10:39');
+(1, 1, 'WELCOME TO MUSIUM OF ART', 'user was created successfully', '2024-06-03 00:10:39', '2024-06-03 00:10:39', '2024-06-03 00:10:39'),
+(2, 2, 'WELCOME TO MUSIUM OF ART', 'user was created successfully', '2024-06-03 12:48:22', '2024-06-03 12:48:22', '2024-06-03 12:48:22'),
+(3, 3, 'WELCOME TO MUSIUM OF ART', 'user was created successfully', '2024-06-03 12:50:22', '2024-06-03 12:50:22', '2024-06-03 12:50:22'),
+(4, 4, 'WELCOME TO MUSIUM OF ART', 'user was created successfully', '2024-06-03 13:07:46', '2024-06-03 13:07:46', '2024-06-03 13:07:46');
 
 -- --------------------------------------------------------
 
@@ -229,7 +239,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `photo_profile`, `professi`, `country`, `created`, `facebook`, `instagram`, `x`, `whatsapp`, `youtube`, `status`, `createdAt`, `updatedAt`) VALUES
-(1, 'Felix Kun', 'Felixkun@yahoo.com', 'felixkun', '1', NULL, NULL, '2024-06-03 00:10:39', NULL, NULL, NULL, NULL, NULL, 'aktif', '2024-06-03 00:10:39', '2024-06-03 00:10:39');
+(1, 'Felix Kun', 'Felixkun@yahoo.com', 'felixkun', '1', 'Programmer', 1, '2024-06-03 00:10:39', NULL, NULL, NULL, NULL, NULL, 'aktif', '2024-06-03 00:10:39', '2024-06-03 00:10:39'),
+(2, 'Dimas', 'Dimas@yahoo.com', 'Dimas', NULL, NULL, NULL, '2024-06-03 12:48:22', NULL, NULL, NULL, NULL, NULL, 'aktif', '2024-06-03 12:48:22', '2024-06-03 12:48:22'),
+(3, 'Firman Art', 'Firman@yahoo.com', 'Dimas', NULL, NULL, NULL, '2024-06-03 12:50:22', NULL, NULL, NULL, NULL, NULL, 'aktif', '2024-06-03 12:50:22', '2024-06-03 12:50:22'),
+(4, 'Nur Hikari', 'Hikari@yahoo.com', 'felixkun', NULL, NULL, NULL, '2024-06-03 13:07:45', NULL, NULL, NULL, NULL, NULL, 'aktif', '2024-06-03 13:07:45', '2024-06-03 13:07:45');
 
 -- --------------------------------------------------------
 
@@ -255,7 +268,8 @@ INSERT INTO `usertokens` (`id`, `user_id`, `token`, `createdAt`, `updatedAt`) VA
 (3, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJGZWxpeCBLdW4iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNzM3MzgwNCwiZXhwIjoxNzE3NDYwMjA0fQ.JUiR2JoXNKw9OR0W69z3bz83hK35XyTHtcz57MlgjkM', '2024-06-03 00:16:44', '2024-06-03 00:16:44'),
 (4, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJGZWxpeCBLdW4iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNzM3Mzg3MywiZXhwIjoxNzE3NDYwMjczfQ.hQ8KNBMPBTjzp4HQSY5DUNUsEoBN1zQeSObH4Mcj3D0', '2024-06-03 00:17:53', '2024-06-03 00:17:53'),
 (5, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJGZWxpeCBLdW4iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNzM3NDA2MSwiZXhwIjoxNzE3NDYwNDYxfQ.zrTC5H_QW5RwSqCeDYdOCwA6yIR8uVZKkg_WPN1qkgw', '2024-06-03 00:21:01', '2024-06-03 00:21:01'),
-(6, 1, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJGZWxpeCBLdW4iLCJyb2xlIjoidXNlciIsImlhdCI6MTcxNzM3NDI0MSwiZXhwIjoxNzE3NDYwNjQxfQ.XQMc7x-NlEuMjUKYK3xqyvRYLIrC3Kq95UKFjx4CSpI', '2024-06-03 00:24:01', '2024-06-03 00:24:01');
+(16, 4, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJOdXIgSGlrYXJpIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTc0MjAwNjYsImV4cCI6MTcxNzUwNjQ2Nn0.9LfKqzvY4gt5ZKI7Gt_QQ1dI8eN4QMFCClZiPGyPrls', '2024-06-03 13:07:46', '2024-06-03 13:07:46'),
+(17, 4, 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NCwidXNlcm5hbWUiOiJOdXIgSGlrYXJpIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MTc0MjAxMDQsImV4cCI6MTcxNzUwNjUwNH0.NBUQhd9OGTGRpR65bzxCqtEcHMX6XuMfVap207NSo4E', '2024-06-03 13:08:24', '2024-06-03 13:08:24');
 
 --
 -- Indexes for dumped tables
@@ -395,7 +409,7 @@ ALTER TABLE `contactus`
 -- AUTO_INCREMENT untuk tabel `countrys`
 --
 ALTER TABLE `countrys`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT untuk tabel `developers`
@@ -431,19 +445,19 @@ ALTER TABLE `messages`
 -- AUTO_INCREMENT untuk tabel `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT untuk tabel `usertokens`
 --
 ALTER TABLE `usertokens`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

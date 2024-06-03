@@ -48,11 +48,14 @@ const deletelike = async (req, res) => {
 
 const getlike = async (req, res) => {
     try {
-        const { imageId } = req.query
-        const userId = req.query.userId? req.query.userId : req.decoded.id ; 
+        const { imageId, authstatus } = req.query
         if(!imageId){
             return res.status(400).json({message : 'imageid is required'})
         }
+        if (authstatus === 'false') {
+            return res.status(200).json(req.imagedata)
+        }
+        const userId = req.decoded.id 
         const result = await likes.findOne({
             where : {
                 liked_by_user_id : userId,
