@@ -276,6 +276,9 @@ const getLatestUserImagesLimit3 = async (req, res, next) => {
 const getImageDetail = async (req, res, next) => {
     try {
         const { imageId } = req.query
+        console.log(req.query)
+        console.log(req.body)
+        console.log(req.params)
         const userId = req.query.userId ? req.query.userId : req.decoded.id;
         if (!imageId) {
             return res.status(400).json({

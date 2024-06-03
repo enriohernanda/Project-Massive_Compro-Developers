@@ -17,15 +17,15 @@ export const createImage = async (formdata, token, name, description, image) => 
     }
 }
 
+
 // get image detail required authstatus, imageId, userId or token
 export const getimagedetail = async (authstatus, imageId, token) => {
     try {
-        const response = await api.get('/api/imagedetail', {params : {authstatus : authstatus, imageId : imageId, token : token}})
+        const response = await api.get('/api/image/detail',  {params :{authstatus : authstatus, imageId : imageId, token : token}})
         return response.data
     } catch (error) {
         console.log(error)
     }
-
 } 
 
 // get all images limit 3 required imageId and direction
@@ -84,7 +84,8 @@ export const getUsers = async () => {
 // create form contact us
 export const createForm = async (username, email, message) => {
     try {
-        const response = await api.post('/api/contactus', {params : {username : username, email : email ,message : message}})
+        console.log(username,email, message)
+        const response = await api.post('/api/contactus', {params : {name : username, email : email ,message : message}})
         return response.data
     } catch (error) {
         console.log(error)

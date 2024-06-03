@@ -9,7 +9,22 @@ import pembuatFemale from '../assets/pembuat-female.png';
 import iconHubKami from '../assets/icon-hubungi-kami.png';
 import NavbarComp from '../components/NavbarComp';
 
+import { useState, useEffect } from 'react';
+
+import {createForm} from '../service/apiService'
+
 const TentangKami = () => {
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [message, setMessage] = useState('')
+
+
+  const hadllesubmit = async (e) => {
+    e.preventDefault()
+    const response = await createForm(name, email, message)
+    console.log(response)
+  }
+
   return (
     <div>
       <NavbarComp />
@@ -70,19 +85,19 @@ const TentangKami = () => {
         <h2>Hubungi Kami</h2>
         <img src={iconHubKami} alt="hubungi kami" />
         <h3>Kirimkan kami sebuah pesan</h3>
-        <form className="form-hub">
-          <label className="label-hub" htmlFor="name">
+        <form className="form-hub" onSubmit={hadllesubmit}>
+          <label className="label-hub" htmlFor="name" >
             Nama
           </label>
-          <input type="text" name="nama" id="nama" className="input-hub" placeholder="Masukkan nama anda" />
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)}  name="nama" id="nama" className="input-hub" placeholder="Masukkan nama anda" />
           <label className="label-hub" htmlFor="email">
             Email
           </label>
-          <input type="email" name="email" id="email" className="input-hub" placeholder="Masukkan email anda" />
+          <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} name="email" id="email" className="input-hub" placeholder="Masukkan email anda" />
           <label className="label-hub" htmlFor="pesan">
             Pesan
           </label>
-          <input type="text" name="pesan" id="pesan" className="input-hub-pesan" placeholder="Ketik pesan anda disini" />
+          <input type="text" value={message} onChange={(e) => setMessage(e.target.value)}  name="pesan" id="pesan" className="input-hub-pesan" placeholder="Ketik pesan anda disini" />
           <button id="btn_hub" type="submit">
             Kirim
           </button>

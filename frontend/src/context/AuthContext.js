@@ -72,17 +72,16 @@ export const AuthProvider = ({children}) => {
             localStorage.removeItem('photoprofile')
         }
     } catch (error) {
-        console.log(error)
-        setAuth(false)
-        setToken('')
-        setUserId()
-        setUsername('')
-        setUserphoto_profile('')
-        localStorage.removeItem('isauth')            
-        localStorage.removeItem('token')
-        localStorage.removeItem('userid')
-        localStorage.removeItem('username')
-        localStorage.removeItem('photoprofile')
+        // console.log(error)
+        // setAuth(false)
+        // setToken('')
+        // setUserId()
+        // setUsername('')
+        // setUserphoto_profile('')
+        // localStorage.removeItem('isauth')            
+        // localStorage.removeItem('token')
+        // localStorage.removeItem('username')
+        // localStorage.removeItem('photoprofile')
     }
    }
 useEffect (() => {

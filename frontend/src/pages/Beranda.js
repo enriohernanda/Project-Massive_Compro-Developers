@@ -5,7 +5,32 @@ import FooterComp from '../components/FooterComp';
 import ButtonLSComp from '../components/ButtonLSComp';
 import NavbarComp from '../components/NavbarComp';
 
+import {getimagedetail} from '../service/apiService'
+
+import {useState, useEffect, useContext} from 'react'
+import { AuthContext } from '../context/AuthContext';
+
 const Beranda = () => {
+  const { isAuth, token} = useContext(AuthContext)
+  const [url, seturl] = useState()
+  const [name, setname] = useState()
+  const [description, setdescription] = useState()
+
+  useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const response = await getimagedetail(isAuth, 1, token)
+        console.log(response)
+        seturl(response.urlimage)
+        setname(response.image_name)
+        setdescription(response.description)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchdata()
+  },[])
+
   return (
     <div>
       <NavbarComp />
@@ -13,9 +38,11 @@ const Beranda = () => {
       <SearchComp />
       <div className="konten-beranda">
         <div className='imagecover'>
-          <img className='image' src={konten} alt="The Scream" />
+          <img className='image' src={url === "0" ? konten : `http://${url}` } alt="The Scream" />
         </div>
-        <h2>The Scream</h2>
+        <h2>{name? name : "The Scream"}</h2>
+        <pre>
+        </pre>
         <p>
           Jeritan (bahasa Norwegia: Skrik, 1893; judul bahasa Inggris: The Scream) adalah sebutan untuk empat buah versi lukisan ekspresionis oleh seniman Norwegia Edward Munch yang menjadi sumber inspirasi bagi banyak pelukis lainnya dalam
           aliran ini. Lukisan ini dianggap oleh banyak orang sebagai karyanya yang paling penting. Sebagian lagi mengatakan lukisan ini melambangkan manusia modern yang tercekam oleh serangan angst kecemasan eksistensial, dengan cakrawala

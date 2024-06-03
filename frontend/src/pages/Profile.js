@@ -48,7 +48,8 @@ const Profile = () => {
       const fetchdata = async () => {
           try {
             const response = await getProfile(isAuth, userparams, token)
-
+            console.log('userid : ',userid)
+            console.log('userparams : ',userparams)
             console.log(response)
             setfollowed(response.followed)
             setfollower(response.follower)
@@ -67,7 +68,7 @@ const Profile = () => {
         }
     }
     fetchdata()
-  }, [userparams, location.search])
+  }, [userparams])
 //   isAuth, trigerprofile, userparams
   const handlevisibleform = () =>{
     setvisibleform(!visibleform)
@@ -168,7 +169,7 @@ const Profile = () => {
                 </div>
             </div>
         </div>
-        {userid === userparams? (
+        {userid == userparams? (
         <div className='fileupload-cover'>
             <div className='fileupload'>
             {visibleform ? (<img src={uploadicon2} onClick={handlevisibleform}/> ) : (<img src={uploadicon1} onClick={handlevisibleform}/>) }

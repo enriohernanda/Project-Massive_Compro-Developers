@@ -31,10 +31,6 @@ const collections = sequelize.define('collections', {
             fields : ['user_id']
         },
         {
-            name : 'index_collected_user_id',
-            fields : ['collected_user_id']
-        },
-        {
             name : 'index_image_id',
             fields : ['image_id']
         }]  
