@@ -49,9 +49,10 @@ const NavbarComp = () => {
                     {dropdownvisible && (
                     <div className="dropdown">
                       <a onClick={() => navigate(`/profil?id=${userid}`)}>Profile</a>
-                      <a href="">Notification</a>
-                      <a href="">Message</a>
-                      <a onClick={handleClickLogout}>Logout</a>
+                      <a href="">Pemberitahuan</a>
+                      <a href="">Pesan</a>
+                      <a href="">Pengaturan</a>
+                      <a onClick={handleClickLogout}>Keluar</a>
                     </div>)}
                 </div>
             ) : (

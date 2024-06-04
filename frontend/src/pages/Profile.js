@@ -139,7 +139,7 @@ const Profile = () => {
                 </div>
             </div>
             <div className='userimage'>
-                <div className='leftfloat-inline' >Upload Terakhir</div>
+                <div className='leftfloat-inline' >Unggahan Terakhir</div>
                 {imagedata !== "not found"? (<div className='rightfloat-inline' onClick={()=> navigate(`/images?id=${userparams}`)}>Lihat Semua</div>) : (<div></div>)}
                 <div className='latestimage'>
                     

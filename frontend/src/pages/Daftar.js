@@ -62,7 +62,7 @@ const Daftar = () => {
           <p className="txt-daftar">
             <strong id="txt_udhAkun">Sudah punya akun? </strong>
             <a className="login-link" onClick={() => navigate('/masuk')}>
-              Login disini
+              Masuk disini
             </a>
           </p>
         </form>
