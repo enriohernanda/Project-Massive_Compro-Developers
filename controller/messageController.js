@@ -57,7 +57,7 @@ const createMessage = async (req, res, next) => {
             }
 
             var latestRoomId = await messages.max('message_room_id')
-            console.log(latestRoomId,'walallw')
+            console.log('Latest Room Id : ',latestRoomId)
             const newLatestRoomId = latestRoomId? latestRoomId + 1 : 1;
             const result = await messages.create({
                 id : '',
@@ -100,7 +100,6 @@ const getMessage = async (req, res) => {
         const userId = req.decoded.id
         const receiverUserId = req.decoded.id
         if (!messageRoomId || !req.messageRoomId) {
-            // return res.status(400).json({message : 'messageRoomId is required'})
             RoomId = await messages.findOne({
                 where : {
                     [Op.or] : [
@@ -128,13 +127,13 @@ const getMessage = async (req, res) => {
                 order : [['id', 'DESC']],
                 limit : 20
             })
-            console.log('aneh 2')
             return res.status(200).json(result)
         }
         console.log('aneh 1')
         if (!messageRoomId) {
             if (!userId) {
                 return res.status(400).json({
+                    status : "failed",
                     message : 'receiverUserId is required'
                 })
             }
@@ -175,7 +174,8 @@ const getMessage = async (req, res) => {
         console.log(error)
         res.status(500).json({
             status : 'error',
-            message : 'internal was error'})
+            message : 'internal was error'
+        })
     }
 }
 

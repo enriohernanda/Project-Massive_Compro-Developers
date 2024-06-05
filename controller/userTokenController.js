@@ -5,7 +5,6 @@ const {domain} = require('../config/domain')
 const createdTokenDB = async (req, res) => {
     try {
         const token = req.token
-        // const userId = req.decoded.id
         const userId = req.userId
         const message = req.message
         console.log(userId, message, token)
@@ -15,7 +14,7 @@ const createdTokenDB = async (req, res) => {
             token : token
         })
         const urlPhotoProfile = req.photoprofile? `http://${domain}/image/${userId}/profile.jpg` : '' ;
-        console.log(urlPhotoProfile,'=======KKKKKK')
+        console.log(urlPhotoProfile)
         if (result){
             return res.status(201).json({
                 status : 'success',
@@ -26,13 +25,16 @@ const createdTokenDB = async (req, res) => {
                 token : token
             })
         }
-        res.status(400).json({status : 'failed', messsage : 'invalid data user'})
-
+        res.status(400).json({
+            status : 'failed', 
+            messsage : 'invalid data user'
+        })
     } catch (error) {
         console.log(error)
         res.status(500).json({
             status : 'error',
-            message : 'internal was error'})
+            message : 'internal was error'
+        })
     }
 }
 
@@ -48,14 +50,20 @@ const deleteTokenDB = async (req, res) => {
         })
         console.log(result) 
         if (result) {
-            return res.status(200).json({status: 'success'})
+            return res.status(200).json({
+                status: 'success'
+            })
         }
-        res.status(400).json({status: 'failed', message : 'token is invalid 2'})
+        res.status(400).json({
+            status: 'failed', 
+            message : 'token is invalid'
+        })
     } catch (error) {
         console.log(error)
         res.status(500).json({
             status : 'error',
-            message : 'internal was error'})
+            message : 'internal was error'
+        })
     }
 }
 

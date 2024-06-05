@@ -50,14 +50,17 @@ const bulkCreateNotification = async (req, res, next) => {
             message : 'internal was error'})
     }
 }
-// perbaiki
+
 const getNotification = async (req, res) => {
     try {
         const { startNotificationId } = req.query
-        const userId = req.decoded.id
-        if (!userId) {
-            return res.status(400).json({message : 'userId is required'})
+        if (!req.decoded) {
+            return res.status(400).json({
+                status: "failed",
+                message : 'userId is required'
+            })
         }
+        const userId = req.decoded.id
         if (startNotificationId) {
             const result = await notifications.findAll({
                 where : {
@@ -82,10 +85,16 @@ const getNotification = async (req, res) => {
         if (result) {
             return res.status(200).json(result)
         }
-        res.status(404).json({message : 'no notification'})
+        res.status(404).json({
+            status : "not found",
+            message : 'no notification'
+        })
     } catch (error) {
         console.log(error)
-        res.status(500).json({message : 'Internal is error'})
+        res.status(500).json({
+            status : "error",
+            message : 'Internal is error'
+        })
     }
 }
 

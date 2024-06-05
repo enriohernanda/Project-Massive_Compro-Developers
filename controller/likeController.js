@@ -1,9 +1,14 @@
-const { where } = require('sequelize')
-const {likes} = require('../model/likeModel')
+const { likes } = require('../model/likeModel')
 
 const createLike = async (req, res) => {
     try {
         const { imageId } = req.query
+        if (!imageId) {
+            return res.status(400).json({
+                status : "failed",
+                message : "imageId is required"
+            })
+        }
         const userId = req.decoded.id
         const idUserLiked = req.imageownerid? req.imageownerid: req.query.userId 
         const result = await likes.create({
@@ -15,7 +20,10 @@ const createLike = async (req, res) => {
         if (result) {
             return res.status(200).json({status : 'success'})
         }
-        res.status(400).json({status : 'failed'})
+        res.status(400).json({
+            status : 'failed', 
+            message : "you have liked"
+        })
     } catch (error) {
         console.log(error)
         res.status(500).json({
@@ -42,7 +50,8 @@ const deletelike = async (req, res) => {
         console.log(error)
         res.status(500).json({
             status : 'error',
-            message : 'internal was error'})
+            message : 'internal was error'
+        })
     }
 }
 
@@ -50,7 +59,10 @@ const getlike = async (req, res) => {
     try {
         const { imageId, authstatus } = req.query
         if(!imageId){
-            return res.status(400).json({message : 'imageid is required'})
+            return res.status(400).json({
+                status : "failed",
+                message : 'imageid is required'
+            })
         }
         if (authstatus === 'false') {
             return res.status(200).json(req.imagedata)
@@ -74,15 +86,28 @@ const getlike = async (req, res) => {
 const countlike = async (req, res) => {
     try {
         const {userId, imageId} = req.query
-        const countLikedUserId = userId? userId : req.decoded.id;
+        if (!userId || !imageId) {
+            return res.status(400).json({
+                status : "failed", 
+                message : "userId and imageId is required"
+            })
+        }
+        const countLikedUserId = userId ? userId : req.decoded.id;
         if (!countLikedUserId) {
-            return res.status(400).json({message : 'userId is required'})
+            return res.status(400).json({
+                status : "failed",
+                message : 'userId is required'
+            })
         } 
-        const countLiked = await likes.count()
+        const countLiked = await likes.count({
+            where : {
+                image_id : imageId
+            }
+        })
         if (countLiked) {
             return res.status(200).json(countLiked)
         }
-        return res.status(404).json({
+        res.status(404).json({
             status : 'not found'
         })
     } catch (error) {
@@ -94,7 +119,3 @@ const countlike = async (req, res) => {
 }
 
 module.exports = { createLike, deletelike, getlike, countlike }
-
-
-
-

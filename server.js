@@ -4,7 +4,7 @@ const path = require('path')
 const fs = require('fs')
 const bodyParser = require('body-parser')
 const sequelize = require('./config/config')
-const upload = require('./Middleware/uploadMidlleware')
+const upload = require('./Middleware/uploadMiddleware')
 const { veryfyToken , OptionalValidationToken} = require('./Middleware/authMiddleware')
 const { domain } = require('./config/domain')
 const { portNumber } = require('./config/port')
@@ -27,6 +27,7 @@ app.use(cors())
 
 // app.use(bodyParser.urlencoded({extended : true}))
 app.use(express.urlencoded({extended : true}))
+
 // app.use(bodyParser.json())
 app.use(express.json())
 
@@ -75,7 +76,7 @@ app.delete('/api/user/unauthorization', veryfyToken, userTokenController.deleteT
 app.get('/api/user/profile', userController.getDataUser, countryController.getCountryNameById,collectionController.getListImageCollection, imageController.getCollectionUserImagesLimit3, imageController.getLatestUserImagesLimit3, followerController.countFollowerAndFollowed , (req, res) =>{
     const url = req.userdata.photo_profile? `${domain}/image/${req.userdata.id}/profile.jpg` : '0' ;
     req.userdata.photo_profile = url
-    console.log(req.imagedata,'dawdaw')
+    console.log(req.imagedata)
     res.status(200).json({
         userdata : req.userdata,
         imagedata : req.imagedata,
@@ -94,19 +95,10 @@ app.get('/api/developers', developerController.getDevList)
 // search image by imageName
 app.get('/api/image/search', imageController.getImageByName)
 
-app.get('/api/image/detailauth', async(req, res) => {
-    const { userId } = req.query
-    if (!userId){
-        await veryfyToken(req, res)
-    }
-    await imageController.getImageDetail(req, res) 
-    await collectionController.getCollection (req, res) 
-    await likeController.getlike (req, res)
-})
-
 // get image detail required authstatus, imageId, userId or token
 app.get('/api/image/detail', OptionalValidationToken, imageController.getImageDetail, collectionController.getCollection, likeController.getlike)
 
+// uplod prhoto_profile required formData("prhotoprofile") and token
 app.post('/api/image/photo_profile', veryfyToken, upload.single('photo_profile'), (req, res) => {
     res.json({ message: 'success' });
 })
@@ -137,8 +129,6 @@ app.delete('/api/like', veryfyToken, likeController.deletelike)
 // create like required imageId and token
 app.put('/api/like', veryfyToken, imageController.getImageOwnerIdByImageId, likeController.createLike)
 
-// lanjut ngab =============
-
 // create form contact us
 app.post('/api/contactus', contactusController.createForm)
 
@@ -167,45 +157,6 @@ app.get('/api/message',veryfyToken, messageController.getMessage)
 // required startMessageId, messageRoomId, direction, message 
 app.post('/api/message' ,veryfyToken, messageController.createMessage, notificationController.singleCreateNotification)
 
-
-// // app.post('/api/user', userController.createUser)
-
-// app.get('/api/user', (req, res) => {
-//     userController.getUser(req, res, 'next')
-// })
-    
-// app.get('/api/user/next', (req, res) => {
-//     userController.getUser(req, res, 'next')
-// })
-// app.get('/api/uservalidation', userController.getUserValidation)
-// app.get('/api/users', userController.getUsers)
-// app.post('/api/user', userController.createUser)
-// app.get('/api/listfollowers',userController.getListFollowers)
-// app.get('/api/listfollowers',userController.getListFollowed)
-// app.post('/api/follower', userController.createFollower)
-// app.post('/api/formcontactus', userController.createFormContactUs)
-// app.get('/api/country', userController.getCountrysList)
-// app.get('/api/notification',userController.getNotifications)
-// app.get('/api/image/detail', userController.getUserImgDetail)
-// app.get('/api/image/', userController.getUserImgs)
-// app.put('/api/image', userController.createImageRecord)
-
-
-
-
-
-
-
-
-
-
-// app.get('/api/imgaes/next', (req, res) => {
-//     userController.getImgs(req, res, 'Forward')
-// })
-// app.get('/api/images/previouse', (req, res) => {
-//     userController.getImgs(req, res, 'Backward')
-// })
-
 sequelize.authenticate().then(() => {
     console.log('Connected with database')
 })
@@ -217,8 +168,7 @@ sequelize.authenticate().then(() => {
 sequelize.sync({}).then(() => {
     console.log('Connected with DDl Database Model ORM')
 }).catch((err) => {
-    console.log('It going wrong with connection fiture DDL in Database Connection', err)
-
+    console.log('Something going wrong with connection fiture DDL in Database Connection', err)
 })
 
 app.listen(PORT, () =>{

@@ -99,7 +99,7 @@ const getUserImages = async (req, res, next) => {
             req.islast = isLastResult
             res.status(200).json({imagedata: arrayresult, isLast : isLastResult})
         }
-        console.log(result, "===========")
+        console.log("Hasil : ",result)
         req.imagedata = 'not found' 
         console.log(req.imagedata)
         return next()
@@ -158,7 +158,7 @@ const getUserCollectionImage = async (req, res) => {
             req.islast = isLastResult
             return res.status(200).json({imagedata: arrayresult, isLast : isLastResult})
         }
-        console.log(result, "===========")
+        console.log("Hasil : ", result)
         req.imagedata = 'not found' 
         console.log(req.imagedata)
         res.status(404).json({status : 'failed', imagedata : req.imagedata})
@@ -166,7 +166,8 @@ const getUserCollectionImage = async (req, res) => {
         console.log(error)
         res.status(500).json({
             status : 'error',
-            message : 'internal was error'})
+            message : 'internal was error'
+        })
     }
 } 
 
@@ -205,7 +206,7 @@ const getCollectionUserImagesLimit3 = async (req, res, next) => {
             req.imagecollection = arrayresult
             return next()
         }
-        console.log(result, "===========")
+        console.log("Hasil : ", result)
         req.imagecollection = 'not found' 
         console.log(req.imagedata)
         return next()
@@ -213,7 +214,8 @@ const getCollectionUserImagesLimit3 = async (req, res, next) => {
         console.log(error)
         res.status(500).json({
             status : 'error',
-            message : 'internal was error'})
+            message : 'internal was error'
+        })
     }
 } 
 
@@ -261,7 +263,7 @@ const getLatestUserImagesLimit3 = async (req, res, next) => {
             req.islast = isLastResult
             return next()
         }
-        console.log(result, "===========")
+        console.log("Hasil : ", result)
         req.imagedata = 'not found' 
         console.log(req.imagedata)
         return next()
@@ -269,7 +271,8 @@ const getLatestUserImagesLimit3 = async (req, res, next) => {
         console.log(error)
         res.status(500).json({
             status : 'error',
-            message : 'internal was error'})
+            message : 'internal was error'
+        })
     }
 } 
 

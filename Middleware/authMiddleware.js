@@ -1,32 +1,21 @@
 const jwt = require('jsonwebtoken')
 const { secretKey } = require('../config/secretKey')
-const { DATE } = require('sequelize')
 
 const signToken = (user) => {
     if(!user.id || !user.username || !user.role){
         return "Data is invalid"
     }
-    const Token = jwt.sign(user, secretKey, {expiresIn : '24h'})
-    return Token
+    const token = jwt.sign(user, secretKey, { expiresIn : '24h' })
+    return token
 }
 
 const veryfyToken = (req, res, next) => {
-    console.log('walllawe delete')
-    console.log(req.body.token)
-    console.log(req.query.token)
-    console.log(req.params.token)
-    console.log(req.body)
-    const tokenquery = req.query.token
-    const token = tokenquery ? tokenquery : req.body.token ;
-    // const now = new DATE.currenttimw
-    console.log(token)
-    // const { authstatus } = req.query
-    // if (authstatus === false) {
-    //     return next()
-    // }
+    const { authstatus } = req.query
+    if (authstatus === "false") {
+        return next()
+    }
+    const token = req.query.token
     if(!token){
-        console.log('walllawe delete')
-        console.log('walllawe delete')
         return res.status(400).json({message : 'token is missing'});
     }
     console.log(secretKey)
@@ -50,15 +39,10 @@ const veryfyToken = (req, res, next) => {
 }
 
 const OptionalValidationToken = (req, res, next) => {
-    console.log(req.body.token)
-    console.log(req.query.token)
+    console.log(req.body)
+    console.log(req.query)
     const { authstatus } = req.query
-    console.log(req)
-    console.log(req.query.authstatus)
     if (authstatus === 'false' || !authstatus ) {
-        // req.query.userId = 0
-        // req.decoded.id = 1
-        console.log(req.query.token)
         return next()
     }
     const tokenquery = req.query.token
