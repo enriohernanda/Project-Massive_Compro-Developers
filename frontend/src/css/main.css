@@ -17,10 +17,9 @@
   position: fixed;
   padding: 15px 0 15px 0;
   width: 100%;
-  padding:20px ;
+  padding: 20px;
   height: 100px;
   background-color: var(--secondary-color);
-  
 }
 
 .navbar .nav-link a {
@@ -51,7 +50,7 @@
   font-weight: 500;
 }
 
-.cover-profile{
+.cover-profile {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -69,10 +68,10 @@
   margin: 4.5%;
   width: 40%;
   max-height: auto;
-  border: 0.2vw solid #28C763;
+  border: 0.2vw solid #28c763;
 }
 
-.dropdown{
+.dropdown {
   margin-top: 40px;
   display: none;
   width: fit-content;
@@ -85,7 +84,7 @@
   z-index: 10;
 }
 
-.dropdown a{
+.dropdown a {
   margin: 10px;
   text-decoration: none;
   font-style: normal;
@@ -119,7 +118,7 @@
   float: left;
   margin-top: 10px;
 } */
-.imagecover{
+.imagecover {
   height: 705px;
   width: 474px;
   overflow: hidden;
@@ -129,7 +128,7 @@
   margin: 30px;
 }
 
-.imagecover img{
+.imagecover img {
   border-radius: 10%;
   width: 100%;
   height: 100%;
@@ -138,7 +137,7 @@
   object-position: center;
   top: 50%;
   left: 50%;
-  transform: translate(-50% ,-50%);
+  transform: translate(-50%, -50%);
 }
 
 .konten-beranda h2 {
@@ -200,7 +199,7 @@
   transform: scale(1.11);
 }
 
-#background-login{
+#background-login {
   height: 100vh;
 }
 
@@ -210,7 +209,6 @@
   border-radius: 100%;
   margin-bottom: 10px;
 }
-
 
 .cardSeni .namaSeniman {
   font-size: 24px;
@@ -470,55 +468,48 @@
   margin-bottom: 30px;
 }
 
+.card-pameran {
+  width: 500px;
+  position: relative;
+}
+
 .card-pameran img {
+  border-radius: 40px;
   display: block;
   width: 100%;
 }
 
+.intro {
+  border-radius: 40px;
+  width: 96.5%;
+  height: 40%;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  background: rgb(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  opacity: 0;
+  transition: 0.6s;
+}
+
+.intro:hover {
+  opacity: 1;
+}
+
 .intro h2 {
-  margin-top: 0;
-  color: var(--color-heading-text);
+  color: white;
   font-size: 20px;
-  text-align: center;
-  /* visibility: hidden;
-  opacity: 0; */
+  text-align: left;
 }
 
 .intro p {
-  margin-right: 10px;
-  margin-bottom: 30px;
-  color: var(--color-text);
+  color: white;
   font-size: 14px;
   text-align: center;
-  /* visibility: hidden;
-  opacity: 0; */
 }
-
-/* .intro {
-  border-radius: 30px;
-  margin-left: 15px;
-  text-align: left;
-  height: auto;
-  width: 100%;
-  padding: 6px;
-  box-sizing: border-box;
-  position: absolute;
-  background: rgb(27, 27, 27, 0.5);
-} */
-
-/* .slider-pameran:hover .intro {
-  height: 230px;
-}
-
-.slider-pameran:hover h2 {
-  opacity: 1;
-  visibility: visible;
-}
-
-.slider-pameran:hover p {
-  opacity: 1;
-  visibility: visible;
-} */
 
 .slider-pameran .card-pameran:hover {
   cursor: pointer;
@@ -567,20 +558,19 @@
 /* End CSS Galeri */
 
 /* CSS Profile */
-.bodyprofile{
-  background-color: #F4F4F4;
+.bodyprofile {
+  background-color: #f4f4f4;
 }
 
-.mainprofile{
+.mainprofile {
   padding: 3%;
   display: flex;
   justify-content: center;
   gap: 2%;
-
 }
 
-.profileboard{
-  border: 1px solid #F7F7F7;
+.profileboard {
+  border: 1px solid #f7f7f7;
   background-color: white;
   border-radius: 20px;
   width: 37%;
@@ -601,20 +591,21 @@
   width: 118px;
   height: 118px;
   max-height: auto;
-  border: 0.2vw solid #28C763;
+  border: 0.2vw solid #28c763;
 }
 
-.username{
-  font-weight:bolder;
+.username {
+  font-weight: bolder;
   font-size: large;
 }
 
-.hr{
+.hr {
   height: 2px;
   width: 90%;
   background-color: black;
 }
-.followercontainer, .socialcontainer{
+.followercontainer,
+.socialcontainer {
   display: flex;
   /* justify-content:space-between; */
   align-content: center;
@@ -624,58 +615,60 @@
   width: 100%;
   margin-bottom: 5%;
 }
-.inline-space-between{
+.inline-space-between {
   height: 2vw;
   display: flex;
   justify-content: space-between;
 }
-.button-message, .button-follow{
+.button-message,
+.button-follow {
   padding: 10px 20px 10px 20px;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   background-color: #eda145;
   border: none;
   margin: 5px;
   font-weight: bold;
   border-radius: 3px;
 }
-.button-message:hover, .button-follow:hover{
+.button-message:hover,
+.button-follow:hover {
   transition-duration: 0.5s;
   background-color: #916025;
   color: white;
 }
-.inline-space-between img{
+.inline-space-between img {
   width: 1vw;
   height: 1.5vw;
 }
-.socialcontainer{
+.socialcontainer {
   display: flex;
 }
 
-.leftfloat{
+.leftfloat {
   float: left;
 }
 
-.leftfloat p{
+.leftfloat p {
   font-weight: bold;
   font-family: 'poppins';
 }
 
-.rightfloat{
+.rightfloat {
   float: right;
   width: fit-content;
   display: flex;
   flex-direction: column;
   align-content: space-evenly;
-  gap: 1vw
+  gap: 1vw;
 }
 
-.arrow{
+.arrow {
   cursor: pointer;
   margin: 0%;
   padding: 0%;
 }
 
-.created{
+.created {
   width: 100%;
   height: 100%;
   display: flex;
@@ -683,10 +676,10 @@
   align-items: center;
 }
 
-.userimage{
+.userimage {
   width: 63%;
   height: 868px;
-  border: 1px solid #F7F7F7;
+  border: 1px solid #f7f7f7;
   background-color: white;
   box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.15);
   float: right;
@@ -694,7 +687,8 @@
   padding: 40px;
 }
 
-.latestimage, .collectedimage{
+.latestimage,
+.collectedimage {
   display: flex;
   width: 100%;
   height: 270px;
@@ -704,7 +698,8 @@
   gap: 20px;
 }
 
-.latestimage .imagecover-list, .collectedimage .imagecover-list{
+.latestimage .imagecover-list,
+.collectedimage .imagecover-list {
   cursor: pointer;
   height: 250px;
   /* min-width: 207px; */
@@ -713,23 +708,23 @@
   overflow: hidden;
   position: relative;
   border-radius: 10%;
-
 }
 
-.leftfloat-inline, .rightfloat-inline{
+.leftfloat-inline,
+.rightfloat-inline {
   display: inline;
   width: 100%;
   font-weight: bold;
 }
 
-.leftfloat-inline{
+.leftfloat-inline {
   padding: 20px;
   float: left;
   font-size: large;
   margin-top: 20px;
 }
 
-.rightfloat-inline{
+.rightfloat-inline {
   float: right;
   text-decoration: underline;
   text-align: right;
@@ -738,7 +733,7 @@
   width: fit-content;
 }
 
-.image-lists{
+.image-lists {
   border-radius: 10%;
   width: 100%;
   height: 100%;
@@ -747,18 +742,18 @@
   object-position: center;
   top: 50%;
   left: 50%;
-  transform: translate(-50% ,-50%);
+  transform: translate(-50%, -50%);
 }
 
-.fileupload-cover{
-  margin: 0 2.57% 2.57% 2.57%; 
+.fileupload-cover {
+  margin: 0 2.57% 2.57% 2.57%;
 }
 
-.fileupload{
+.fileupload {
   padding: 5%;
   margin-top: 0%;
   height: fit-content;
-  border: 1px solid #F7F7F7;
+  border: 1px solid #f7f7f7;
   background-color: white;
   position: relative;
   box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.25);
@@ -768,46 +763,46 @@
   z-index: 3;
 }
 
-.fileupload-form{
+.fileupload-form {
   transform: translateY(-30px);
   box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.25);
   border-radius: 20px;
-  background-color: #F4F4F4;
+  background-color: #f4f4f4;
   z-index: 2;
   padding: 40px;
 }
 
-.fileupload img{
+.fileupload img {
   width: 250px;
   height: 250px;
   cursor: pointer;
 }
-.fileupload-form{
+.fileupload-form {
   transition: height 133s ease-in-out;
   transition-duration: 1333ms;
 }
 
-.fileupload-form p{
+.fileupload-form p {
   font-size: 24px;
   font-style: var(--secondary-color);
   color: #eda145;
 }
 
-.input{
+.input {
   border: 2px solid var(--secondary-color);
   border-style: dashed;
   width: 100%;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0);
-  outline: none; 
+  outline: none;
   margin-bottom: 10px;
 }
 
-.fileupload-form textarea{
+.fileupload-form textarea {
   min-height: 314px;
 }
 
-.button-container{
+.button-container {
   width: 100%;
   height: fit-content;
   padding: 10px;
@@ -815,7 +810,7 @@
   justify-content: flex-end;
 }
 
-.fileupload-form .button-container button{
+.fileupload-form .button-container button {
   padding: 10px;
   padding-left: 30px;
   padding-right: 30px;
@@ -829,7 +824,7 @@
   border: 2px solid #eda145;
   font-weight: bolder;
 }
-.button-container button:hover{
+.button-container button:hover {
   transition-duration: 1333ms;
   background-color: white;
   color: #eda145;
@@ -839,144 +834,144 @@
 
 /* CSS Images */
 
-.images-body .nav-back{
+.images-body .nav-back {
   height: auto;
   padding: 10px;
   background-color: white;
   box-shadow: 20px 0 20px 0 gray;
 }
 
-.images-body .nav-back button{
+.images-body .nav-back button {
   border: 0px solid wheat;
   font-weight: bolder;
   background-color: #ffffff;
   padding: 5px;
   text-decoration: underline;
 }
-  .images-body{
-    background-color: #F4F4F4;
-  }
+.images-body {
+  background-color: #f4f4f4;
+}
 
-  .images-body .images-main{
-    background-color: #ffffff;
-    padding: 20px;
-    margin: 20px;
-    min-height: 90vh;
-    border-radius: 3%;
-    box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.25);
-  }
- 
-  .images-body .images-main .images-cover{
-    display: flex;
-    width: 100%;
-    height: fit-content;
-    padding: auto;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-  }
+.images-body .images-main {
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 20px;
+  min-height: 90vh;
+  border-radius: 3%;
+  box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.25);
+}
 
-  .images-body .images-main .images-cover .imagecover-list{
-    border-radius: 0%;
-    display: flex;
-    width: fit-content;
-    height: fit-content;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    gap: auto;
-    padding: 0%;
-  }
+.images-body .images-main .images-cover {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  padding: auto;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
 
-  .images-body .images-main .images-cover .imagecover-list .imagecover{
-    cursor: pointer;
-    height: 290px;
-    width: 400px;
-    overflow: hidden;
-    position: relative;
-    border-radius: 10%;
-    margin: 10px;
-    padding: 0%;
-  }
+.images-body .images-main .images-cover .imagecover-list {
+  border-radius: 0%;
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: auto;
+  padding: 0%;
+}
 
-  .images-body .images-main .images-cover .imagecover-list .imagecover .image{
-    border-radius: 10%;
-     width: 100%;
-     height: 100%;
-     position: absolute;
-     object-fit: cover;
-     object-position: center;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50% ,-50%);
-  }
+.images-body .images-main .images-cover .imagecover-list .imagecover {
+  cursor: pointer;
+  height: 290px;
+  width: 400px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10%;
+  margin: 10px;
+  padding: 0%;
+}
+
+.images-body .images-main .images-cover .imagecover-list .imagecover .image {
+  border-radius: 10%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 /* End CSS Images */
 
 /* CSS Images */
 
-.collection-body .nav-back{
+.collection-body .nav-back {
   height: auto;
   padding: 10px;
   background-color: white;
   box-shadow: 20px 0 20px 0 gray;
 }
 
-.collection-body .nav-back button{
+.collection-body .nav-back button {
   border: 0px solid wheat;
   font-weight: bolder;
   background-color: #ffffff;
   padding: 5px;
   text-decoration: underline;
 }
-  .collection-body{
-    background-color: #F4F4F4;
-  }
+.collection-body {
+  background-color: #f4f4f4;
+}
 
-  .collection-body .images-main{
-    background-color: #ffffff;
-    padding: 20px;
-    margin: 20px;
-    min-height: 90vh;
-    border-radius: 3%;
-    box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.25);
-  }
-  
-  .collection-body .images-main .imagecover-list{
-    border-radius: 0%;
-    display: flex;
-    width: 100%;
-    height: fit-content;
-    flex-wrap: wrap;
-    justify-content:space-around;
-    gap: 0px;
-    padding: 0%;
-  }
+.collection-body .images-main {
+  background-color: #ffffff;
+  padding: 20px;
+  margin: 20px;
+  min-height: 90vh;
+  border-radius: 3%;
+  box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.25);
+}
 
-  .collection-body .images-main .imagecover-list .imagecover{
-    cursor: pointer;
-    height: 290px;
-    width: 400px;
-    overflow: hidden;
-    position: relative;
-    border-radius: 10%;
-    margin: 10px;
-    padding: 0%;
-  }
+.collection-body .images-main .imagecover-list {
+  border-radius: 0%;
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 0px;
+  padding: 0%;
+}
 
-  .collection-body .images-main .imagecover-list .imagecover .image{
-    border-radius: 10%;
-     width: 100%;
-     height: 100%;
-     position: absolute;
-     object-fit: cover;
-     object-position: center;
-     top: 50%;
-     left: 50%;
-     transform: translate(-50% ,-50%);
-  }
+.collection-body .images-main .imagecover-list .imagecover {
+  cursor: pointer;
+  height: 290px;
+  width: 400px;
+  overflow: hidden;
+  position: relative;
+  border-radius: 10%;
+  margin: 10px;
+  padding: 0%;
+}
+
+.collection-body .images-main .imagecover-list .imagecover .image {
+  border-radius: 10%;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 /* End CSS Images */
 
 /* CSS Massage */
-.message-body{
+.message-body {
   width: 70vw;
   height: 30vw;
   background-color: wheat;
@@ -985,16 +980,16 @@
   right: 15vw;
   top: 10vw;
 }
-.message-body .sidebar{
+.message-body .sidebar {
   float: left;
   border: 1px solid bisque;
   height: 100%;
   background-color: azure;
   width: 30%;
   overflow: hidden;
-  overflow-y:visible;
+  overflow-y: visible;
 }
-.message-body .message-main{
+.message-body .message-main {
   float: right;
   width: 80%;
   height: 100%;
@@ -1013,11 +1008,11 @@
   top: 0%;
   z-index: 4;
 }
-.message-body .message-main .text-input{
+.message-body .message-main .text-input {
   outline: none;
   width: 80%;
   height: 0vh;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   border-radius: 10vw;
   border: calc(0.04 * 1px) solid hsla(0, 0%, 50%, 0.5);
   padding: 1.5vw 2vw 2.5vw 2vw;
@@ -1026,7 +1021,7 @@
   scrollbar-width: none;
   resize: none;
 }
-.message-body .message-main .input-wrap img{
+.message-body .message-main .input-wrap img {
   /* height: 20px;
   width: 20px; */
   background-color: none;
@@ -1034,8 +1029,8 @@
   height: 3.5vw;
   max-width: inherit;
   cursor: pointer;
-}  
-.message-body .message-main .input-wrap{
+}
+.message-body .message-main .input-wrap {
   position: absolute;
   z-index: 4;
   bottom: 0%;
@@ -1044,9 +1039,9 @@
   display: flex;
   align-items: center;
   height: 4.5vw;
-  font-family: "Poppins";
+  font-family: 'Poppins';
 }
-.message-body .sidebar .user{
+.message-body .sidebar .user {
   display: flex;
   cursor: pointer;
   padding: calc(0.04 * 10px) 0 calc(0.04 * 10px) 0;
@@ -1056,36 +1051,37 @@
   margin: calc(0.04 * 40px);
   transition: background-color 0.5s ease-out;
 }
-.message-body .sidebar  .user:hover{
+.message-body .sidebar .user:hover {
   border: calc(3 * 0.04px) solid rgb(255, 255, 255);
   background-color: aquamarine;
 }
-.message-body .sidebar  .user img{
+.message-body .sidebar .user img {
   width: 6vw;
   border-radius: 6vw;
 }
-.message-body .sidebar  .user .userdetail .username,    .message-body .sidebar  .user .userdetail .lastmassage{
+.message-body .sidebar .user .userdetail .username,
+.message-body .sidebar .user .userdetail .lastmassage {
   font-size: 1vw;
   height: fit-content;
   display: flex;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   overflow: hidden;
 }
-.message-body .sidebar  .user .userdetail.lastmassage{
+.message-body .sidebar .user .userdetail.lastmassage {
   font-size: calc(18 * 0.039);
 }
-.message-body .sidebar  .user .userdetail{
+.message-body .sidebar .user .userdetail {
   max-width: 100%;
   overflow: hidden;
   overflow-x: hidden;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  align-content:center;
+  align-content: center;
   padding-left: calc(0.04 * 20px);
 }
 
-.message-body .message-main .massage-container{
+.message-body .message-main .massage-container {
   width: 100%;
   height: fit-content;
   padding-bottom: 4.5vw;
@@ -1093,11 +1089,11 @@
   display: flex;
   gap: 0.6vw;
 }
-.message-body .message-main .massage-container .massage-box{
+.message-body .message-main .massage-container .massage-box {
   width: 100%;
   height: 100%;
 }
-.message-body .message-main .massage-container .massage-box .text{
+.message-body .message-main .massage-container .massage-box .text {
   margin: 0.2vw;
   border-radius: 3vw;
   /* border-radius: calc(0.04 * 400px); */
@@ -1107,9 +1103,9 @@
   display: flexbox;
   z-index: 4;
   position: relative;
-  overflow:auto;
+  overflow: auto;
 }
-.message-body .message-main .massage-container .massage-box .text .time{
+.message-body .message-main .massage-container .massage-box .text .time {
   float: right;
   margin: 0.4vw 1vw 0.6vw 0;
   height: fit-content;
@@ -1119,26 +1115,26 @@
   z-index: 4;
   font-size: 1vw;
 }
-.message-body .message-main .massage-container .massage-box .text p{
+.message-body .message-main .massage-container .massage-box .text p {
   font-size: 1.2vw;
   position: relative;
   z-index: 4;
   padding-bottom: 0.6vw;
 }
-.message-body .message-main .massage-container .massage-box .right{
+.message-body .message-main .massage-container .massage-box .right {
   float: right;
   background-color: rgb(212, 199, 173);
   border-bottom-right-radius: 0%;
 }
-.message-body .message-main .massage-container .massage-box .left{
+.message-body .message-main .massage-container .massage-box .left {
   float: left;
   background-color: orange;
   border-bottom-left-radius: 0%;
- /* word-wrap: break-word;
+  /* word-wrap: break-word;
   overflow-wrap: break-word; */
   word-break: break-all;
 }
-.message-body .message-main .massage-container .massage-box .text .time{
+.message-body .message-main .massage-container .massage-box .text .time {
   float: right;
   margin: 0.4vw 1vw 0.6vw 0;
   height: fit-content;
@@ -1149,7 +1145,7 @@
   font-size: 1vw;
   color: rgb(85, 80, 80);
 }
-.message-body .message-main .massage-container .massage-box .text p{
+.message-body .message-main .massage-container .massage-box .text p {
   font-size: 1.2vw;
   position: relative;
   word-wrap: break-word;
@@ -1159,12 +1155,12 @@
   color: rgb(77, 70, 70);
   padding-bottom: 0.6vw;
 }
-.message-body .message-main .massage-container .massage-box .right{
+.message-body .message-main .massage-container .massage-box .right {
   float: right;
   background-color: rgb(212, 199, 173);
   border-bottom-right-radius: 0%;
 }
-.message-body .message-main .massage-container .massage-box .left{
+.message-body .message-main .massage-container .massage-box .left {
   float: left;
   background-color: orange;
   border-bottom-left-radius: 0%;
@@ -1172,7 +1168,7 @@
 /* End CSS Massage */
 
 /* StartMessage */
-.message-startbody{
+.message-startbody {
   width: 56vw;
   height: 30vw;
   display: flex;
@@ -1182,7 +1178,7 @@
   right: 20vw;
   box-shadow: 0 0.1vw 0.44vw 0.5vw rgba(128, 128, 128, 0.5);
 }
-.message-startbody .message-main{
+.message-startbody .message-main {
   float: right;
   width: 100%;
   height: 100%;
@@ -1194,10 +1190,10 @@
   scroll-padding: 0px;
 }
 
-.message-startbody .message-main .text-input{
+.message-startbody .message-main .text-input {
   outline: none;
   width: 100%;
-  font-family: "Poppins";
+  font-family: 'Poppins';
   border-radius: 10vw;
   border: calc(0.04 * 1px) solid hsla(0, 0%, 50%, 0.5);
   padding: 1vw 1vw 2.5vw 1vw;
@@ -1206,12 +1202,11 @@
   margin: 0% 5% 0% 5%;
   height: 1vw;
   align-self: center;
-  overflow-y:scroll;
+  overflow-y: scroll;
   scrollbar-color: transparent transparent;
   resize: none;
-  
 }
-.message-startbody .message-main .input-wrap img{
+.message-startbody .message-main .input-wrap img {
   /* height: 20px;
   width: 20px; */
   background-color: none;
@@ -1221,8 +1216,8 @@
   margin-right: 3vw;
   max-width: inherit;
   cursor: pointer;
-}  
-.message-startbody .message-main .input-wrap{
+}
+.message-startbody .message-main .input-wrap {
   position: absolute;
   z-index: 4;
   bottom: 0%;
@@ -1232,10 +1227,10 @@
   display: flex;
   align-content: center;
   height: 4.5vw;
-  font-family: "Poppins";
+  font-family: 'Poppins';
 }
 
-.message-startbody .message-main .massage-container{
+.message-startbody .message-main .massage-container {
   width: 100%;
   height: fit-content;
   padding-bottom: 4.5vw;
@@ -1243,11 +1238,11 @@
   display: flex;
   gap: 0.6vw;
 }
-.message-startbody .message-main .massage-container .massage-box{
+.message-startbody .message-main .massage-container .massage-box {
   width: 100%;
   height: 100%;
 }
-.message-startbody .message-main .massage-container .massage-box .text{
+.message-startbody .message-main .massage-container .massage-box .text {
   margin: 0.2vw;
   border-radius: 3vw;
   /* border-radius: calc(0.04 * 400px); */
@@ -1258,10 +1253,10 @@
   color: rgb(85, 80, 80);
   z-index: 4;
   position: relative;
-  overflow:auto;
+  overflow: auto;
 }
 
-.message-startbody .message-main .massage-container .massage-box .text .time{
+.message-startbody .message-main .massage-container .massage-box .text .time {
   float: right;
   margin: 0.4vw 1vw 0.6vw 0;
   height: fit-content;
@@ -1272,7 +1267,7 @@
   font-size: 1vw;
 }
 
-.message-startbody .message-main .massage-container .massage-box .text p{
+.message-startbody .message-main .massage-container .massage-box .text p {
   font-size: 1.2vw;
   position: relative;
   color: rgb(85, 80, 80);
@@ -1280,18 +1275,18 @@
   padding-bottom: 0.6vw;
 }
 
-.message-startbody .message-main .massage-container .massage-box .right{
+.message-startbody .message-main .massage-container .massage-box .right {
   float: right;
   background-color: rgb(212, 199, 173);
   border-bottom-right-radius: 0%;
 }
 
-.message-startbody .message-main .massage-container .massage-box .left{
+.message-startbody .message-main .massage-container .massage-box .left {
   float: left;
   background-color: orange;
   border-bottom-left-radius: 0%;
 }
-.message-startbody .message-main .user{
+.message-startbody .message-main .user {
   box-shadow: 0 0.14vw 0.14vw 0px rgb(189, 181, 181);
   width: 100%;
   height: 40%;
@@ -1300,20 +1295,20 @@
   align-items: center;
   flex-direction: column;
 }
-.message-startbody .message-main .user p{
+.message-startbody .message-main .user p {
   font-size: 1vw;
 }
-.day-tag{
+.day-tag {
   font-size: 1vw;
   text-align: center;
   width: 100%;
   background-color: rgb(255, 255, 255);
 }
-.message-startbody .message-main .user img{
+.message-startbody .message-main .user img {
   height: 40%;
   cursor: pointer;
 }
-.message-startbody .message-main .more-masssage p{
+.message-startbody .message-main .more-masssage p {
   font-size: 1vw;
   background-color: rgba(30, 180, 105, 0.671);
   border-radius: 1vw;
@@ -1321,15 +1316,14 @@
   box-shadow: 0 0.14vw 0.14vw 0px gray;
   cursor: pointer;
 }
-.message-startbody .message-main .more-masssage{
+.message-startbody .message-main .more-masssage {
   width: 100%;
   display: flex;
   justify-content: center;
 }
-.message-startbody .message-main .more-masssage p:hover{
+.message-startbody .message-main .more-masssage p:hover {
   transition-duration: 1116ms;
   background-color: yellowgreen;
-
 }
 /* End StartMessage */
 /* CSS Footer */
@@ -1393,6 +1387,14 @@
 }
 
 @media (max-width: 868px) {
+  .intro h2 {
+    font-size: 14px;
+  }
+
+  .intro p {
+    font-size: 8px;
+  }
+
   .footer {
     margin-top: 20px;
     flex-direction: column;
