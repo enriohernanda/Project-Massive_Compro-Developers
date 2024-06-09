@@ -1,7 +1,6 @@
 const multer = require('multer');
 const path = require('path');
 const fs = require('fs');
-const { images } = require('../model/userModel');
 const imageController = require('../controller/imageController');
 const { users } = require('../model/userModel');
 
@@ -27,7 +26,7 @@ const storage = multer.diskStorage({
                 const response = await users.findOne({
                     where : {
                         id : req.decoded.id
-                    }})
+                    }}) 
                 req.title = `${req.decoded.username} upload new image`
                 req.message = `${req.decoded.username} upload new image`
                 console.log(response.id, response)

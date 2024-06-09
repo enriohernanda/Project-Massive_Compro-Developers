@@ -28,7 +28,8 @@ const createLike = async (req, res) => {
         console.log(error)
         res.status(500).json({
             status : 'error',
-            message : 'internal was error'})
+            message : 'internal was error'
+        })
     }
 }
 
@@ -37,9 +38,9 @@ const deletelike = async (req, res) => {
         const { imageId } = req.query
         const userId = req.decoded.id
         if (!imageId) {
-            res.status(400).json({message: 'imageid is required'})
+            return res.status(400).json({message: 'imageid is required'})
         }
-        const result = likes.destroy({
+        const result = await likes.destroy({
             where : {
                 liked_by_user_id : userId,
                 image_id : imageId

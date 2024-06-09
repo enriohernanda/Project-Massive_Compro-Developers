@@ -60,9 +60,9 @@ export const AuthProvider = ({children}) => {
     const logout = async () => {
     try {
         const token = localStorage.getItem('token')
-        const response = await axios.delete('http://localhost:4000/api/user/unauthorization', { params : {token : token} }) 
+        const response = await axios.delete('http://localhost:4000/api/user/unauthorization', { params : {authstatus: isAuth, token : token} }) 
         if (response.data.status === 'success') {
-            console.log('========== Erroe 3 ')
+            console.log('========== Erroed 3 ')
             setAuth(false)
             setToken('')
             setUserId()
@@ -74,7 +74,19 @@ export const AuthProvider = ({children}) => {
             localStorage.removeItem('username')
             localStorage.removeItem('photoprofile')
         }
+        console.log('========== Erroe 3 ')
+        setAuth(false)
+        setToken('')
+        setUserId()
+        setUsername('')
+        setUserphoto_profile('')
+        localStorage.removeItem('isauth')
+        localStorage.removeItem('token')
+        localStorage.removeItem('userid')
+        localStorage.removeItem('username')
+        localStorage.removeItem('photoprofile')
     } catch (error) {
+        console.log("Error Logout:" ,error)
         // console.log(error)
         // setAuth(false)
         // setToken('')

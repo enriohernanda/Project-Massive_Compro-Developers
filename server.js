@@ -149,7 +149,7 @@ app.get('/api/notification', veryfyToken, notificationController.getNotification
 //required messageRoomId, senderuserId, receiverUserId, message
 // required 3 param
 //required getmessage have 3 route getListRoomMessage, getStartMessage and getMessageWithDirection
-app.get('/api/message',veryfyToken, messageController.getMessage)
+app.get('/api/message',veryfyToken, messageController.getMessage, userController.getProfileandName)
 
 // createMessage have 2 route : createroom and createmessage
 // required 4 param
@@ -161,7 +161,7 @@ sequelize.authenticate().then(() => {
     console.log('Connected with database')
 })
     .catch((err) => {
-        res.status(500).json({message: err})
+        // res.status(500).json({message: err})
         console.log('Something went wrong')
 })
 

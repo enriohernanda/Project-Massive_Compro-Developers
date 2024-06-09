@@ -5,7 +5,7 @@
 // // buat di server.jsnya ulang lagi
 
 const { signToken } = require('../Middleware/authMiddleware')
-const { Op } = require('sequelize')
+const { Op, where } = require('sequelize')
 const { users } = require('../model/userModel')
 const { domain } = require('../config/domain')
 
@@ -58,10 +58,47 @@ const getUserValidationForGetId = async (email, password) => {
         return 'error'
     }
 }
+const getProfileandName = async (req, res) => {
+    // [
+    //     { message: 'Hallo', room: { listroom: 1, usertarget: 2 } },
+    //     { message: null, room: { listroom: 2, usertarget: 3 } }
+    // ]
+    try {
+        const listuser = req.resultlistroom.map(result => result.room.usertarget)
+        console.log(listuser)
+        const resultphoto = await users.findAll({
+            where : {
+                id : {
+                    [Op.in] : listuser,
+                }
+            },
+            attributes : ["photo_profile", "username"]
+        })
+        const arrayresultlistroom = req.resultlistroom.map((result, index) => ({
+            lastmassage : result.message ? result.message : null ,
+            room : result.room,
+            username : resultphoto[index].username,
+            photo : resultphoto[index].photo_profile? `${domain}/image/${result.room.usertarget}/profile.jpg` : null
+        }))
+        // console.log(arrayresultlistroom)
+        // console.log(arrayresultlistroom.reverse())
+        res.status(200).json({listroom : arrayresultlistroom.reverse()})
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            status : 'error',
+            message : 'internal was error'
+        })
+    }
 
+}
 const getUserValidation = async (req, res, next) => {
     try {
-        const {email, password} = req.body
+        const { email, password } = req.body
+
+        console.log(req.body.password)
+        console.log(req.query.email)
+        console.log(req.query)
         console.log(" Email : ",email," Password : ", password)
         if(!email || !password){
             return res.status(400).json({
@@ -224,4 +261,4 @@ const UpdateNewUserPassword = async (req, res) => {
     }
 }
 
-module.exports = { createUser, getUserValidation, getDataUser ,getUsers, EmailValidation, UpdateNewUserPassword }
+module.exports = { createUser, getUserValidation, getDataUser ,getUsers, EmailValidation, UpdateNewUserPassword, getProfileandName }

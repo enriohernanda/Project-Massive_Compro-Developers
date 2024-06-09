@@ -2,17 +2,25 @@ import { Navbar, Container, Nav } from 'react-bootstrap';
 import { navLinks } from '../data/Data';
 import { NavLink } from 'react-router-dom';
 import icon from '../assets/icon-mopart.png';
-import defaultprofile from '../assets/pembuat-male.png'
+import defaultprofile from '../assets/pembuat-male.png';
+
+
 import { useNavigate } from 'react-router-dom';
 
+import Massage from './massage';
+
 import { AuthContext } from '../context/AuthContext';
-import { useContext, useState } from 'react';
+import { useContext, useState, useRef, useEffect } from 'react';
 
 const NavbarComp = () => {
   let navigate = useNavigate();
+  const contentRef = useRef(null)
   const {isAuth, userid, photo_profile, logout} = useContext(AuthContext)
   const url = photo_profile? photo_profile : defaultprofile 
   const [dropdownvisible, setdropdownvisible] = useState(false)
+  const [massageVisible, setMassageVisible] = useState(false)
+  const [notifVisible, setNotifVisible] = useState(false)
+  const [settingVisible, setSettingVisible] = useState(false)
   console.log(url)
   const handleClickLogout = () =>{
     logout()
@@ -22,6 +30,33 @@ const NavbarComp = () => {
   const handleClickDropdown = () =>{
      setdropdownvisible(!dropdownvisible)
   }
+  const handleclickvsiblemassage = () => {
+    setMassageVisible(!massageVisible)
+    setNotifVisible(false)
+    setSettingVisible(false)
+  }
+  const handleclickvsiblenotif = () => {
+    setMassageVisible(false)
+    setNotifVisible(!notifVisible)
+    setSettingVisible(false)
+  }
+  const handleclickvsiblesetting = () => {
+    setMassageVisible(false)
+    setNotifVisible(false)
+    setSettingVisible(!settingVisible)
+  }
+  const outAreaClick = (event) => {
+    if (contentRef.current && !contentRef.current.contains(event.target)) {
+        setMassageVisible(false)
+    }
+
+}
+useEffect(() => {
+    document.addEventListener('click', outAreaClick, true);
+    return () => {
+        document.addEventListener('click', outAreaClick, true);
+    }
+}, [])
   return (
     <Navbar expand="lg">
       <Container>
@@ -49,9 +84,9 @@ const NavbarComp = () => {
                     {dropdownvisible && (
                     <div className="dropdown">
                       <a onClick={() => navigate(`/profil?id=${userid}`)}>Profile</a>
-                      <a href="">Pemberitahuan</a>
-                      <a href="">Pesan</a>
-                      <a href="">Pengaturan</a>
+                      <a onClick={handleclickvsiblenotif}>Pemberitahuan</a>
+                      <a onClick={handleclickvsiblemassage}>Pesan</a>
+                      <a onClick={handleclickvsiblesetting}>Pengaturan</a>
                       <a onClick={handleClickLogout}>Keluar</a>
                     </div>)}
                 </div>
@@ -62,8 +97,14 @@ const NavbarComp = () => {
               </button>
             </div> 
             )}
-
           </div>
+          <div>
+            <div ref={contentRef}>
+              {massageVisible && (
+                <Massage  />
+              )}
+            </div>
+        </div>
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -10,11 +10,21 @@ const signToken = (user) => {
 }
 
 const veryfyToken = (req, res, next) => {
-    const { authstatus } = req.query
+    const authstatus = req.body.authstatus ? req.body.authstatus : req.query.authstatus
+
+    console.log(req.body)
+    console.log(req.query)
+    console.log("auth :" , authstatus)
+    if (!authstatus) {
+        return res.status(400).json({
+            status: "failed", 
+            message : "authstatus is required"
+        })
+    }
     if (authstatus === "false") {
         return next()
     }
-    const token = req.query.token
+    const token = req.query.token ? req.query.token : req.body.token
     if(!token){
         return res.status(400).json({message : 'token is missing'});
     }

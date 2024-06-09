@@ -595,7 +595,7 @@
 
 .profileboard .photoprofile {
   cursor: pointer;
-  border-radius: 100%;
+  border-radius: 50%;
   background-color: #f7f7f7;
   margin: 4.5%;
   width: 118px;
@@ -616,13 +616,37 @@
 }
 .followercontainer, .socialcontainer{
   display: flex;
-  justify-content:space-between;
+  /* justify-content:space-between; */
+  align-content: center;
+  flex-direction: column;
   gap: 70%;
   padding: 10px;
   width: 100%;
   margin-bottom: 5%;
 }
-
+.inline-space-between{
+  height: 2vw;
+  display: flex;
+  justify-content: space-between;
+}
+.button-message, .button-follow{
+  padding: 10px 20px 10px 20px;
+  font-family: "Poppins";
+  background-color: #eda145;
+  border: none;
+  margin: 5px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+.button-message:hover, .button-follow:hover{
+  transition-duration: 0.5s;
+  background-color: #916025;
+  color: white;
+}
+.inline-space-between img{
+  width: 1vw;
+  height: 1.5vw;
+}
 .socialcontainer{
   display: flex;
 }
@@ -641,6 +665,8 @@
   width: fit-content;
   display: flex;
   flex-direction: column;
+  align-content: space-evenly;
+  gap: 1vw
 }
 
 .arrow{
@@ -949,6 +975,363 @@
   }
 /* End CSS Images */
 
+/* CSS Massage */
+.message-body{
+  width: 70vw;
+  height: 30vw;
+  background-color: wheat;
+  display: flex;
+  position: absolute;
+  right: 15vw;
+  top: 10vw;
+}
+.message-body .sidebar{
+  float: left;
+  border: 1px solid bisque;
+  height: 100%;
+  background-color: azure;
+  width: 30%;
+  overflow: hidden;
+  overflow-y:visible;
+}
+.message-body .message-main{
+  float: right;
+  width: 80%;
+  height: 100%;
+  z-index: 4;
+  overflow: hidden;
+  overflow-y: visible;
+  scrollbar-width: none;
+}
+.close {
+  width: 5%;
+  height: 5%;
+  background-color: brown;
+  /* position: relative; */
+  position: absolute;
+  right: 0%;
+  top: 0%;
+  z-index: 4;
+}
+.message-body .message-main .text-input{
+  outline: none;
+  width: 80%;
+  height: 0vh;
+  font-family: "Poppins";
+  border-radius: 10vw;
+  border: calc(0.04 * 1px) solid hsla(0, 0%, 50%, 0.5);
+  padding: 1.5vw 2vw 2.5vw 2vw;
+  font-size: 1vw;
+  margin: 0%;
+  scrollbar-width: none;
+  resize: none;
+}
+.message-body .message-main .input-wrap img{
+  /* height: 20px;
+  width: 20px; */
+  background-color: none;
+  width: auto;
+  height: 3.5vw;
+  max-width: inherit;
+  cursor: pointer;
+}  
+.message-body .message-main .input-wrap{
+  position: absolute;
+  z-index: 4;
+  bottom: 0%;
+  width: 70%;
+  padding-left: 1vw;
+  display: flex;
+  align-items: center;
+  height: 4.5vw;
+  font-family: "Poppins";
+}
+.message-body .sidebar .user{
+  display: flex;
+  cursor: pointer;
+  padding: calc(0.04 * 10px) 0 calc(0.04 * 10px) 0;
+  border: calc(3 * 0.04px) solid transparent;
+  align-items: center;
+  overflow: hidden;
+  margin: calc(0.04 * 40px);
+  transition: background-color 0.5s ease-out;
+}
+.message-body .sidebar  .user:hover{
+  border: calc(3 * 0.04px) solid rgb(255, 255, 255);
+  background-color: aquamarine;
+}
+.message-body .sidebar  .user img{
+  width: 6vw;
+  border-radius: 6vw;
+}
+.message-body .sidebar  .user .userdetail .username,    .message-body .sidebar  .user .userdetail .lastmassage{
+  font-size: 1vw;
+  height: fit-content;
+  display: flex;
+  font-family: "Poppins";
+  overflow: hidden;
+}
+.message-body .sidebar  .user .userdetail.lastmassage{
+  font-size: calc(18 * 0.039);
+}
+.message-body .sidebar  .user .userdetail{
+  max-width: 100%;
+  overflow: hidden;
+  overflow-x: hidden;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-content:center;
+  padding-left: calc(0.04 * 20px);
+}
+
+.message-body .message-main .massage-container{
+  width: 100%;
+  height: fit-content;
+  padding-bottom: 4.5vw;
+  flex-direction: column;
+  display: flex;
+  gap: 0.6vw;
+}
+.message-body .message-main .massage-container .massage-box{
+  width: 100%;
+  height: 100%;
+}
+.message-body .message-main .massage-container .massage-box .text{
+  margin: 0.2vw;
+  border-radius: 3vw;
+  /* border-radius: calc(0.04 * 400px); */
+  padding: 0.2vw 2vw 0 2vw;
+  max-width: 80%;
+  color: rgb(95, 91, 91);
+  display: flexbox;
+  z-index: 4;
+  position: relative;
+  overflow:auto;
+}
+.message-body .message-main .massage-container .massage-box .text .time{
+  float: right;
+  margin: 0.4vw 1vw 0.6vw 0;
+  height: fit-content;
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  z-index: 4;
+  font-size: 1vw;
+}
+.message-body .message-main .massage-container .massage-box .text p{
+  font-size: 1.2vw;
+  position: relative;
+  z-index: 4;
+  padding-bottom: 0.6vw;
+}
+.message-body .message-main .massage-container .massage-box .right{
+  float: right;
+  background-color: rgb(212, 199, 173);
+  border-bottom-right-radius: 0%;
+}
+.message-body .message-main .massage-container .massage-box .left{
+  float: left;
+  background-color: orange;
+  border-bottom-left-radius: 0%;
+ /* word-wrap: break-word;
+  overflow-wrap: break-word; */
+  word-break: break-all;
+}
+.message-body .message-main .massage-container .massage-box .text .time{
+  float: right;
+  margin: 0.4vw 1vw 0.6vw 0;
+  height: fit-content;
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  z-index: 4;
+  font-size: 1vw;
+  color: rgb(85, 80, 80);
+}
+.message-body .message-main .massage-container .massage-box .text p{
+  font-size: 1.2vw;
+  position: relative;
+  word-wrap: break-word;
+  /* overflow-wrap: break-word;
+  word-break: break-all; */
+  z-index: 4;
+  color: rgb(77, 70, 70);
+  padding-bottom: 0.6vw;
+}
+.message-body .message-main .massage-container .massage-box .right{
+  float: right;
+  background-color: rgb(212, 199, 173);
+  border-bottom-right-radius: 0%;
+}
+.message-body .message-main .massage-container .massage-box .left{
+  float: left;
+  background-color: orange;
+  border-bottom-left-radius: 0%;
+}
+/* End CSS Massage */
+
+/* StartMessage */
+.message-startbody{
+  width: 56vw;
+  height: 30vw;
+  display: flex;
+  background-color: wheat;
+  position: absolute;
+  top: 15vw;
+  right: 20vw;
+  box-shadow: 0 0.1vw 0.44vw 0.5vw rgba(128, 128, 128, 0.5);
+}
+.message-startbody .message-main{
+  float: right;
+  width: 100%;
+  height: 100%;
+  z-index: 4;
+  overflow-y: scroll;
+  /* scrollbar-color : transparent transparent; */
+  scrollbar-width: none;
+  scroll-margin-block: 0px;
+  scroll-padding: 0px;
+}
+
+.message-startbody .message-main .text-input{
+  outline: none;
+  width: 100%;
+  font-family: "Poppins";
+  border-radius: 10vw;
+  border: calc(0.04 * 1px) solid hsla(0, 0%, 50%, 0.5);
+  padding: 1vw 1vw 2.5vw 1vw;
+  font-size: 1vw;
+  max-height: 4vw;
+  margin: 0% 5% 0% 5%;
+  height: 1vw;
+  align-self: center;
+  overflow-y:scroll;
+  scrollbar-color: transparent transparent;
+  resize: none;
+  
+}
+.message-startbody .message-main .input-wrap img{
+  /* height: 20px;
+  width: 20px; */
+  background-color: none;
+  width: auto;
+  height: 3.5vw;
+  align-self: center;
+  margin-right: 3vw;
+  max-width: inherit;
+  cursor: pointer;
+}  
+.message-startbody .message-main .input-wrap{
+  position: absolute;
+  z-index: 4;
+  bottom: 0%;
+  background-color: hsla(80, 61%, 50%, 0.5);
+  box-shadow: 0 0px 1px 0px gray;
+  width: 100%;
+  display: flex;
+  align-content: center;
+  height: 4.5vw;
+  font-family: "Poppins";
+}
+
+.message-startbody .message-main .massage-container{
+  width: 100%;
+  height: fit-content;
+  padding-bottom: 4.5vw;
+  flex-direction: column;
+  display: flex;
+  gap: 0.6vw;
+}
+.message-startbody .message-main .massage-container .massage-box{
+  width: 100%;
+  height: 100%;
+}
+.message-startbody .message-main .massage-container .massage-box .text{
+  margin: 0.2vw;
+  border-radius: 3vw;
+  /* border-radius: calc(0.04 * 400px); */
+  box-shadow: 0 0.14vw 0.14vw 0px gray;
+  padding: 0.2vw 2vw 0 2vw;
+  max-width: 80%;
+  display: flexbox;
+  color: rgb(85, 80, 80);
+  z-index: 4;
+  position: relative;
+  overflow:auto;
+}
+
+.message-startbody .message-main .massage-container .massage-box .text .time{
+  float: right;
+  margin: 0.4vw 1vw 0.6vw 0;
+  height: fit-content;
+  position: absolute;
+  bottom: 0%;
+  right: 0%;
+  z-index: 4;
+  font-size: 1vw;
+}
+
+.message-startbody .message-main .massage-container .massage-box .text p{
+  font-size: 1.2vw;
+  position: relative;
+  color: rgb(85, 80, 80);
+  z-index: 4;
+  padding-bottom: 0.6vw;
+}
+
+.message-startbody .message-main .massage-container .massage-box .right{
+  float: right;
+  background-color: rgb(212, 199, 173);
+  border-bottom-right-radius: 0%;
+}
+
+.message-startbody .message-main .massage-container .massage-box .left{
+  float: left;
+  background-color: orange;
+  border-bottom-left-radius: 0%;
+}
+.message-startbody .message-main .user{
+  box-shadow: 0 0.14vw 0.14vw 0px rgb(189, 181, 181);
+  width: 100%;
+  height: 40%;
+  background-color: aliceblue;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+.message-startbody .message-main .user p{
+  font-size: 1vw;
+}
+.day-tag{
+  font-size: 1vw;
+  text-align: center;
+  width: 100%;
+  background-color: rgb(255, 255, 255);
+}
+.message-startbody .message-main .user img{
+  height: 40%;
+  cursor: pointer;
+}
+.message-startbody .message-main .more-masssage p{
+  font-size: 1vw;
+  background-color: rgba(30, 180, 105, 0.671);
+  border-radius: 1vw;
+  padding: 0.5vw 0.7vw 0.5vw 0.7vw;
+  box-shadow: 0 0.14vw 0.14vw 0px gray;
+  cursor: pointer;
+}
+.message-startbody .message-main .more-masssage{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.message-startbody .message-main .more-masssage p:hover{
+  transition-duration: 1116ms;
+  background-color: yellowgreen;
+
+}
+/* End StartMessage */
 /* CSS Footer */
 .footer {
   display: flex;

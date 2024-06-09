@@ -2,18 +2,15 @@ import moment from 'moment';
 
 import FooterComp from '../components/FooterComp';
 import NavbarComp from '../components/NavbarComp';
-
+import StartMessage from '../components/Startmessage'
 
 import defaultprofile from '../assets/pembuat-male.png'
 import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../context/AuthContext';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom'
 
-import konten1 from '../assets/header-1.png';
-import konten2 from '../assets/header-2.png';
-import konten3 from '../assets/header-3.png';
 import uploadicon1 from '../assets/file upload 1.png';
 import uploadicon2 from '../assets/file upload 2.png';
 import arrow from '../assets/arrow.png'
@@ -21,6 +18,7 @@ import arrow from '../assets/arrow.png'
 import { createImage, getProfile, getUserProfile} from '../service/apiService';
 
 const Profile = () => {
+  const contentRef = useRef() 
   const location = useLocation() 
   const navigate = useNavigate();
   const {isAuth, userid, photo_profile, token} = useContext(AuthContext)
@@ -35,6 +33,7 @@ const Profile = () => {
   const [follower, setfollower] = useState(0)
   const [userparams, setuserparams] = useState()
   const [trigerprofile, settrigerprofile] = useState(true)
+  const [trigermessage, settrigermessage] = useState(false)
   const url = photo_profile? photo_profile : defaultprofile 
   console.log(url)
 
@@ -50,7 +49,7 @@ const Profile = () => {
             const response = await getProfile(isAuth, userparams, token)
             console.log('userid : ',userid)
             console.log('userparams : ',userparams)
-            console.log(response)
+            console.log("Response :",response)
             setfollowed(response.followed)
             setfollower(response.follower)
             setuserdata(response.userdata)
@@ -88,15 +87,30 @@ const Profile = () => {
     const formdata = new FormData()
     formdata.append('image' , image)
     try {
-        const response = await createImage(formdata, token, name, description, image)
+        const response = await createImage(isAuth, formdata, token, name, description, image)
     } catch (error) {
         console.log(error)
     }
     settrigerprofile(!trigerprofile)
   }
+  const outAreaClick = (event) => {
+    if (contentRef.current && !contentRef.current.contains(event.target)) {
+        settrigermessage(false)
+    }
+
+}
+useEffect(() => {
+    document.addEventListener('click', outAreaClick, true);
+    return () => {
+        document.addEventListener('click', outAreaClick, true);
+    }
+}, [])
     return(
         <div className='bodyprofile'>
         <NavbarComp />
+        { trigermessage? <div ref={contentRef}>
+            <StartMessage/> 
+        </div> : ""}
         <div className='mainprofile'>
             <div className='profileboard'>
                 <img className='photoprofile' src={ userdata.photo_profile === "0" ? defaultprofile : `http://${userdata.photo_profile}` } alt='photo-profile' />
@@ -104,32 +118,39 @@ const Profile = () => {
                 <p className='country'>{userdata?.country || "Indonesia" }</p>
                 {/* {console.log(userdata.country)} */}
                 <p className='professi'>{userdata?.professi || ''}</p>
+                {userid !== userparams? <button className='button-follow' >Ikuti</button> : ""}
+                {userid !== userparams? <button className='button-message' onClick={() => settrigermessage(!trigermessage)}>Kirim Pesan</button> : ""}
                 <div className='hr'></div>
                 {console.log(userdata.photo_profile)}
                 <div className='followercontainer'>
-                    <div className='leftfloat'>
+                    <div className='inline-space-between'>
                         <p className=''>Pengikut</p>
-                        <p className=''>Mengikuti</p>
-                        <p className=''>Disukai</p>
-                    </div>
-                    <div className='rightfloat'>
                         <p className=''>{followed}</p>
+                    </div>
+                    <div className='inline-space-between'>
+                        <p className=''>Mengikuti</p>
                         <p className=''>{follower}</p>
+                    </div>
+                    <div className='inline-space-between'>
+                        <p className=''>Disukai</p>
                         <p className=''>0</p>
                     </div>
                 </div>
                 <div className='hr'></div>
                 <div className='socialcontainer'>
-                    <div className='leftfloat'>
+                <div className='inline-space-between'>
                         <p className=''>Instagram</p>
+                        <img className='arrow' src={arrow}/>
+                    </div>
+                    <div className='inline-space-between'>
                         <p className=''>Facebook</p>
+                        <img className='arrow' src={arrow}/>
+                    </div>
+                    <div className='inline-space-between'>
                         <p className=''>Youtube</p>
-                    </div>
-                    <div className='rightfloat'>
-                        <img className='arrow' src={arrow}/>
-                        <img className='arrow' src={arrow}/>
                         <img className='arrow' src={arrow}/>
                     </div>
+                
                 </div>
                 <div className='hr'></div>
                 <div className='created'>
