@@ -11,19 +11,18 @@ import NavbarComp from '../components/NavbarComp';
 
 import { useState, useEffect } from 'react';
 
-import {createForm} from '../service/apiService'
+import { createForm } from '../service/apiService';
 
 const TentangKami = () => {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [message, setMessage] = useState('')
-
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
 
   const hadllesubmit = async (e) => {
-    e.preventDefault()
-    const response = await createForm(name, email, message)
-    console.log(response)
-  }
+    e.preventDefault();
+    const response = await createForm(name, email, message);
+    console.log(response);
+  };
 
   return (
     <div>
@@ -76,20 +75,20 @@ const TentangKami = () => {
         </div>
         <CardPembuatWeb image={pembuatFemale} nama="Rachel" sebagai="Hustler" />
         <CardPembuatWeb image={pembuatMale} nama="Enrio" sebagai="Hacker" />
-        <CardPembuatWeb image={pembuatMale} nama="Bayu" sebagai="Hustler" />
+        <CardPembuatWeb image={pembuatMale} nama="Bayu" sebagai="Hipster" />
         <CardPembuatWeb image={pembuatMale} nama="Ferry" sebagai="Hacker" />
-        <CardPembuatWeb image={pembuatMale} nama="Aulia" sebagai="Hustler" />
-        <CardPembuatWeb image={pembuatMale} nama="Duta" sebagai="Hustler" />
+        <CardPembuatWeb image={pembuatMale} nama="Aulia" sebagai="Hipster" />
+        <CardPembuatWeb image={pembuatMale} nama="Duta" sebagai="Hipster" />
       </div>
       <div className="hubungi-kami">
         <h2>Hubungi Kami</h2>
         <img src={iconHubKami} alt="hubungi kami" />
         <h3>Kirimkan kami sebuah pesan</h3>
         <form className="form-hub" onSubmit={hadllesubmit}>
-          <label className="label-hub" htmlFor="name" >
+          <label className="label-hub" htmlFor="name">
             Nama
           </label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)}  name="nama" id="nama" className="input-hub" placeholder="Masukkan nama anda" />
+          <input type="text" value={name} onChange={(e) => setName(e.target.value)} name="nama" id="nama" className="input-hub" placeholder="Masukkan nama anda" />
           <label className="label-hub" htmlFor="email">
             Email
           </label>
@@ -97,7 +96,7 @@ const TentangKami = () => {
           <label className="label-hub" htmlFor="pesan">
             Pesan
           </label>
-          <input type="text" value={message} onChange={(e) => setMessage(e.target.value)}  name="pesan" id="pesan" className="input-hub-pesan" placeholder="Ketik pesan anda disini" />
+          <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} name="pesan" id="pesan" className="input-hub-pesan" placeholder="Ketik pesan anda disini" />
           <button id="btn_hub" type="submit">
             Kirim
           </button>
