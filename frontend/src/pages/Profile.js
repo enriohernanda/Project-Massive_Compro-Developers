@@ -9,7 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../context/AuthContext';
 import { useContext, useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams} from 'react-router-dom'
+
 
 import uploadicon1 from '../assets/file upload 1.png';
 import uploadicon2 from '../assets/file upload 2.png';
@@ -18,8 +19,8 @@ import arrow from '../assets/arrow.png'
 import { createImage, getProfile, getUserProfile} from '../service/apiService';
 
 const Profile = () => {
+  const { id } = useParams() 
   const contentRef = useRef() 
-  const location = useLocation() 
   const navigate = useNavigate();
   const {isAuth, userid, photo_profile, token} = useContext(AuthContext)
   const [visibleform, setvisibleform] = useState(false)
@@ -31,24 +32,18 @@ const Profile = () => {
   const [collectiondata, setcollectiondata] = useState([])
   const [followed, setfollowed] = useState(0)
   const [follower, setfollower] = useState(0)
-  const [userparams, setuserparams] = useState()
   const [trigerprofile, settrigerprofile] = useState(true)
   const [trigermessage, settrigermessage] = useState(false)
   const url = photo_profile? photo_profile : defaultprofile 
   console.log(url)
 
-  useEffect(() => {      
-       const query = new URLSearchParams(location.search)
-       const useridparams = query.get('id')
-       setuserparams(useridparams)
-  }, [location.search])
-
   useEffect(() => {
       const fetchdata = async () => {
           try {
-            const response = await getProfile(isAuth, userparams, token)
+            console.log("Token : ",token)
+            const response = await getProfile(isAuth, id, token)
             console.log('userid : ',userid)
-            console.log('userparams : ',userparams)
+            console.log('id : ',id)
             console.log("Response :",response)
             setfollowed(response.followed)
             setfollower(response.follower)
@@ -67,8 +62,8 @@ const Profile = () => {
         }
     }
     fetchdata()
-  }, [userparams])
-//   isAuth, trigerprofile, userparams
+  }, [id])
+//   isAuth, trigerprofile, id
   const handlevisibleform = () =>{
     setvisibleform(!visibleform)
   }
@@ -115,11 +110,12 @@ useEffect(() => {
             <div className='profileboard'>
                 <img className='photoprofile' src={ userdata.photo_profile === "0" ? defaultprofile : `http://${userdata.photo_profile}` } alt='photo-profile' />
                 <p className='username'>{userdata?.username || 'Satomi'}</p>
-                <p className='country'>{userdata?.country || "Indonesia" }</p>
+                <p className='country'>{userdata?.country || `Indonesia` }</p>
                 {/* {console.log(userdata.country)} */}
                 <p className='professi'>{userdata?.professi || ''}</p>
-                {userid !== userparams? <button className='button-follow' >Ikuti</button> : ""}
-                {userid !== userparams? <button className='button-message' onClick={() => settrigermessage(!trigermessage)}>Kirim Pesan</button> : ""}
+                {console.log("userid : ",userid,"dan id params :" , id)}
+                {userid !== id? (<button className='button-follow' >Ikuti</button> ) : (<div></div>)}
+                {userid !== id? <button className='button-message' onClick={() => settrigermessage(!trigermessage)}>Kirim Pesan</button> : ""}
                 <div className='hr'></div>
                 {console.log(userdata.photo_profile)}
                 <div className='followercontainer'>
@@ -161,7 +157,7 @@ useEffect(() => {
             </div>
             <div className='userimage'>
                 <div className='leftfloat-inline' >Unggahan Terakhir</div>
-                {imagedata !== "not found"? (<div className='rightfloat-inline' onClick={()=> navigate(`/images?id=${userparams}`)}>Lihat Semua</div>) : (<div></div>)}
+                {imagedata !== "not found"? (<div className='rightfloat-inline' onClick={()=> navigate(`/${id}/images`)}>Lihat Semua</div>) : (<div></div>)}
                 <div className='latestimage'>
                     
                 {imagedata !==  "not found"? (imagedata.map((image, index) => (
@@ -175,7 +171,7 @@ useEffect(() => {
 
                 </div>
                 <div className='leftfloat-inline'>Koleksi</div>
-                {collectiondata !== "not found" ?(<div className='rightfloat-inline' onClick={()=> navigate(`/Koleksi?id=${userparams}`)}>Lihat Semua</div>) : (<div></div>)}
+                {collectiondata !== "not found" ?(<div className='rightfloat-inline' onClick={()=> navigate(`/${id}/Koleksi`)}>Lihat Semua</div>) : (<div></div>)}
                 
                 <div className='collectedimage'>
                     {collectiondata !==  "not found"? (collectiondata.map((image, index) => (
@@ -190,7 +186,7 @@ useEffect(() => {
                 </div>
             </div>
         </div>
-        {userid == userparams? (
+        {userid == id? (
         <div className='fileupload-cover'>
             <div className='fileupload'>
             {visibleform ? (<img src={uploadicon2} onClick={handlevisibleform}/> ) : (<img src={uploadicon1} onClick={handlevisibleform}/>) }

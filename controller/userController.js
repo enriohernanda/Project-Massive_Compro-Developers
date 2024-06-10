@@ -94,11 +94,11 @@ const getProfileandName = async (req, res) => {
 }
 const getUserValidation = async (req, res, next) => {
     try {
-        const { email, password } = req.body
+        const { email, password } = req.body ?? req.query
 
-        console.log(req.body.password)
-        console.log(req.query.email)
+        console.log(req.body)
         console.log(req.query)
+
         console.log(" Email : ",email," Password : ", password)
         if(!email || !password){
             return res.status(400).json({

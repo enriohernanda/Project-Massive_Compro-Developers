@@ -36,6 +36,7 @@ export const AuthProvider = ({children}) => {
 
     const login = async (email, password) => {
         try {
+            console.log("email : ",email)
             const response = await axios.post('http://localhost:4000/api/user/authentication', {email : email,password :password })
             console.log(response)
             if (response.data.token) {
@@ -74,17 +75,17 @@ export const AuthProvider = ({children}) => {
             localStorage.removeItem('username')
             localStorage.removeItem('photoprofile')
         }
-        console.log('========== Erroe 3 ')
-        setAuth(false)
-        setToken('')
-        setUserId()
-        setUsername('')
-        setUserphoto_profile('')
-        localStorage.removeItem('isauth')
-        localStorage.removeItem('token')
-        localStorage.removeItem('userid')
-        localStorage.removeItem('username')
-        localStorage.removeItem('photoprofile')
+        // console.log('========== Erroe 3 ')
+        // setAuth(false)
+        // setToken('')
+        // setUserId()
+        // setUsername('')
+        // setUserphoto_profile('')
+        // localStorage.removeItem('isauth')
+        // localStorage.removeItem('token')
+        // localStorage.removeItem('userid')
+        // localStorage.removeItem('username')
+        // localStorage.removeItem('photoprofile')
     } catch (error) {
         console.log("Error Logout:" ,error)
         // console.log(error)
@@ -104,8 +105,8 @@ useEffect (() => {
     const tokendata = localStorage.getItem('token')
     const urldata = localStorage.getItem('photoprofile')
     const useriddata = localStorage.getItem('userid')
-    if (authstatus && tokendata && urldata && useriddata) {
-        console.log(tokendata)
+    if (authstatus && tokendata && useriddata) {
+        console.log("Token Data :",tokendata)
         console.log('========== Erroe auth 1 ')
         setAuth(authstatus)
         setToken(tokendata)

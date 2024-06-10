@@ -75,7 +75,7 @@ export const getProfile = async (authstatus, id) => {
 export const getUsers = async () => {
     try {
         const startUserID = 1
-        const response = await api.get('/api/users', {params : {startUserId : startUserID, direction : 'forward'}})
+        const response = await api.get('/api/user', {params : {startUserId : startUserID, direction : 'forward'}})
         return response.data
     } catch (error) {
         console.log(error)
@@ -85,9 +85,10 @@ export const getUsers = async () => {
 // startMessageId = default 0, token, receiverUserId, massageRoomId 5 direction
 export const getMassage = async (authstatus, messageRoomId, startMessageId,receiveruser,token) => {
     try {
-        const response = await api.get('/api/message', {params : {authstatus : authstatus, messageRoomId : messageRoomId,
+        console.log("AuthStatus Get Message : " ,authstatus)
+        const response = await api.get('/api/message',{ params : {authstatus : authstatus, messageRoomId : messageRoomId,
             startMessageId : startMessageId ,startMessageId : startMessageId,
-            receiveruser: receiveruser, token: token, direction : 'forward'}})
+            receiverUserId : receiveruser, token: token, direction : 'forward'}})
         return response.data
     } catch (error) {
         console.log(error)

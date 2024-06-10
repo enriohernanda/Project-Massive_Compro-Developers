@@ -5,13 +5,13 @@ const signToken = (user) => {
     if(!user.id || !user.username || !user.role){
         return "Data is invalid"
     }
-    const token = jwt.sign(user, secretKey, { expiresIn : '24h' })
+    const token = jwt.sign(user, secretKey, { expiresIn : '240h' })
     return token
 }
 
 const veryfyToken = (req, res, next) => {
-    const authstatus = req.body.authstatus ? req.body.authstatus : req.query.authstatus
-
+    // const {authstatus} = req.body?? req.query ; 
+    const authstatus = req.query.authstatus !== undefined ?  req.query.authstatus : req.body.authstatus  
     console.log(req.body)
     console.log(req.query)
     console.log("auth :" , authstatus)

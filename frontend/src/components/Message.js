@@ -4,7 +4,7 @@ import profile from '../assets/pembuat-male.png'
 import { AuthContext } from '../context/AuthContext'
 import { useContext, useState, useEffect, useRef } from 'react'
 import { getMassage, sendMassage } from "../service/apiService"
-const Massage = () => {
+const Message = () => {
     const contentRef = useRef(null)
     const { token , isAuth, userid} = useContext(AuthContext)
     const [receiveruserid, setreceiveruserid] = useState()
@@ -55,7 +55,7 @@ const Massage = () => {
             console.log("Room ID :", roomid)
             console.log("Receiver ID:", receiveruserid)
             const response = await sendMassage(isAuth, roomid, receiveruserid, rawtext, token)
-            console.log(response)
+            console.log("Response Send Text:",response)
             await handleclicluser(roomid, receiveruserid)
             setrawtext('')
             // setmassage(massage.concat(response.result? response.result : []))
@@ -124,4 +124,4 @@ const Massage = () => {
     )
 }
 
-export default Massage
+export default Message

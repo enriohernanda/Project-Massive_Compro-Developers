@@ -33,7 +33,7 @@ const Seniman = () => {
       <div className="profil-seniman text-center">
         <div className="seniman row justify-content-center">
           {userdata.length > 0? userdata.map((user ,index ) => (
-            <div key={index} className="col-md-3 mb-3" style={{ cursor: 'pointer' }} onClick={() => navigate(`/Profil?id=${user.id}`)}>
+            <div key={index} className="col-md-3 mb-3" style={{ cursor: 'pointer' }} onClick={() => navigate(`/${user.id}/profil`)}>
             <CardSeniman foto={user.photo? `http://${user.photo}` : pembuatMale } nama={user.username.substring(0, 10)} />
           </div>
           )): (<div></div>) }

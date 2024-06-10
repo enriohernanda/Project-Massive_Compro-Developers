@@ -24,12 +24,12 @@ const adminTokenController = require('./controller/adminTokenController')
 
 const cors = require('cors')
 app.use(cors())
-
 // app.use(bodyParser.urlencoded({extended : true}))
 app.use(express.urlencoded({extended : true}))
 
 // app.use(bodyParser.json())
 app.use(express.json())
+
 
 const PORT = process.env.PORT || portNumber
 
@@ -46,116 +46,119 @@ app.get('/image/:folder/:filename', (req, res) => {
     }
 })
 
-// every verify Token need authstatus from frontend
+const routes = require('./routes')
+app.use('/api', routes)
 
-// registrasi required username, email and password
-app.post('/api/user/registration', userController.createUser, notificationController.singleCreateNotification, userTokenController.createdTokenDB)
+// // every verify Token need authstatus from frontend
 
-// authorisasi required email and password
-app.post('/api/user/authentication', userController.getUserValidation, userTokenController.createdTokenDB)
+// // registrasi required username, email and password
+// app.post('/api/user/registration', userController.createUser, notificationController.singleCreateNotification, userTokenController.createdTokenDB)
 
-// validasi token localstorage required only token
-app.post('/api/user/validation', veryfyToken,  (req, res)=>{
-    return res.status(200).json({
-        status : "success",
-        message : 'logged'
-    })
-})
+// // authorisasi required email and password
+// app.post('/api/user/authentication', userController.getUserValidation, userTokenController.createdTokenDB)
 
-// get users limit 16 required startUserID and direction
-app.get('/api/users', userController.getUsers)
-
-// delete token by userId
-// app.delete('/api/user/unauthorization',  userTokenController.deleteTokenDB)
-// app.delete('/api/user/unauthorization', (req, res) => {
-//     res.status(200).json({status : 'success'})
+// // validasi token localstorage required only token
+// app.post('/api/user/validation', veryfyToken,  (req, res)=>{
+//     return res.status(200).json({
+//         status : "success",
+//         message : 'logged'
+//     })
 // })
-app.delete('/api/user/unauthorization', veryfyToken, userTokenController.deleteTokenDB)
 
-// getting user's data profile like (imagedata , userdata, followerdata) required (userId, imageId, direction <for image direction>, )
-app.get('/api/user/profile', userController.getDataUser, countryController.getCountryNameById,collectionController.getListImageCollection, imageController.getCollectionUserImagesLimit3, imageController.getLatestUserImagesLimit3, followerController.countFollowerAndFollowed , (req, res) =>{
-    const url = req.userdata.photo_profile? `${domain}/image/${req.userdata.id}/profile.jpg` : '0' ;
-    req.userdata.photo_profile = url
-    console.log(req.imagedata)
-    res.status(200).json({
-        userdata : req.userdata,
-        imagedata : req.imagedata,
-        imagecollection : req.imagecollection,
-        follower : req.countfollowed,
-        followed : req.countfollower
-    })
-})
+// // get users limit 16 required startUserID and direction
+// app.get('/api/users', userController.getUsers)
 
-// get all country name list no need request body just api
-app.get('/api/countrys', countryController.getCountrysList)
+// // delete token by userId
+// // app.delete('/api/user/unauthorization',  userTokenController.deleteTokenDB)
+// // app.delete('/api/user/unauthorization', (req, res) => {
+// //     res.status(200).json({status : 'success'})
+// // })
+// app.delete('/api/user/unauthorization', veryfyToken, userTokenController.deleteTokenDB)
 
-// get all developer list no need request body just api
-app.get('/api/developers', developerController.getDevList)
+// // getting user's data profile like (imagedata , userdata, followerdata) required (userId, imageId, direction <for image direction>, )
+// app.get('/api/user/profile', userController.getDataUser, countryController.getCountryNameById,collectionController.getListImageCollection, imageController.getCollectionUserImagesLimit3, imageController.getLatestUserImagesLimit3, followerController.countFollowerAndFollowed , (req, res) =>{
+//     const url = req.userdata.photo_profile? `${domain}/image/${req.userdata.id}/profile.jpg` : '0' ;
+//     req.userdata.photo_profile = url
+//     console.log(req.imagedata)
+//     res.status(200).json({
+//         userdata : req.userdata,
+//         imagedata : req.imagedata,
+//         imagecollection : req.imagecollection,
+//         follower : req.countfollowed,
+//         followed : req.countfollower
+//     })
+// })
 
-// search image by imageName
-app.get('/api/image/search', imageController.getImageByName)
+// // get all country name list no need request body just api
+// app.get('/api/countrys', countryController.getCountrysList)
 
-// get image detail required authstatus, imageId, userId or token
-app.get('/api/image/detail', OptionalValidationToken, imageController.getImageDetail, collectionController.getCollection, likeController.getlike)
+// // get all developer list no need request body just api
+// app.get('/api/developers', developerController.getDevList)
 
-// uplod prhoto_profile required formData("prhotoprofile") and token
-app.post('/api/image/photo_profile', veryfyToken, upload.single('photo_profile'), (req, res) => {
-    res.json({ message: 'success' });
-})
+// // search image by imageName
+// app.get('/api/image/search', imageController.getImageByName)
 
-// upload image, checking follower, make notification
-app.post('/api/image', veryfyToken, upload.single('image'), followerController.geUserFollowerList, notificationController.bulkCreateNotification, (req, res) => {
-    res.json({ message: 'berhasil' });
-})
+// // get image detail required authstatus, imageId, userId or token
+// app.get('/api/image/detail', OptionalValidationToken, imageController.getImageDetail, collectionController.getCollection, likeController.getlike)
 
-// get all images limit 3 required imageId and direction
-app.get('/api/image', imageController.getImages)
+// // uplod prhoto_profile required formData("prhotoprofile") and token
+// app.post('/api/image/photo_profile', veryfyToken, upload.single('photo_profile'), (req, res) => {
+//     res.json({ message: 'success' });
+// })
 
-// get all images limit 30 required imageId and direction
-app.get('/api/user/image', imageController.getUserImages)
+// // upload image, checking follower, make notification
+// app.post('/api/image', veryfyToken, upload.single('image'), followerController.geUserFollowerList, notificationController.bulkCreateNotification, (req, res) => {
+//     res.json({ message: 'berhasil' });
+// })
 
-// get all images limit 30 required imageId and direction
-app.get('/api/user/collection',collectionController.getListImageCollection, imageController.getUserCollectionImage)
+// // get all images limit 3 required imageId and direction
+// app.get('/api/image', imageController.getImages)
 
-// create collection required imageId, token
-app.put('/api/collection',veryfyToken, imageController.getImageOwnerIdByImageId, collectionController.createCollection)
+// // get all images limit 30 required imageId and direction
+// app.get('/api/user/image', imageController.getUserImages)
 
-// delete collection required imageId and token
-app.delete('/api/collection',veryfyToken, imageController.getImageOwnerIdByImageId,collectionController.deleteCollection)
+// // get all images limit 30 required imageId and direction
+// app.get('/api/user/collection',collectionController.getListImageCollection, imageController.getUserCollectionImage)
 
-// delete like required imageId, and token
-app.delete('/api/like', veryfyToken, likeController.deletelike)
+// // create collection required imageId, token
+// app.put('/api/collection',veryfyToken, imageController.getImageOwnerIdByImageId, collectionController.createCollection)
 
-// create like required imageId and token
-app.put('/api/like', veryfyToken, imageController.getImageOwnerIdByImageId, likeController.createLike)
+// // delete collection required imageId and token
+// app.delete('/api/collection',veryfyToken, imageController.getImageOwnerIdByImageId,collectionController.deleteCollection)
 
-// create form contact us
-app.post('/api/contactus', contactusController.createForm)
+// // delete like required imageId, and token
+// app.delete('/api/like', veryfyToken, likeController.deletelike)
 
-// getform contact us need id and name
-app.get('/api/contactus', contactusController.getForm)
+// // create like required imageId and token
+// app.put('/api/like', veryfyToken, imageController.getImageOwnerIdByImageId, likeController.createLike)
 
-// create follower required followedUserId and token
-app.put('/api/following', veryfyToken, followerController.createFollower)
+// // create form contact us
+// app.post('/api/contactus', contactusController.createForm)
 
-// delete follower required followeduserId and token
-app.delete('/api/following', veryfyToken, followerController.deleteFollower)
+// // getform contact us need id and name
+// app.get('/api/contactus', contactusController.getForm)
 
-// get notification required token and startNotificationId
-app.get('/api/notification', veryfyToken, notificationController.getNotification )
+// // create follower required followedUserId and token
+// app.put('/api/following', veryfyToken, followerController.createFollower)
 
-// message have 5 route in 2 action
+// // delete follower required followeduserId and token
+// app.delete('/api/following', veryfyToken, followerController.deleteFollower)
 
-//required messageRoomId, senderuserId, receiverUserId, message
-// required 3 param
-//required getmessage have 3 route getListRoomMessage, getStartMessage and getMessageWithDirection
-app.get('/api/message',veryfyToken, messageController.getMessage, userController.getProfileandName)
+// // get notification required token and startNotificationId
+// app.get('/api/notification', veryfyToken, notificationController.getNotification )
 
-// createMessage have 2 route : createroom and createmessage
-// required 4 param
-// create room need receiverUserId , message and token
-// required startMessageId, messageRoomId, direction, message 
-app.post('/api/message' ,veryfyToken, messageController.createMessage, notificationController.singleCreateNotification)
+// // message have 5 route in 2 action
+
+// //required messageRoomId, senderuserId, receiverUserId, message
+// // required 3 param
+// //required getmessage have 3 route getListRoomMessage, getStartMessage and getMessageWithDirection
+// app.get('/api/message',veryfyToken, messageController.getMessage, userController.getProfileandName)
+
+// // createMessage have 2 route : createroom and createmessage
+// // required 4 param
+// // create room need receiverUserId , message and token
+// // required startMessageId, messageRoomId, direction, message 
+// app.post('/api/message' ,veryfyToken, messageController.createMessage, notificationController.singleCreateNotification)
 
 sequelize.authenticate().then(() => {
     console.log('Connected with database')

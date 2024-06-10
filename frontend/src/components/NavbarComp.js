@@ -7,7 +7,7 @@ import defaultprofile from '../assets/pembuat-male.png';
 
 import { useNavigate } from 'react-router-dom';
 
-import Massage from './massage';
+import Massage from './Message';
 
 import { AuthContext } from '../context/AuthContext';
 import { useContext, useState, useRef, useEffect } from 'react';
@@ -83,7 +83,7 @@ useEffect(() => {
                     src={url} onClick={handleClickDropdown}/>
                     {dropdownvisible && (
                     <div className="dropdown">
-                      <a onClick={() => navigate(`/profil?id=${userid}`)}>Profile</a>
+                      <a onClick={() => navigate(`/${userid}/profil`)}>Profile</a>
                       <a onClick={handleclickvsiblenotif}>Pemberitahuan</a>
                       <a onClick={handleclickvsiblemassage}>Pesan</a>
                       <a onClick={handleclickvsiblesetting}>Pengaturan</a>

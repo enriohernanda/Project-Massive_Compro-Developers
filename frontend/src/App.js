@@ -31,10 +31,10 @@ function App() {
         <Route path="/pameran" Component={Pameran} />
         <Route path="/galeri" Component={Galeri} />
         <Route path="/seniman" Component={Seniman} />
-        <Route path="/profil" Component={Profile} />
         <Route path="/lihat-semua" Component={LihatSemua} />
-        <Route path="/images" Component={Images} />
-        <Route path="/koleksi" Component={Koleksi} />
+        <Route path="/:id/profil" Component={Profile} />
+        <Route path="/:id/images" Component={Images} />
+        <Route path="/:id/koleksi" Component={Koleksi} />
       </Routes>
     </div>
   );

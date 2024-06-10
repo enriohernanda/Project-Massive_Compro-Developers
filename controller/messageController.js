@@ -16,7 +16,6 @@ const createMessage = async (req, res, next) => {
 
                                 {receiver_user_id : receiverUserId,
                                 sender_user_id : senderuserId}
-
                     ]
                 },
                 attributes : ['message_room_id']
@@ -39,8 +38,8 @@ const createMessage = async (req, res, next) => {
             //     },
             //     attributes : ['message_room_id']
             // })
-            console.log(RoomId.message_room_id,'dwadawdwa')
-            if (RoomId.message_room_id) {
+            if (RoomId) {
+                console.log(RoomId.message_room_id,'dwadawdwa')
                 const result = await messages.create({
                     id : '',
                     message_room_id : RoomId.message_room_id,
@@ -98,7 +97,7 @@ const getMessageNew = async (req, res) => {
         const {startMessageId, receiverUserId, direction} = req.query
         var messageRoomId = req.query.messageRoomId
         const senderUserId = req.decoded.id
-        if (!messageRoomId || !req.query.messageRoomId) {
+        if (!messageRoomId || !req.query.messageRoomId && receiverUserId) {
             RoomId = await messages.findOne({
                 where : {
                     [Op.or] : [
@@ -183,12 +182,14 @@ const getMessageNew = async (req, res) => {
 
 const getMessage = async (req, res, next) => {
     try {
-        const {startMessageId, messageRoomId, receiverUserId} = req.query ?? {}
+        const {startMessageId, receiverUserId} = req.query ?? {}
+        var {messageRoomId} = req.query ?? {}
         const userId = req.decoded.id
         var RoomId
         const senderUserId = req.decoded.id
         console.log(messageRoomId)
-        if (!messageRoomId) {
+        console.log("receive User ID : ",receiverUserId)
+        if (!messageRoomId && !receiverUserId) {
             const listRoom = await messages.findAll({
                 attributes : [
                     [Sequelize.fn('DISTINCT', Sequelize.col('message_room_id')), 'message_room_id'],
@@ -240,21 +241,7 @@ const getMessage = async (req, res, next) => {
             // findlast and bulk
         }
         console.log("start 4")
-        if (!startMessageId) {
-            // get Latest Message by startMessageIdId = 0
-            const result = await messages.findAll({
-                where : {
-                    message_room_id : messageRoomId,
-                },
-                attributes : ['receiver_user_id','sender_user_id','message', 'createdAt'],
-                order : [['id', 'DESC']],
-                limit : 21
-            })
-            return res.status(200).json({
-                result : result.reverse()
-            })
-        }
-        if (messageRoomId && userId && receiverUserId) {
+        if (userId && receiverUserId) {
             RoomId = await messages.findOne({
                 where : {
                     [Op.or] : [
@@ -273,7 +260,37 @@ const getMessage = async (req, res, next) => {
             // if (!RoomId) {
             //     return res.status(404).json({status: "not found", massage : "user not have massage room id"})
             // }
+            console.log("message ROOM ID Hasil 1 : " ,RoomId)
+            if (RoomId === null) {
+                return res.status(404).json({
+                    status : 'not found',
+                    result : " "
+                })
+            }
+            console.log("message ROOM ID Hasil: " ,RoomId.message_room_id)
             messageRoomId = RoomId.message_room_id
+            console.log("message ROOM ID : " ,messageRoomId)
+        }
+        if (!startMessageId) {
+            console.log("message ROOM ID : " ,messageRoomId)
+            // get Latest Message by startMessageIdId = 0
+            const result = await messages.findAll({
+                where : {
+                    message_room_id : messageRoomId,
+                },
+                attributes : ['receiver_user_id','sender_user_id','message', 'createdAt'],
+                order : [['id', 'DESC']],
+                limit : 21
+            })
+            const islast = result.length === 21
+            if (islast) {
+                result.pop()
+            }
+            console.log(result.length)
+            return res.status(200).json({
+                result : result.reverse(),
+                islast : islast
+            })
         }
         if (!direction) {
             return res.status(400).json({message : 'direction is required'})

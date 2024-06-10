@@ -97,7 +97,7 @@ const getUserImages = async (req, res, next) => {
             const isLastResult = isLast.length < 31 ;
             req.imagedata = arrayresult
             req.islast = isLastResult
-            res.status(200).json({imagedata: arrayresult, isLast : isLastResult})
+            return res.status(200).json({imagedata: arrayresult, isLast : isLastResult})
         }
         console.log("Hasil : ",result)
         req.imagedata = 'not found' 

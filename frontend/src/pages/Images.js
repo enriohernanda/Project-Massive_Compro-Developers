@@ -14,29 +14,23 @@ import konten3 from '../assets/header-3.png';
 import uploadicon1 from '../assets/file upload 1.png';
 import uploadicon2 from '../assets/file upload 2.png';
 import arrow from '../assets/arrow.png'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 
 import { getUserImagesByLatest } from '../service/apiService';
 
 const Images = () => {
+    const { id } = useParams()
     const location = useLocation() 
     const navigate = useNavigate()
     const [imagedata, setimagedata] = useState([])
-    const [userId, setUserId] = useState(1)
     const [imageId, setImageId] = useState(1)
-    const [userparams, setuserparams] = useState()
     
-    useEffect(() => {      
-        const query = new URLSearchParams(location.search)
-        const useridparams = query.get('id')
-        setuserparams(useridparams)
-   }, [location.search])
- 
+    
    useEffect(() =>{
     const fetchdata = async() =>{
         try {
-            console.log(userparams, '========================')
-            const response = await getUserImagesByLatest(userparams, imageId)
+            console.log(id, '========================')
+            const response = await getUserImagesByLatest(id, imageId)
             setimagedata(response.imagedata)
             console.log(response)
         } catch (error) {
@@ -44,13 +38,13 @@ const Images = () => {
         }
     }
     fetchdata()
-}, [userparams, location.search])
+}, [id, location.search])
 
     return (
         <div className='images-body'>
             <NavbarComp />
             <div className='nav-back'>
-                <button onClick={() => navigate(`/profil?id=${userparams}`)}>Kembali</button>
+                <button onClick={() => navigate(`/${id}/profil`)}>Kembali</button>
             </div>
             <div className='images-main'>
                 <div className='leftfloat-inline' >Upload Terakhir</div><br/>
