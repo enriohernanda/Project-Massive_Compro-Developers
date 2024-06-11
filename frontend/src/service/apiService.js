@@ -29,10 +29,45 @@ export const getimagedetail = async (authstatus, imageId, token, userid) => {
     }
 } 
 
-// get all images limit 3 required imageId and direction
-export const getImages = async (imageId, direction) => {
+// get image detail required authstatus, imageId, userId or token
+export const createLike = async (authstatus, imageId, token) => {
     try {
-        const response = await api.get('/api/imagedetail', {params : {direction : direction, imageId : imageId}})
+        console.log(authstatus)
+        const response = await api.put('/api/like',  {authstatus : authstatus, imageId : imageId, token : token})
+        return response.data
+    } catch (error) {
+        console.log(error)
+        alert(error.response.data.message)
+    }
+} 
+
+// get image detail required authstatus, imageId, userId or token
+export const countLike = async (userId) => {
+    try {
+        console.log("UserId Like : ",userId)
+        const response = await api.get('/api/like', {params : {userId : userId}})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+// get image detail required authstatus, imageId, userId or token
+export const createCollection = async (authstatus, imageId, token) => {
+    try {
+        console.log(authstatus)
+        // const response = await api.put('/api/collection',  { params :{authstatus : authstatus, imageId : imageId, token : token}})
+        const response = await api.put('/api/collection',  {authstatus : authstatus, imageId : imageId, token : token})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+// get all images limit 3 required imageId and direction
+export const getImages = async (imageId, direction, limit) => {
+    try {
+        const response = await api.get('/api/image', {params : {direction : direction, imageId : imageId, limit : limit}})
         return response.data
     } catch (error) {
         console.log(error)

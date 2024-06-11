@@ -11,7 +11,7 @@ const signToken = (user) => {
 
 const veryfyToken = (req, res, next) => {
     // const {authstatus} = req.body?? req.query ; 
-    const authstatus = req.query.authstatus !== undefined ?  req.query.authstatus : req.body.authstatus  
+    const authstatus = req.query.authstatus !== undefined ?  req.query.authstatus : req.body.authstatus 
     console.log(req.body)
     console.log(req.query)
     console.log("auth :" , authstatus)

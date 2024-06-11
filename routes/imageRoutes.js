@@ -28,8 +28,8 @@ router.post('/', veryfyToken, upload.single('image'), followerController.geUserF
     res.json({ message: 'berhasil' });
 })
 
+
 // get all images limit 3 required imageId and direction
 router.get('/', imageController.getImages)
-
 
 module.exports = router;

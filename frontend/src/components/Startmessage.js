@@ -64,7 +64,6 @@ const StartMessage = () => {
             console.log("Response Send Text:",response)
             await handleclicluser(roomid, receiveruserid)
             setrawtext('')
-            messagecontainer.current?.scrollIntoView({behavior : 'smooth'})
             // setmassage(massage.concat(response.result? response.result : []))
         } catch (error) {
             console.log(error)

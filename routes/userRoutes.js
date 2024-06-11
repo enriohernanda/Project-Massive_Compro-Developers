@@ -9,7 +9,7 @@ const countryController = require('../controller/countryController')
 const followerController = require('../controller/followerController')
 const notificationController = require('../controller/notificationController')
 const collectionController = require('../controller/collectionController')
-
+const likeController = require('../controller/likeController')
 const router = express.Router();
 
 
@@ -43,7 +43,8 @@ router.get('/profile', userController.getDataUser, countryController.getCountryN
         imagedata : req.imagedata,
         imagecollection : req.imagecollection,
         follower : req.countfollowed,
-        followed : req.countfollower
+        followed : req.countfollower,
+        like : req.countlike
     })
 })
 

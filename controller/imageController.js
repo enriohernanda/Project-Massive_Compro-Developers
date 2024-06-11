@@ -1,13 +1,11 @@
 const { Op, where } = require('sequelize')
 const { images } = require('../model/imageModel')
-const { Where } = require('sequelize/lib/utils')
 const {domain} = require('../config/domain')
-const { messages } = require('../model/messageModel')
 
 // function to retrieve an image from image table based onthe provided image id
 // The parameter needed is image id with query imageId 
 // The return of function is JSON 
-const getImages = async (req, res, next) => {
+const getImagesLimit3 = async (req, res, next) => {
     const { imageId, direction } = req.query
     if (!imageId || !direction){
         return res.status(400).json({message: 'imageId or direction is required'})
@@ -42,6 +40,53 @@ const getImages = async (req, res, next) => {
         }))
         const isLastResult = isLast.length < 4 ;
         res.status(200).json({
+            status : "success",
+            isLast : isLastResult,
+            result : arrayresult
+        })
+    } catch (error) { 
+        console.log(error)
+        res.status(500).json({
+            status : 'error',
+            message : 'internal was error'})
+    }
+} 
+
+// function to retrieve an image from image table based onthe provided image id
+// The parameter needed is image id with query imageId 
+// The return of function is JSON 
+const getImages = async (req, res, next) => {
+    const { imageId, direction } = req.query ?? {}
+    var { limit } = req.query ?? {}
+    if (!imageId || !direction || !limit){
+        return res.status(400).json({message: 'imageId or direction is required'})
+    }
+    const operator = direction === 'forward'? Op.gte : Op.lte;
+    // const order = direction === 'forward'? 'DESC' : 'ASC';
+    const newLimit = parseInt(limit) + 1
+    try {
+        const result = await images.findAll({
+            where:{
+                id : {
+                    [operator] : imageId
+                }
+            },    
+            attributes : ['id','user_id', 'image_name', 'description'],
+            limit: newLimit
+        })
+        const arrayresult = result.map(image => ({
+            url : `${domain}/image/${image.user_id}/${image.id}.jpg`,
+            user_id : image.user_id,
+            name : image.image_name,
+            description : image.description
+        }))
+        const isLastResult = arrayresult.length < newLimit ;
+        if (!isLastResult) {
+            arrayresult.pop()
+        }
+        console.log(arrayresult)
+        res.status(200).json({
+            status : "success",
             isLast : isLastResult,
             result : arrayresult
         })
@@ -383,7 +428,10 @@ const getImageByName = async (req, res) => {
 
 const getImageOwnerIdByImageId = async (req, res, next) => {
     try {
-        const {imageId} = req.query
+        const {imageId} = req.query.length > 0 ? req.query : req.body
+        console.log(req.query)
+        console.log(req.body)
+        console.log(  imageId)
         if (!imageId) {
             return res.status(400).json({message : 'image id is required'})
         }
@@ -394,6 +442,7 @@ const getImageOwnerIdByImageId = async (req, res, next) => {
             attributes : ['user_id']
         }) 
         if (imageowner) {
+            console.log("lanjut ")
             req.imageownerid = imageowner.user_id
             return next()
         }
@@ -407,4 +456,5 @@ const getImageOwnerIdByImageId = async (req, res, next) => {
     }
 }
 
-module.exports = { getImages, getUserImages ,getImageDetail, createImageRecord, getImageByName, getImageOwnerIdByImageId, getLatestUserImagesLimit3, getUserCollectionImage, getCollectionUserImagesLimit3}
+module.exports = { getImages, getUserImages ,getImageDetail, createImageRecord, getImageByName, 
+    getImageOwnerIdByImageId, getLatestUserImagesLimit3, getUserCollectionImage, getCollectionUserImagesLimit3}

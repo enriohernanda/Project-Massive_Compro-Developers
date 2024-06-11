@@ -3,10 +3,10 @@ const {collections} = require('../model/collectionModel')
 
 const createCollection = async (req, res) =>{
     try {
-        const { imageId } = req.query
+        const { imageId } = req.query == {} ? req.query : req.body
         const userId = req.decoded.id
         const idUserCollected  = req.imageownerid
-        console.log(userId, idUserCollected)
+        console.log(imageId ,userId, idUserCollected)
         if (!userId || !idUserCollected || !imageId){
             return res.status(400).json({message : 'params is needed'})
         }

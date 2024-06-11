@@ -2,7 +2,9 @@ const { likes } = require('../model/likeModel')
 
 const createLike = async (req, res) => {
     try {
-        const { imageId } = req.query
+        console.log("lanjut Like")
+        const imageId  = req.body.imageId || req.query.imageId
+        console.log("Image Id : ",imageId)
         if (!imageId) {
             return res.status(400).json({
                 status : "failed",
@@ -11,6 +13,20 @@ const createLike = async (req, res) => {
         }
         const userId = req.decoded.id
         const idUserLiked = req.imageownerid? req.imageownerid: req.query.userId 
+        const validation = await likes.findOne({
+            where : {
+                liked_by_user_id : userId,
+                image_id : imageId
+            },
+            attributes : ["id"]
+
+        })
+        if (validation) {
+            return res.status(400).json({
+                status : "failed",
+                message : "you have liked"
+            })
+        }
         const result = await likes.create({
             id : '',
             liked_by_user_id : userId,
@@ -84,13 +100,16 @@ const getlike = async (req, res) => {
     }
 }
 
-const countlike = async (req, res) => {
+const countlike = async (req, res, next) => {
     try {
-        const {userId, imageId} = req.query
-        if (!userId || !imageId) {
+        const {userId} = req.query || req.body
+        console.log(req.query)
+        console.log(req.body)
+        console.log(req)
+        if (!userId) {
             return res.status(400).json({
                 status : "failed", 
-                message : "userId and imageId is required"
+                message : "userId is required"
             })
         }
         const countLikedUserId = userId ? userId : req.decoded.id;
@@ -100,9 +119,10 @@ const countlike = async (req, res) => {
                 message : 'userId is required'
             })
         } 
+       
         const countLiked = await likes.count({
             where : {
-                image_id : imageId
+                liked_user_id : userId
             }
         })
         if (countLiked) {

@@ -96,7 +96,7 @@ const TentangKami = () => {
           <label className="label-hub" htmlFor="pesan">
             Pesan
           </label>
-          <input type="text" value={message} onChange={(e) => setMessage(e.target.value)} name="pesan" id="pesan" className="input-hub-pesan" placeholder="Ketik pesan anda disini" />
+          <textarea type="text" value={message} onChange={(e) => setMessage(e.target.value)} name="pesan" id="pesan" className="input-hub-pesan" placeholder="Ketik pesan anda disini" ></textarea>
           <button id="btn_hub" type="submit">
             Kirim
           </button>

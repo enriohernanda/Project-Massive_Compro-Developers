@@ -16,7 +16,7 @@ import uploadicon1 from '../assets/file upload 1.png';
 import uploadicon2 from '../assets/file upload 2.png';
 import arrow from '../assets/arrow.png'
 
-import { createImage, getProfile, getUserProfile} from '../service/apiService';
+import { createImage, getProfile, getUserProfile, countLike} from '../service/apiService';
 
 const Profile = () => {
   const { id } = useParams() 
@@ -32,6 +32,7 @@ const Profile = () => {
   const [collectiondata, setcollectiondata] = useState([])
   const [followed, setfollowed] = useState(0)
   const [follower, setfollower] = useState(0)
+  const [like, setlike] = useState(0)
   const [trigerprofile, settrigerprofile] = useState(true)
   const [trigermessage, settrigermessage] = useState(false)
   const url = photo_profile? photo_profile : defaultprofile 
@@ -44,6 +45,9 @@ const Profile = () => {
             const response = await getProfile(isAuth, id, token)
             console.log('userid : ',userid)
             console.log('id : ',id)
+            const countlike = await countLike(id)
+            setlike(countlike)
+            console.log("Count Like :",countlike)
             console.log("Response :",response)
             setfollowed(response.followed)
             setfollower(response.follower)
@@ -129,7 +133,7 @@ useEffect(() => {
                     </div>
                     <div className='inline-space-between'>
                         <p className=''>Disukai</p>
-                        <p className=''>0</p>
+                        <p className=''>{like}</p>
                     </div>
                 </div>
                 <div className='hr'></div>

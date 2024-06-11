@@ -23,6 +23,7 @@ function App() {
       {/* <NavbarComp /> */}
       <Routes>
         <Route path="/" Component={Beranda} />
+        <Route path="/:id/" Component={Beranda} />
         <Route path="/daftar" Component={Daftar} />
         <Route path="/masuk" Component={Masuk} />
         <Route path="/lupa-password" Component={LupaPass} />
