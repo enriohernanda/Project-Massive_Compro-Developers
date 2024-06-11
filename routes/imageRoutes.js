@@ -16,7 +16,7 @@ const router = express.Router();
 router.get('/search', imageController.getImageByName)
 
 // get image detail required authstatus, imageId, userId or token
-router.get('/detail', OptionalValidationToken, imageController.getImageDetail, collectionController.getCollection, likeController.getlike)
+router.get('/detail', veryfyToken, imageController.getImageDetail, collectionController.getCollection, likeController.getlike)
 
 // uplod prhoto_profile required formData("prhotoprofile") and token
 router.post('/photo_profile', veryfyToken, upload.single('photo_profile'), (req, res) => {

@@ -41,6 +41,17 @@ export const createLike = async (authstatus, imageId, token) => {
     }
 } 
 
+export const deleteLike = async (authstatus, imageId, token) => {
+    try {
+        console.log(authstatus)
+        const response = await api.delete('/api/like', {params :{authstatus : authstatus, imageId : imageId, token : token}})
+        return response.data
+    } catch (error) {
+        console.log(error)
+        alert(error.response.data.message)
+    }
+} 
+
 // get image detail required authstatus, imageId, userId or token
 export const countLike = async (userId) => {
     try {
@@ -52,12 +63,25 @@ export const countLike = async (userId) => {
     }
 } 
 
+ 
+
 // get image detail required authstatus, imageId, userId or token
 export const createCollection = async (authstatus, imageId, token) => {
     try {
         console.log(authstatus)
         // const response = await api.put('/api/collection',  { params :{authstatus : authstatus, imageId : imageId, token : token}})
         const response = await api.put('/api/collection',  {authstatus : authstatus, imageId : imageId, token : token})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+export const deleteCollection = async (authstatus, imageId, token) => {
+    try {
+        console.log("Image Id Collection  delete:",imageId)
+        // const response = await api.put('/api/collection',  { params :{authstatus : authstatus, imageId : imageId, token : token}})
+        const response = await api.delete('/api/collection',  {params :{authstatus : authstatus, imageId : imageId, token : token}})
         return response.data
     } catch (error) {
         console.log(error)
@@ -154,6 +178,42 @@ export const createForm = async (username, email, message) => {
 export const getUserProfile = async (username, email, message) => {
     try {
         const response = await api.post('/api/user/profile', {params : {username : username, email : email ,message : message}})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+export const getNotification = async (authstatus, token, startNotificationId) => {
+    try {
+        const response = await api.get('/api/notification', {params : {authstatus : authstatus, token : token ,startNotificationId : startNotificationId}})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+export const getFollowing = async (authstatus, followeduserid, token) => {
+    try {
+        const response = await api.get('/api/follower', {params : {authstatus : authstatus, followedUserId : (followeduserid ? followeduserid : 0 ), token : token}})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+export const createFollower = async (authstatus, followeduserid, token) => {
+    try {
+        const response = await api.put('/api/follower', {authstatus : authstatus, followedUserId : followeduserid , token : token})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+export const deleteFollower = async (authstatus, followeduserid, token) => {
+    try {
+        const response = await api.delete('/api/follower', {params : {authstatus : authstatus, followedUserId : followeduserid , token : token}})
         return response.data
     } catch (error) {
         console.log(error)

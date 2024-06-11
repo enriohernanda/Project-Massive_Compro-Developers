@@ -16,7 +16,7 @@ import uploadicon1 from '../assets/file upload 1.png';
 import uploadicon2 from '../assets/file upload 2.png';
 import arrow from '../assets/arrow.png'
 
-import { createImage, getProfile, getUserProfile, countLike} from '../service/apiService';
+import { createImage, getProfile, getUserProfile, countLike, getFollowing, createFollower, deleteFollower} from '../service/apiService';
 
 const Profile = () => {
   const { id } = useParams() 
@@ -35,6 +35,7 @@ const Profile = () => {
   const [like, setlike] = useState(0)
   const [trigerprofile, settrigerprofile] = useState(true)
   const [trigermessage, settrigermessage] = useState(false)
+  const [isfollowed, setisfollowed] = useState(false)
   const url = photo_profile? photo_profile : defaultprofile 
   console.log(url)
 
@@ -66,7 +67,27 @@ const Profile = () => {
         }
     }
     fetchdata()
-  }, [id])
+  }, [id, isfollowed])
+
+
+  useEffect(() => {
+    const fetchdata = async () => {
+        try {
+            if (userid === id) {
+                return
+            }
+            const response = await getFollowing(isAuth, id, token)
+            if (response) {
+                setisfollowed(response.result? response.result : false)
+                console.log("Response ISFOLLOWED: ", response.result)
+            }
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    fetchdata()
+  }, [isfollowed])
+
 //   isAuth, trigerprofile, id
   const handlevisibleform = () =>{
     setvisibleform(!visibleform)
@@ -104,10 +125,32 @@ useEffect(() => {
         document.addEventListener('click', outAreaClick, true);
     }
 }, [])
+
+const handlebuttonfollower = async () => {
+    if (!token) {
+        return
+    }
+    if (isfollowed) {
+        
+        console.log("Menghapus Follower")
+        const response = await deleteFollower(isAuth, id, token)
+        console.log("Tatus :",response.status)
+        if (response) {
+            setisfollowed(false)            
+        }
+        return
+    }
+    console.log("Membuat Follower :", isfollowed)
+    const response = await createFollower(isAuth, id, token)
+    if (response) {
+        return setisfollowed(true)            
+    }
+    setisfollowed(true)            
+}
     return(
         <div className='bodyprofile'>
         <NavbarComp />
-        { trigermessage? <div ref={contentRef}>
+        { trigermessage && token? <div ref={contentRef}>
             <StartMessage/> 
         </div> : ""}
         <div className='mainprofile'>
@@ -118,8 +161,8 @@ useEffect(() => {
                 {/* {console.log(userdata.country)} */}
                 <p className='professi'>{userdata?.professi || ''}</p>
                 {console.log("userid : ",userid,"dan id params :" , id)}
-                {userid !== id? (<button className='button-follow' >Ikuti</button> ) : (<div></div>)}
-                {userid !== id? <button className='button-message' onClick={() => settrigermessage(!trigermessage)}>Kirim Pesan</button> : ""}
+                {userid == id? (<div></div>) : (<button className='button-follow' onClick={handlebuttonfollower} >{isfollowed? "Mengikuti" : "Ikuti" }</button> ) }
+                {userid == id? "" : (<button className='button-message' onClick={() => settrigermessage(!trigermessage)}>Kirim Pesan</button>) }
                 <div className='hr'></div>
                 {console.log(userdata.photo_profile)}
                 <div className='followercontainer'>
@@ -133,7 +176,7 @@ useEffect(() => {
                     </div>
                     <div className='inline-space-between'>
                         <p className=''>Disukai</p>
-                        <p className=''>{like}</p>
+                        <p className=''>{like?like : 0}</p>
                     </div>
                 </div>
                 <div className='hr'></div>

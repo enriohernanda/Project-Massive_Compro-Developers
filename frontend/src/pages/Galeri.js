@@ -12,7 +12,29 @@ import foto8 from '../assets/galeri-8.png';
 import foto9 from '../assets/galeri-9.png';
 import NavbarComp from '../components/NavbarComp';
 
+import { getImages } from '../service/apiService'
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 const Galeri = () => {
+  const Navigate = useNavigate()
+  const [imageid, seImageId] = useState(1)
+  const [limit, setlimit] = useState(6)
+  const [direction, setdirection] = useState("forward")
+  const [images, setimages] = useState([])
+
+  useEffect(() => {
+    const fetchdata = async () => {
+      try {
+        const response = await getImages(imageid, direction, limit)
+        console.log("Response Gallery : ",response)
+        setimages(response.result)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    fetchdata()
+  }, [])
   return (
     <div>
       <NavbarComp />
@@ -20,7 +42,19 @@ const Galeri = () => {
       <SearchComp />
       <div className="galeri">
         <div className="foto-galeri row justify-content-center">
-          <div className="card-galeri col-md-4 mb-4">
+
+         {images.length > 0 ?( images.map((eachimage, index) => (
+          <div key={index} className="imagecover card-galeri col-md-4 mb-4" onClick={() => Navigate(`/${eachimage.id}/detail`)}>
+            <img src={eachimage.url? `http://${eachimage.url}` : foto1} alt="foto1" className='image'/>
+            <div className="intro-galeri">
+              <h2>{eachimage.name}</h2>
+              <p>
+               {eachimage.description.substring(0, 250)}{eachimage.description.length > 250? "..." : ""}
+              </p>
+            </div>
+          </div>
+         ))) : ""}
+          {/* <div className="card-galeri col-md-4 mb-4">
             <img src={foto1} alt="foto1" />
             <div className="intro-galeri">
               <h2>Mona Lisa</h2>
@@ -97,7 +131,7 @@ const Galeri = () => {
                 dalam aliran ini.
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <FooterComp />

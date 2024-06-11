@@ -76,6 +76,7 @@ const getImages = async (req, res, next) => {
         })
         const arrayresult = result.map(image => ({
             url : `${domain}/image/${image.user_id}/${image.id}.jpg`,
+            id : image.id,
             user_id : image.user_id,
             name : image.image_name,
             description : image.description
@@ -325,8 +326,9 @@ const getImageDetail = async (req, res, next) => {
     try {
         const { imageId } = req.query
         console.log(req.query)
+        // const imageId = 3
         console.log(req.body)
-        console.log(imageId)
+        console.log("imageId : ", imageId)
         if (!imageId) {
             return res.status(400).json({
                 status : 'failed',
@@ -334,12 +336,14 @@ const getImageDetail = async (req, res, next) => {
             })
         }
         const result = await images.findOne({
-            Where : {
+            where : {
                 id : imageId
             },
             attributes : ['id','user_id', 'image_name','description']
         })
-        const url = `${domain}/image/${result.user_id}/${imageId}.jpg`
+       
+
+        const url = `${domain}/image/${result.user_id}/${result.id}.jpg`
         if (result) {
             req.imagedata = {urlimage : url, image_name : result.image_name, description : result.description}
             // res.status(200).json({url : url, image_name : result.image_name, description : result.description})
@@ -411,6 +415,7 @@ const getImageByName = async (req, res) => {
         if (imagesResult.length > 0) {
             const refix = imagesResult.map(image => ({
                 url : `${domain}/image/${image.user_id}/${image.id}.jpg`,
+                id : image.id,
                 userId : image.user_id,
                 imageName : image.image_name
             }))
@@ -428,13 +433,18 @@ const getImageByName = async (req, res) => {
 
 const getImageOwnerIdByImageId = async (req, res, next) => {
     try {
-        const {imageId} = req.query.length > 0 ? req.query : req.body
+        // console.log("=============================================")
+        // console.log(req.body)
+        // console.log(req.query)
+        // console.log("=============================================")
+        if (Object.keys(req.query).length === 0 && Object.keys(req.body).length === 0) {
+            console.log(Object.keys(req.query).length === 0 || Object.keys(req.body).length === 0)
+            return res.status(400).json({message : 'imageId is required'})
+        }
+        const {imageId} = Object.keys(req.query).length > 0 ? req.query : req.body
         console.log(req.query)
         console.log(req.body)
         console.log(  imageId)
-        if (!imageId) {
-            return res.status(400).json({message : 'image id is required'})
-        }
         const imageowner = await images.findOne({
             where : {
                 id : imageId

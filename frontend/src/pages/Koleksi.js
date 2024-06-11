@@ -13,7 +13,7 @@ import { useLocation } from 'react-router-dom'
 import { getUserCollectionImage } from '../service/apiService';
 
 const Koleksi = () => {
-    const {id} = useParams()
+    const { id } = useParams()
     const location = useLocation() 
     const navigate = useNavigate()
     const [imagedata, setimagedata] = useState([])

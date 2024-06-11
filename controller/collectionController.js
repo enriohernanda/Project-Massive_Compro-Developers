@@ -3,12 +3,21 @@ const {collections} = require('../model/collectionModel')
 
 const createCollection = async (req, res) =>{
     try {
-        const { imageId } = req.query == {} ? req.query : req.body
+        const { imageId } = Object.keys(req.query).length > 0 ? req.query : req.body
         const userId = req.decoded.id
         const idUserCollected  = req.imageownerid
         console.log(imageId ,userId, idUserCollected)
         if (!userId || !idUserCollected || !imageId){
             return res.status(400).json({message : 'params is needed'})
+        }
+        const validation = await collections.findAll({
+            where : {   
+                user_id : userId,
+                image_id : imageId
+            }
+        })
+        if (validation.length > 0) {
+            return res.status(300).json()
         }
         const result = await collections.create({
             id: '',
@@ -23,13 +32,14 @@ const createCollection = async (req, res) =>{
         console.log(error)
         res.status(500).json({
             status : 'error',
-            message : 'internal was error'})
+            message : 'internal was error'
+        })
     }
 }
 
 const deleteCollection = async (req, res) =>{
     try {
-        const { imageId } = req.query
+        const { imageId } = Object.keys(req.query).length > 0 ? req.query : req.body
         const userId = req.decoded.id
         const idUserCollected = req.imageownerid
         const result = await collections.destroy({
@@ -62,11 +72,12 @@ const getCollection = async (req, res, next) => {
         const userId = req.decoded.id 
         const result = await collections.findOne({
             where : {
-                id : imageId ,
+                image_id : imageId ,
                 user_id : userId
             }
         })
-        req.userCollection = result
+        console.log("Coleksi disisni ; ",result)
+        req.userCollection = result? true : false 
         return next()
     } catch (error) {
         console.log(error)

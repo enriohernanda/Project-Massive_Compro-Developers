@@ -6,6 +6,6 @@ const notificationController = require('../controller/notificationController')
 const router = express.Router();
 
 // get notification required token and startNotificationId
-router.get('/notification', veryfyToken, notificationController.getNotification )
+router.get('/', veryfyToken, notificationController.getNotification )
 
 module.exports = router;

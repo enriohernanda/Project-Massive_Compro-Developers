@@ -12,5 +12,7 @@ router.put('/', veryfyToken, followerController.createFollower)
 // delete follower required followeduserId and token
 router.delete('/', veryfyToken, followerController.deleteFollower)
 
+router.get('/', veryfyToken, followerController.getFollowing)
+
 
 module.exports = router;

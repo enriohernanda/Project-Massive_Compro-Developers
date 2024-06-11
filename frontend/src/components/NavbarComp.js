@@ -3,7 +3,7 @@ import { navLinks } from '../data/Data';
 import { NavLink } from 'react-router-dom';
 import icon from '../assets/icon-mopart.png';
 import defaultprofile from '../assets/pembuat-male.png';
-
+import Notification from './NotificationContent';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -11,6 +11,7 @@ import Massage from './Message';
 
 import { AuthContext } from '../context/AuthContext';
 import { useContext, useState, useRef, useEffect } from 'react';
+import { getNotification } from '../service/apiService'
 
 const NavbarComp = () => {
   let navigate = useNavigate();
@@ -21,6 +22,9 @@ const NavbarComp = () => {
   const [massageVisible, setMassageVisible] = useState(false)
   const [notifVisible, setNotifVisible] = useState(false)
   const [settingVisible, setSettingVisible] = useState(false)
+
+
+  
   console.log(url)
   const handleClickLogout = () =>{
     logout()
@@ -58,6 +62,8 @@ useEffect(() => {
     }
 }, [])
   return (
+    <div>
+
     <Navbar expand="lg">
       <Container>
         <Navbar.Brand href="#">
@@ -99,15 +105,49 @@ useEffect(() => {
             )}
           </div>
           <div>
+        </div>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
             <div ref={contentRef}>
               {massageVisible && (
                 <Massage  />
               )}
             </div>
+      {settingVisible? 
+      <div class="pengaturan-container" ref={contentRef}>
+        <input type="file" placeholder="File" draggable="true" />
+        <select name="" id="" draggable="true">
+            <option value="Indonesia">Indonesia</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Indonesia">Indonesia</option>
+            <option value="Indonesia">Indonesia</option>
+        </select>
+        <select name="" id="">
+            <option value="Programer">Programer</option>
+            <option value="Programer">Programer</option>
+            <option value="Programer">Programer</option>
+        </select>
+        <div>
+            <p>Instagram</p>
+            <input type="text" />
         </div>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+        <div>
+            <p>Youtube</p>
+            <input type="text" />
+        </div>
+        <div>
+            <p>Facebook</p>
+            <input type="text" />
+        </div>
+        <button>Kirim</button>
+    </div> : ""}
+
+    {notifVisible ? 
+    <div>
+      <Notification />
+    </div>: ""}
+    </div>
   );
 };
 

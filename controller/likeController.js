@@ -74,7 +74,7 @@ const deletelike = async (req, res) => {
 
 const getlike = async (req, res) => {
     try {
-        const { imageId, authstatus } = req.query
+        const { imageId, authstatus } = req.query 
         if(!imageId){
             return res.status(400).json({
                 status : "failed",
@@ -82,6 +82,7 @@ const getlike = async (req, res) => {
             })
         }
         if (authstatus === 'false') {
+            console.log("waduh jahat")
             return res.status(200).json(req.imagedata)
         }
         const userId = req.decoded.id 
@@ -91,7 +92,12 @@ const getlike = async (req, res) => {
                 image_id : imageId 
             }
         })
-        res.status(200).json(req.imagedata, req.usercollection, result)
+        console.log("waduh jahat 2")
+        res.status(200).json({
+            imagedata : req.imagedata, 
+            iscollect : req.userCollection, 
+            islike : result? true : false
+        })
     } catch (error) {
         console.log(error)
         res.status(500).json({

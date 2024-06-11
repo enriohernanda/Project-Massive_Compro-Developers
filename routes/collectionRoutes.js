@@ -14,4 +14,7 @@ router.put('/',veryfyToken, imageController.getImageOwnerIdByImageId, collection
 router.delete('/',veryfyToken, imageController.getImageOwnerIdByImageId,collectionController.deleteCollection)
 
 
+// create collection required imageId, token
+router.get('/',collectionController.getListImageCollection, imageController.getUserCollectionImage)
+
 module.exports = router;

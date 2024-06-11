@@ -1,9 +1,11 @@
+
 const {followers} = require('../model/followerModel')
 
 const createFollower = async (req, res) => {
     try {
-        const {followedUserId} = req.query
+        const {followedUserId} = Object.keys(req.query).length > 0 ? req.query : req.body 
         const userId = req.decoded.id
+        console.log("Followed User Id", followedUserId)
         if (!userId || !followedUserId || followedUserId == userId) {
             return res.status(400).json({message: 'userId or followedUserId is required or something went wrong'})
         }
@@ -14,7 +16,7 @@ const createFollower = async (req, res) => {
             },
             attributes : ['id']
         })
-        if (validation.id) {
+        if (validation) {
             return res.status(400).json({status : 'error',message : 'you have been followed'})
         }
         const result = await followers.create({
@@ -60,6 +62,36 @@ const deleteFollower = async (req, res) => {
         res.status(500).json({
             status : 'error',
             message : 'internal was error'})
+    }
+}
+const getFollowing = async (req, res) => {
+    try {
+        const {followedUserId} = Object.keys(req.query).length > 0 ? req.query : req.body
+        const userId = req.decoded.id
+        if (!userId) {
+            return res.status(400).json({
+                status : "error",
+                message : "userId is required"
+            })
+        }     
+        const result = await followers.findOne({
+            where : {
+                following_user_id : userId,
+                followed_user_id : followedUserId
+            },
+            attributes : ['id']
+        })
+        console.log("Yah ")
+        res.status(200).json({
+            status : "success",
+            result : result? true : false 
+        })
+    } catch (error) {
+        console.log(error)
+        res.status(500).json({
+            status : 'error',
+            message : 'internal was error'
+        })
     }
 }
 
@@ -152,4 +184,4 @@ const getUserFollowedList = async (req, res, next) =>{
             message : 'internal was error'})
     }
 }
-module.exports = {createFollower, deleteFollower, countFollowerAndFollowed, geUserFollowerList, getUserFollowedList}
+module.exports = {createFollower, deleteFollower, countFollowerAndFollowed, geUserFollowerList, getUserFollowedList, getFollowing}

@@ -48,4 +48,8 @@ router.get('/profile', userController.getDataUser, countryController.getCountryN
     })
 })
 
+
+// create collection required imageId, token
+router.get('/collection',collectionController.getListImageCollection, imageController.getUserCollectionImage)
+
 module.exports = router;
