@@ -26,6 +26,7 @@
   text-align: center;
   font-weight: 600;
   margin-bottom: 20px;
+  --animate-delay: 0.2s;
 }
 
 .form-masuk {
@@ -39,6 +40,7 @@
   margin-bottom: 10px;
   font-size: 16px;
   font-weight: bold;
+  --animate-delay: 0.7s;
 }
 
 .input-email-masuk,
@@ -50,6 +52,7 @@
   font-size: 16px;
   width: 368px;
   height: 53px;
+  --animate-delay: 0.7s;
 }
 
 .input-email-masuk,

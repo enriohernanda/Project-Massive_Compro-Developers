@@ -5,47 +5,45 @@ import FooterComp from '../components/FooterComp';
 import ButtonLSComp from '../components/ButtonLSComp';
 import NavbarComp from '../components/NavbarComp';
 
-import {getimagedetail} from '../service/apiService'
+import { getimagedetail } from '../service/apiService';
 
-import {useState, useEffect, useContext} from 'react'
+import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 
 const Beranda = () => {
-  const { isAuth, token, userid} = useContext(AuthContext)
-  const [url, seturl] = useState()
-  const [name, setname] = useState()
-  const [description, setdescription] = useState()
+  const { isAuth, token, userid } = useContext(AuthContext);
+  const [url, seturl] = useState();
+  const [name, setname] = useState();
+  const [description, setdescription] = useState();
 
-  console.log("AUTH BERANDa",isAuth)
+  console.log('AUTH BERANDa', isAuth);
   useEffect(() => {
-    const fetchdata = async () =>{
+    const fetchdata = async () => {
       try {
-        console.log("Response Beranda : Auth: ", isAuth)
-        const response = await getimagedetail(false, 1, token, userid)
-        console.log("Response Beranda : ",response)
-        seturl(response.urlimage)
-        setname(response.name)
-        setdescription(response.description)
+        console.log('Response Beranda : Auth: ', isAuth);
+        const response = await getimagedetail(false, 1, token, userid);
+        console.log('Response Beranda : ', response);
+        seturl(response.urlimage);
+        setname(response.name);
+        setdescription(response.description);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    fetchdata()
-  }, [])
+    };
+    fetchdata();
+  }, []);
 
   return (
     <div>
       <NavbarComp />
       <SlideHeaderComp />
       <SearchComp />
-      <div className="konten-beranda">
-        <div className='imagecover'>
-          <img className='image' src={url === "0" ? konten : `http://${url}` } alt="The Scream" />
+      <div className="konten-beranda" data-aos="fade-up" data-aos-duration="1000">
+        <div className="imagecover">
+          <img className="image" src={url === '0' ? konten : `http://${url}`} alt="The Scream" />
         </div>
-        <h2>{name? name : "The Scream"}</h2>
-        <p>
-          {description}
-        </p>
+        <h2>{name ? name : 'The Scream'}</h2>
+        <p>{description}</p>
         {/* <p>
           Jeritan (bahasa Norwegia: Skrik, 1893; judul bahasa Inggris: The Scream) adalah sebutan untuk empat buah versi lukisan ekspresionis oleh seniman Norwegia Edward Munch yang menjadi sumber inspirasi bagi banyak pelukis lainnya dalam
           aliran ini. Lukisan ini dianggap oleh banyak orang sebagai karyanya yang paling penting. Sebagian lagi mengatakan lukisan ini melambangkan manusia modern yang tercekam oleh serangan angst kecemasan eksistensial, dengan cakrawala
@@ -58,9 +56,7 @@ const Beranda = () => {
           gambarya dapat direproduksi dalam berbagai tulisan tinjauan di seluruh dunia. Sejak 1994, dua versi terpisah dari Jeritan ini dicuri oleh pencuri-pencuri karya seni, tetapi akhirnya keduanya telah ditemukan kembali. Pada tanggal 2
           Mei 2012, lukisan The Scream terjual sebesar US$ 119.922.500 atau setara dengan Rp 5,079 triliun dalam pelelangan di rumah lelang Sotheby's, New York.[2]
         </p> */}
-        <div className="btngroup">
-          {token? <ButtonLSComp /> : ""}
-        </div>
+        <div className="btngroup">{token ? <ButtonLSComp /> : ''}</div>
       </div>
       <FooterComp />
     </div>

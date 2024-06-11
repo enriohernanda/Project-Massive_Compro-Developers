@@ -11,27 +11,27 @@ const LupaPass = () => {
   return (
     <div className="lupapass-bg">
       <div className="isi_form_lupa_pass">
-        <img className="icon-lupa-pass" src={icon} alt="lupa password" />
-        <h2 className="judul-lupa-pass">Lupa Kata Sandi</h2>
-        <p className="sub-lupa-pass">
+        <img className="icon-lupa-pass animate__animated animate__fadeInUp" src={icon} alt="lupa password" />
+        <h2 className="judul-lupa-pass animate__animated animate__fadeInUp animate__delay-1s">Lupa Kata Sandi</h2>
+        <p className="sub-lupa-pass animate__animated animate__fadeInUp animate__delay-1s">
           Masukkan email anda dan kami akan kirim link untuk <br />
           reset kata sandi anda
         </p>
         <form className="form-lupa-pass">
-          <label className="label-lupa-pass" htmlFor="email">
+          <label className="label-lupa-pass animate__animated animate__fadeInUp animate__delay-1s" htmlFor="email">
             Email
           </label>
-          <input type="email" id="email" name="email" className="input-email-lupa-pass" placeholder="Masukan email anda" />
-          <button id="btn_lupa-pass" type="submit" onClick={() => navigate('/password-baru')}>
+          <input type="email" id="email" name="email" className="input-email-lupa-pass animate__animated animate__fadeInUp animate__delay-1s" placeholder="Masukan email anda" />
+          <button className="lupa animate__animated animate__fadeInUp animate__delay-1s" id="btn_lupa-pass" type="submit" onClick={() => navigate('/password-baru')}>
             Kirim
           </button>
-          <a className="back-link" onClick={() => navigate('/masuk')}>
+          <a className="back-link animate__animated animate__fadeInUp animate__delay-1s" onClick={() => navigate('/masuk')}>
             Kembali
           </a>
         </form>
       </div>
-      <img src={image} alt="" className="ms-auto masuk-image align-self-end d-block" height={'600px'} width={'52%'} />
-      <a className="btn_skip" onClick={() => navigate('/')}>
+      <img src={image} alt="" className="ms-auto masuk-image align-self-end d-block animate__animated animate__fadeInRight" height={'600px'} width={'52%'} />
+      <a className="btn_skip animate__animated animate__fadeInRight animate__delay-1s" onClick={() => navigate('/')}>
         Skip Now
       </a>
     </div>

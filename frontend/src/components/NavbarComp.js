@@ -11,142 +11,139 @@ import Massage from './Message';
 
 import { AuthContext } from '../context/AuthContext';
 import { useContext, useState, useRef, useEffect } from 'react';
-import { getNotification } from '../service/apiService'
+import { getNotification } from '../service/apiService';
 
 const NavbarComp = () => {
   let navigate = useNavigate();
-  const contentRef = useRef(null)
-  const {isAuth, userid, photo_profile, logout} = useContext(AuthContext)
-  const url = photo_profile? photo_profile : defaultprofile 
-  const [dropdownvisible, setdropdownvisible] = useState(false)
-  const [massageVisible, setMassageVisible] = useState(false)
-  const [notifVisible, setNotifVisible] = useState(false)
-  const [settingVisible, setSettingVisible] = useState(false)
+  const contentRef = useRef(null);
+  const { isAuth, userid, photo_profile, logout } = useContext(AuthContext);
+  const url = photo_profile ? photo_profile : defaultprofile;
+  const [dropdownvisible, setdropdownvisible] = useState(false);
+  const [massageVisible, setMassageVisible] = useState(false);
+  const [notifVisible, setNotifVisible] = useState(false);
+  const [settingVisible, setSettingVisible] = useState(false);
 
-
-  
-  console.log(url)
-  const handleClickLogout = () =>{
-    logout()
-    setdropdownvisible(!dropdownvisible)
-    navigate('/')
-  }
-  const handleClickDropdown = () =>{
-     setdropdownvisible(!dropdownvisible)
-  }
+  console.log(url);
+  const handleClickLogout = () => {
+    logout();
+    setdropdownvisible(!dropdownvisible);
+    navigate('/');
+  };
+  const handleClickDropdown = () => {
+    setdropdownvisible(!dropdownvisible);
+  };
   const handleclickvsiblemassage = () => {
-    setMassageVisible(!massageVisible)
-    setNotifVisible(false)
-    setSettingVisible(false)
-  }
+    setMassageVisible(!massageVisible);
+    setNotifVisible(false);
+    setSettingVisible(false);
+  };
   const handleclickvsiblenotif = () => {
-    setMassageVisible(false)
-    setNotifVisible(!notifVisible)
-    setSettingVisible(false)
-  }
+    setMassageVisible(false);
+    setNotifVisible(!notifVisible);
+    setSettingVisible(false);
+  };
   const handleclickvsiblesetting = () => {
-    setMassageVisible(false)
-    setNotifVisible(false)
-    setSettingVisible(!settingVisible)
-  }
+    setMassageVisible(false);
+    setNotifVisible(false);
+    setSettingVisible(!settingVisible);
+  };
   const outAreaClick = (event) => {
     if (contentRef.current && !contentRef.current.contains(event.target)) {
-        setMassageVisible(false)
+      setMassageVisible(false);
     }
-
-}
-useEffect(() => {
+  };
+  useEffect(() => {
     document.addEventListener('click', outAreaClick, true);
     return () => {
-        document.addEventListener('click', outAreaClick, true);
-    }
-}, [])
+      document.addEventListener('click', outAreaClick, true);
+    };
+  }, []);
   return (
     <div>
-
-    <Navbar expand="lg">
-      <Container>
-        <Navbar.Brand href="#">
-          <img src={icon} />
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav className="mx-auto text-center">
-            {navLinks.map((link) => {
-              return (
-                <div className="nav-link" key={link.id}>
-                  <NavLink to={link.path} className={({ isActive, isPending }) => (isPending ? 'pending' : isActive ? 'active' : '')} end>
-                    {link.text}
-                  </NavLink>
-                </div>
-              );
-            })}
-          </Nav>
-          <div>
-            {isAuth? (
+      <Navbar expand="lg">
+        <Container>
+          <Navbar.Brand href="#">
+            <img src={icon} className="animate__animated animate__fadeInLeft" />
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="navbarScroll" />
+          <Navbar.Collapse id="navbarScroll">
+            <Nav className="mx-auto text-center">
+              {navLinks.map((link) => {
+                return (
+                  <div className="nav-link" key={link.id}>
+                    <NavLink to={link.path} className={({ isActive, isPending }) => (isPending ? 'pending' : isActive ? 'active' : '')} end>
+                      {link.text}
+                    </NavLink>
+                  </div>
+                );
+              })}
+            </Nav>
+            <div>
+              {isAuth ? (
                 <div className="cover-profile">
-                  <img className='photo-profile'
-                    src={url} onClick={handleClickDropdown}/>
-                    {dropdownvisible && (
+                  <img className="photo-profile" src={url} onClick={handleClickDropdown} />
+                  {dropdownvisible && (
                     <div className="dropdown">
                       <a onClick={() => navigate(`/${userid}/profil`)}>Profile</a>
                       <a onClick={handleclickvsiblenotif}>Pemberitahuan</a>
                       <a onClick={handleclickvsiblemassage}>Pesan</a>
                       <a onClick={handleclickvsiblesetting}>Pengaturan</a>
                       <a onClick={handleClickLogout}>Keluar</a>
-                    </div>)}
+                    </div>
+                  )}
                 </div>
-            ) : (
-              <div className="text-center">
-              <button className="btn_masuk" onClick={() => navigate('/masuk')}>
-                Masuk
-              </button>
-            </div> 
-            )}
-          </div>
-          <div>
-        </div>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-            <div ref={contentRef}>
-              {massageVisible && (
-                <Massage  />
+              ) : (
+                <div className="text-center">
+                  <button className="btn_masuk" onClick={() => navigate('/masuk')}>
+                    Masuk
+                  </button>
+                </div>
               )}
             </div>
-      {settingVisible? 
-      <div class="pengaturan-container" ref={contentRef}>
-        <input type="file" placeholder="File" draggable="true" />
-        <select name="" id="" draggable="true">
+            <div></div>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      <div ref={contentRef}>{massageVisible && <Massage />}</div>
+      {settingVisible ? (
+        <div class="pengaturan-container" ref={contentRef}>
+          <input type="file" placeholder="File" draggable="true" />
+          <select name="" id="" draggable="true">
             <option value="Indonesia">Indonesia</option>
             <option value="Indonesia">Indonesia</option>
             <option value="Indonesia">Indonesia</option>
             <option value="Indonesia">Indonesia</option>
-        </select>
-        <select name="" id="">
+          </select>
+          <select name="" id="">
             <option value="Programer">Programer</option>
             <option value="Programer">Programer</option>
             <option value="Programer">Programer</option>
-        </select>
-        <div>
+          </select>
+          <div>
             <p>Instagram</p>
             <input type="text" />
-        </div>
-        <div>
+          </div>
+          <div>
             <p>Youtube</p>
             <input type="text" />
-        </div>
-        <div>
+          </div>
+          <div>
             <p>Facebook</p>
             <input type="text" />
+          </div>
+          <button>Kirim</button>
         </div>
-        <button>Kirim</button>
-    </div> : ""}
+      ) : (
+        ''
+      )}
 
-    {notifVisible ? 
-    <div>
-      <Notification />
-    </div>: ""}
+      {notifVisible ? (
+        <div>
+          <Notification />
+        </div>
+      ) : (
+        ''
+      )}
     </div>
   );
 };
