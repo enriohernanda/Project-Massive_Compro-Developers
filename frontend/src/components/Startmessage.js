@@ -1,9 +1,9 @@
-
+import moment from 'moment';
 import submitbuttonchat from '../assets/send_button.png'
 import profile from '../assets/pembuat-male.png'
 import { AuthContext } from '../context/AuthContext'
 import { useContext, useState, useEffect, useRef } from 'react'
-import { getMassage, sendMassage } from "../service/apiService"
+import { getMassage, sendMassage, getProfile } from "../service/apiService"
 
 import { useParams } from 'react-router-dom'
 const StartMessage = () => {
@@ -21,6 +21,21 @@ const StartMessage = () => {
     const [rawtext, setrawtext] = useState([])
     const [triger, setTriger] = useState(false)
     const [islast, setIsLast] = useState(false)
+    const [user, setuser] = useState([])
+
+    useEffect(() => {
+        const fetchdata = async () => {
+            try {
+              console.log("Token : ",token)
+              const response = await getProfile(isAuth, id, token)
+              console.log("Response :",response)
+              setuser(response.userdata)
+          } catch (error) {
+              console.log(error)
+          }
+      }
+      fetchdata()
+    }, [id])
 
     useEffect(() => {
         const fetchdata = async () => {
@@ -74,9 +89,11 @@ const StartMessage = () => {
             <div className="message-startbody">
         <div className="message-main">
             <div className="user">
-                <img src={profile} alt=""/>
-                <p>Bergabung Pada tanggal 04 juny 2024</p>
-                <p>Anda Sudah Menfollownya</p>
+                <img className='Photo_Profile ' src={ user.photo_profile === "0" ? profile : `http://${user.photo_profile}` } alt=""/>
+                <p>
+                    Bergabung pada tanggal {moment(user?.created || '').format('DD MMMM YYYY')}
+                </p>
+                {/* <p>Anda Sudah Menfollownya</p> */}
             </div>
             {islast? (<div className="more-masssage" >
                 <p>

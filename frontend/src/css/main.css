@@ -1087,6 +1087,9 @@
   overflow-y: visible;
   gap: 13px;
 }
+.Photo_Profile{
+  border-radius: 100px;
+}
 .head-notif {
   font-weight: bolder;
   color: rgb(31, 30, 30);
