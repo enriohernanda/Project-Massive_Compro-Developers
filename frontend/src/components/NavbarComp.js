@@ -117,6 +117,9 @@ useEffect(() => {
       <div ref={contentRef}>{massageVisible && <Massage />}</div>
       {settingVisible ? (
         <div class="pengaturan-container" ref={contentRef}>
+          <p>
+            Photo Profile
+          </p>
           <input type="file" placeholder="File" draggable="true" />
           <select name="" id="" draggable="true">
             <option value="Indonesia">Indonesia</option>
