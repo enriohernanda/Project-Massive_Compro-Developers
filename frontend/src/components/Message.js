@@ -106,7 +106,7 @@ const Message = () => {
                                         {massages.message}
                                     </p>
                                     <div className="time">
-                                        {massages.createdAt.substring(9,14)}
+                                        {massages.createdAt.substring(12, 16)}
                                     </div>
                                 </div>
                             </div>
