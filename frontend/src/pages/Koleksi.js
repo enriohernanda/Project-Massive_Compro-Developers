@@ -38,7 +38,7 @@ const Koleksi = () => {
                 <button onClick={() => navigate(`/${id}/profil`)}>Kembali</button>
             </div>
             <div className='images-main'>
-                <div className='leftfloat-inline' >Upload Terakhir</div>
+                <div className='leftfloat-inline' >Koleksi Pengguna</div>
                 <div className='imagecover-list'>
                     {imagedata.map((image, index) => (
                         <div className='imagecover' key={index}>
