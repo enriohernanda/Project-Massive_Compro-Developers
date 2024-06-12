@@ -409,7 +409,7 @@ const getImageByName = async (req, res) => {
                     [Op.substring] : imageName
                 }
             },
-            attributes : ['id', 'user_id', 'image_name']
+            attributes : ['id', 'user_id', 'image_name', 'description']
         })
         console.log(imagesResult)
         if (imagesResult.length > 0) {
@@ -417,6 +417,7 @@ const getImageByName = async (req, res) => {
                 url : `${domain}/image/${image.user_id}/${image.id}.jpg`,
                 id : image.id,
                 userId : image.user_id,
+                description : image.description,
                 imageName : image.image_name
             }))
             return res.status(200).json(refix)

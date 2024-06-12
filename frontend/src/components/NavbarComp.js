@@ -16,6 +16,8 @@ import { getNotification } from '../service/apiService'
 const NavbarComp = () => {
   let navigate = useNavigate();
   const contentRef = useRef(null)
+  const contentRefSetting = useRef(null)
+  const contentRefNotif = useRef(null)
   const {isAuth, userid, photo_profile, logout} = useContext(AuthContext)
   const url = photo_profile? photo_profile : defaultprofile 
   const [dropdownvisible, setdropdownvisible] = useState(false)
@@ -53,7 +55,12 @@ const NavbarComp = () => {
     if (contentRef.current && !contentRef.current.contains(event.target)) {
         setMassageVisible(false)
     }
-
+    if (contentRefSetting.current && !contentRefSetting.current.contains(event.target)) {
+      setSettingVisible(false)
+    }
+    if (contentRefNotif.current && !contentRefNotif.current.contains(event.target)) {
+      setNotifVisible(false)
+    }
 }
 useEffect(() => {
     document.addEventListener('click', outAreaClick, true);
@@ -115,18 +122,28 @@ useEffect(() => {
               )}
             </div>
       {settingVisible? 
-      <div class="pengaturan-container" ref={contentRef}>
+      <div class="pengaturan-container" ref={contentRefSetting}>
+        <div>
+          Photo profil
+        </div>
         <input type="file" placeholder="File" draggable="true" />
         <select name="" id="" draggable="true">
             <option value="Indonesia">Indonesia</option>
-            <option value="Indonesia">Indonesia</option>
-            <option value="Indonesia">Indonesia</option>
-            <option value="Indonesia">Indonesia</option>
+            <option value="Amerika">Amerika</option>
+            <option value="Malaysia">Malaysia</option>
+            <option value="Inggris">Inggris</option>
         </select>
         <select name="" id="">
             <option value="Programer">Programer</option>
-            <option value="Programer">Programer</option>
-            <option value="Programer">Programer</option>
+            <option value="Petani">Petani</option>
+            <option value="Seniman">Seniman</option>
+            <option value="Designer">Designer</option>
+            <option value="Karyawan">Karyawan</option>
+            <option value="Guru">Guru</option>
+            <option value="Freelance">Freelance</option>
+            <option value="Polisi">Polisi</option>
+            <option value="Siswa">Siswa</option>
+            <option value="Mahasiswa">Mahasiswa</option>
         </select>
         <div>
             <p>Instagram</p>
@@ -144,7 +161,7 @@ useEffect(() => {
     </div> : ""}
 
     {notifVisible ? 
-    <div>
+    <div ref={contentRefNotif}>
       <Notification />
     </div>: ""}
     </div>

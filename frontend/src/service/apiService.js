@@ -184,6 +184,15 @@ export const getUserProfile = async (username, email, message) => {
     }
 } 
 
+export const UpdateUserData = async (authstatus, instagram, youtube, facebook, professi, token) => {
+    try {
+        const response = await api.post('/api/user', {params : {authstatus : authstatus, instagram : instagram, youtube : youtube, facebook : facebook, professi : professi, token : token}})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
 export const getNotification = async (authstatus, token, startNotificationId) => {
     try {
         const response = await api.get('/api/notification', {params : {authstatus : authstatus, token : token ,startNotificationId : startNotificationId}})
@@ -196,6 +205,15 @@ export const getNotification = async (authstatus, token, startNotificationId) =>
 export const getFollowing = async (authstatus, followeduserid, token) => {
     try {
         const response = await api.get('/api/follower', {params : {authstatus : authstatus, followedUserId : (followeduserid ? followeduserid : 0 ), token : token}})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+export const getImageByName = async (imageName) => {
+    try {
+        const response = await api.get('/api/image/search', {params : {imageName : imageName}})
         return response.data
     } catch (error) {
         console.log(error)

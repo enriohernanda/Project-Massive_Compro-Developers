@@ -17,6 +17,7 @@ import Profile from './pages/Profile'
 import Images from './pages/Images'
 import Koleksi from './pages/Koleksi'
 import DetailKarya from './pages/DetailKarya';
+import ResultSearch from './pages/ResultSearch';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
         <Route path="/galeri" Component={Galeri} />
         <Route path="/seniman" Component={Seniman} />
         <Route path="/lihat-semua" Component={LihatSemua} />
+        <Route path="/pencarian" Component={ResultSearch} />
         <Route path="/:id/profil" Component={Profile} />
         <Route path="/:id/images" Component={Images} />
         <Route path="/:id/koleksi" Component={Koleksi} />

@@ -8,6 +8,7 @@ const { signToken } = require('../Middleware/authMiddleware')
 const { Op, where } = require('sequelize')
 const { users } = require('../model/userModel')
 const { domain } = require('../config/domain')
+const { countrys } = require('../model/countryModel')
 
 const createUser = async (req, res, next) => {
     try {
@@ -90,8 +91,27 @@ const getProfileandName = async (req, res) => {
             message : 'internal was error'
         })
     }
-
 }
+const UpdateDataUser = async (req, res) => {
+    try {
+        const { instagram, youtube, facebook, professi } = req.body?? {}
+        const userId = req.decoded.id
+        const result = await users.update(
+           {country : 1, facebook : facebook , instagram : instagram ,youtube : youtube, professi : professi },
+           { where : { 
+                id : userId
+            }
+            }
+        )
+        if (result[0] > 0) {
+            return res.status(200).json({status: "success"})
+        }
+        return res.status(200).json({status: "success"})
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
 const getUserValidation = async (req, res, next) => {
     try {
         const { email, password } = req.body ?? req.query
@@ -261,4 +281,4 @@ const UpdateNewUserPassword = async (req, res) => {
     }
 }
 
-module.exports = { createUser, getUserValidation, getDataUser ,getUsers, EmailValidation, UpdateNewUserPassword, getProfileandName }
+module.exports = { createUser, getUserValidation, getDataUser ,getUsers, EmailValidation, UpdateNewUserPassword, getProfileandName, UpdateDataUser }

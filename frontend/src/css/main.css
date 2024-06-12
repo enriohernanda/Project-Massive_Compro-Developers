@@ -1070,13 +1070,18 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  overflow: hidden;
+  scrollbar-width:none;
   overflow-y: visible;
   gap: 13px;
-  overflow: hidden;
 }
 .head-notif{
   font-weight: bolder;
   color: rgb(31, 30, 30);
+}
+.result-notif{
+  padding-top: 220px;
+  padding-bottom: 220px;
 }
 .notification{
   font-family: "Poppins";

@@ -30,6 +30,8 @@ router.post('/validation', veryfyToken,  (req, res)=>{
 // get users limit 16 required startUserID and direction
 router.get('/', userController.getUsers)
 
+router.post('/', veryfyToken, userController.UpdateDataUser)
+
 // // get all images limit 30 required imageId and direction
 router.get('/image', imageController.getUserImages)
 
@@ -47,7 +49,6 @@ router.get('/profile', userController.getDataUser, countryController.getCountryN
         like : req.countlike
     })
 })
-
 
 // create collection required imageId, token
 router.get('/collection',collectionController.getListImageCollection, imageController.getUserCollectionImage)
