@@ -14,9 +14,15 @@
   }
 }
 
+.logo {
+  position: absolute;
+  margin-top: 20px;
+  margin-left: 2vw;
+}
+
 .isi_form {
   position: absolute;
-  margin-top: 90px;
+  margin-top: 130px;
   margin-left: 8vw;
 }
 
