@@ -116,7 +116,7 @@ useEffect(() => {
       </Navbar>
       <div ref={contentRef}>{massageVisible && <Massage />}</div>
       {settingVisible ? (
-        <div class="pengaturan-container" ref={contentRef}>
+        <div class="pengaturan-container" ref={contentRefSetting}>
           <p>
             Photo Profile
           </p>
@@ -158,7 +158,7 @@ useEffect(() => {
       )}
 
       {notifVisible ? (
-        <div>
+        <div ref={contentRefNotif}>
           <Notification />
         </div>
       ) : (
