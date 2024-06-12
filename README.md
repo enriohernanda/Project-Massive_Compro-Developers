@@ -12,6 +12,8 @@ yang harus diinstall untuk menjalankan react js
 - npm install react-router-dom (untuk menginstall react router)
 - npm install react-slick --save (untuk menginstall react slick)
 - npm install slick-carousel --save (untuk menginstall carousel dari react slick)
+- npm install animate.css --save (untuk menginstall animate style css)
+- npm install --save aos@next (untuk menginstall animate on scroll library)
 - npm start (untuk menjalankan projeknya)
 
 > dependency bisa check di file package.json

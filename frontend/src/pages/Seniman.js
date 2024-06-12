@@ -6,38 +6,42 @@ import pembuatMale from '../assets/pembuat-male.png';
 import pembuatFemale from '../assets/pembuat-female.png';
 import NavbarComp from '../components/NavbarComp';
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getUsers } from '../service/apiService';
 
 const Seniman = () => {
   let navigate = useNavigate();
-  const [userdata, setUserData]= useState([]);
+  const [userdata, setUserData] = useState([]);
   useEffect(() => {
     const fetchdata = async () => {
       try {
-        const response = await getUsers()
-        console.log(response)
-        setUserData(response.result)
+        const response = await getUsers();
+        console.log(response);
+        setUserData(response.result);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    fetchdata()
-  }, [])
+    };
+    fetchdata();
+  }, []);
   return (
     <div>
       <NavbarComp />
       <SlideHeaderComp />
       <SearchComp />
       <div className="profil-seniman text-center">
-        <div className="seniman row justify-content-center">
-          {userdata.length > 0? userdata.map((user ,index ) => (
-            <div key={index} className="col-md-3 mb-3" style={{ cursor: 'pointer' }} onClick={() => navigate(`/${user.id}/profil`)}>
-            <CardSeniman foto={user.photo? `http://${user.photo}` : pembuatMale } nama={user.username.substring(0, 10)} />
-          </div>
-          )): (<div></div>) }
-          
+        <div className="seniman row justify-content-center" data-aos="fade-up" data-aos-duration="1000">
+          {userdata.length > 0 ? (
+            userdata.map((user, index) => (
+              <div key={index} className="col-md-3 mb-3" style={{ cursor: 'pointer' }} onClick={() => navigate(`/${user.id}/profil`)}>
+                <CardSeniman foto={user.photo ? `http://${user.photo}` : pembuatMale} nama={user.username.substring(0, 10)} />
+              </div>
+            ))
+          ) : (
+            <div></div>
+          )}
+
           {/* <div className="col-md-3 mb-3" style={{ cursor: 'pointer' }} onClick={() => navigate('/Profil')}>
             <CardSeniman foto={pembuatFemale} nama="Elizabeth" />
           </div>

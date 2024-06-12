@@ -7,14 +7,22 @@ import './css/main.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 // Import BrowserRouter dari React Router
 import { BrowserRouter } from 'react-router-dom';
+// Import animate.css
+import 'animate.css';
 
 import { AuthProvider } from './context/AuthContext';
+
+// Import AOS.css
+import AOS from 'aos';
+import 'aos/dist/aos.css'; // You can also use <link> for styles
+// ..
+AOS.init();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <AuthProvider >
+      <AuthProvider>
         <App />
       </AuthProvider>
     </BrowserRouter>

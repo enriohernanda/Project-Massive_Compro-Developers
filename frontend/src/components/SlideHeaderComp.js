@@ -7,7 +7,7 @@ import slide5 from '../assets/header-5.png';
 
 const SlideHeaderComp = () => {
   return (
-    <Carousel className="carousel-header">
+    <Carousel className="carousel-header animate__animated animate__fadeInUp animate__delay-1s">
       <Carousel.Item>
         <img className="d-block w-100" src={slide1} alt="lukisan 1" />
       </Carousel.Item>

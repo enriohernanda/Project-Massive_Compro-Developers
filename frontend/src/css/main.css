@@ -28,6 +28,8 @@
   font-weight: bold;
   text-decoration: none;
   color: var(--navbar-color-text);
+  animation-name: fadeInDown;
+  animation-duration: 1s;
 }
 
 .navbar .nav-link a:hover {
@@ -48,6 +50,8 @@
   border-radius: 50px;
   font-size: 18px;
   font-weight: 500;
+  animation-name: fadeInRight;
+  animation-duration: 1s;
 }
 
 .cover-profile {
@@ -69,6 +73,8 @@
   width: 40%;
   max-height: auto;
   border: 0.2vw solid #28c763;
+  animation-name: fadeInRight;
+  animation-duration: 1s;
 }
 
 .dropdown {
@@ -99,10 +105,16 @@
 }
 /* End Navbar CSS */
 
+/* Carousel CSS */
+.carousel-header {
+  --animate-delay: 0.3s;
+}
+/* End Carousel CSS */
+
 /* Konten beranda CSS */
 .konten-beranda {
   margin: 25px auto;
-  min-height: 805px;;
+  min-height: 805px;
   max-width: 1220px;
   width: 100%;
   padding: 20px;
@@ -562,7 +574,7 @@
   position: relative;
 }
 
-.galeri .foto-galeri{
+.galeri .foto-galeri {
   position: relative;
   display: flex;
   justify-content: space-evenly;
@@ -578,7 +590,7 @@
   margin: 2px;
   border: 1ps solid red;
   width: 360px;
-  height: 490px
+  height: 490px;
 }
 
 .galeri .foto-galeri .image {
@@ -642,8 +654,8 @@
 /* End CSS Galeri */
 
 /* CSS Profile */
-.bodyprofile{
-  background-color: #F4F4F4;
+.bodyprofile {
+  background-color: #f4f4f4;
 }
 
 .mainprofile {
@@ -1055,8 +1067,8 @@
 /* End CSS Images */
 
 /* Floating Content CSS */
-.notif-container{
-  background-color:white;
+.notif-container {
+  background-color: white;
   border: 1px solid rgba(128, 128, 128, 0.5);
   position: absolute;
   z-index: 6;
@@ -1075,7 +1087,7 @@
   overflow-y: visible;
   gap: 13px;
 }
-.head-notif{
+.head-notif {
   font-weight: bolder;
   color: rgb(31, 30, 30);
 }
@@ -1087,10 +1099,10 @@
   font-family: "Poppins";
   color: gray;
 }
-.pengaturan-container{
+.pengaturan-container {
   display: flex;
   flex-direction: column;
-  background-color:white;
+  background-color: white;
   padding: 50px;
   align-items: center;
   width: fit-content;
@@ -1103,7 +1115,7 @@
   border-radius: 20px;
   gap: 10px;
 }
-.pengaturan-container button{
+.pengaturan-container button {
   padding: 15px;
   margin-top: 30px;
   background-color: orange;
@@ -1124,8 +1136,8 @@
   top: 150px;
   z-index: 6;
 }
-.message-body .sidebar .notif-massage{
-  text-align : center ;
+.message-body .sidebar .notif-massage {
+  text-align: center;
   font-family: 'poppins';
   width: 100%;
 }
@@ -1205,12 +1217,13 @@
   background-color: aquamarine;
 }
 
-.message-body .sidebar  .user img{
+.message-body .sidebar .user img {
   width: 6vw;
   border-radius: 6vw;
 }
 
-.message-body .sidebar  .user .userdetail .username,    .message-body .sidebar  .user .userdetail .lastmassage{
+.message-body .sidebar .user .userdetail .username,
+.message-body .sidebar .user .userdetail .lastmassage {
   font-size: 1vw;
   height: fit-content;
   display: flex;
@@ -1218,11 +1231,10 @@
   overflow: hidden;
 }
 
-
 .message-body .sidebar .user .userdetail.lastmassage {
   font-size: calc(18 * 0.039);
 }
-.message-body .sidebar  .user .userdetail{
+.message-body .sidebar .user .userdetail {
   max-width: 100%;
   overflow: hidden;
   overflow-x: hidden;
@@ -1241,11 +1253,11 @@
   display: flex;
   gap: 0.6vw;
 }
-.message-body .message-main .massage-container .massage-box{
+.message-body .message-main .massage-container .massage-box {
   width: 100%;
   height: 100%;
 }
-.message-body .message-main .massage-container .massage-box .text{
+.message-body .message-main .massage-container .massage-box .text {
   margin: 0.2vw;
   border-radius: 3vw;
   /* border-radius: calc(0.04 * 400px); */
@@ -1406,7 +1418,7 @@
   color: rgb(85, 80, 80);
   z-index: 4;
   position: relative;
-  overflow:auto;
+  overflow: auto;
 }
 
 .message-startbody .message-main .massage-container .massage-box .text .time {
