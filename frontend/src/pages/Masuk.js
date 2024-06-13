@@ -6,6 +6,8 @@ import { useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { useContext } from 'react';
 
+import logo from '../assets/icon-mopart.png';
+
 const Masuk = () => {
   const { login } = useContext(AuthContext);
   let navigate = useNavigate();
@@ -17,6 +19,9 @@ const Masuk = () => {
   };
   return (
     <div className=".masuk-bg">
+      <div className="logo animate__animated animate__fadeInLeft">
+        <img src={logo} alt="MopArt" width={'130px'} />
+      </div>
       <div className="isi_form">
         <h2 className="judul-masuk animate__animated animate__fadeInUp animate__delay-1s">
           Selamat Datang <br />

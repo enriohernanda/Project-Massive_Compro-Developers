@@ -31,7 +31,7 @@ const TentangKami = () => {
       <SearchComp />
       <div className="konten-tentang-1">
         <img src={kontenTtg1} alt="MoPart" />
-        <h2>Apa itu MoPart?</h2>
+        <h2>Apa itu MopArt?</h2>
         <p>
           MopArt adalah sebuah website inovatif yang dirancang dengan tujuan untuk mengenalkan dan mempromosikan seni lukis kepada masyarakat di seluruh dunia. Platform ini menawarkan sebuah ruang yang menghubungkan pecinta seni dengan
           seniman-seniman berbakat, baik yang sudah terkenal maupun yang masih baru muncul. Dengan memanfaatkan fitur-fitur interaktif yang memungkinkan pengguna untuk menjelajahi berbagai kategori lukisan, menyukai (like) karya seni
@@ -96,7 +96,7 @@ const TentangKami = () => {
           <label className="label-hub" htmlFor="pesan">
             Pesan
           </label>
-          <textarea type="text" value={message} onChange={(e) => setMessage(e.target.value)} name="pesan" id="pesan" className="input-hub-pesan" placeholder="Ketik pesan anda disini" ></textarea>
+          <textarea type="text" value={message} onChange={(e) => setMessage(e.target.value)} name="pesan" id="pesan" className="input-hub-pesan" placeholder="Ketik pesan anda disini"></textarea>
           <button id="btn_hub" type="submit">
             Kirim
           </button>

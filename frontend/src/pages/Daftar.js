@@ -6,6 +6,8 @@ import { AuthContext } from '../context/AuthContext';
 import { useContext, useState } from 'react';
 import image from '../assets/bg_login.png';
 
+import logo from '../assets/icon-mopart.png';
+
 const Daftar = () => {
   const { registration } = useContext(AuthContext);
   let navigate = useNavigate();
@@ -18,7 +20,10 @@ const Daftar = () => {
   };
   return (
     <div className="daftar-bg">
-      <div className="isi_form">
+      <div className="logo animate__animated animate__fadeInLeft">
+        <img src={logo} alt="MopArt" width={'130px'} />
+      </div>
+      <div className="isi_form_daftar">
         <h2 className="judul-daftar animate__animated animate__fadeInUp animate__delay-1s">Selamat Datang</h2>
         <form className="form-daftar" onSubmit={handleSubmit}>
           <label className="label-daftar animate__animated animate__fadeInUp animate__delay-1s" htmlFor="nama">

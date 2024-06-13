@@ -3,6 +3,7 @@ import '../css/lupaPass.css';
 
 import image from '../assets/bg_login.png';
 import icon from '../assets/icon-warning.png';
+import logo from '../assets/icon-mopart.png';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -10,7 +11,10 @@ const PassBaru = () => {
   let navigate = useNavigate();
   return (
     <div className="passbaru-bg">
-      <div className="isi_form_lupa_pass">
+      <div className="logo animate__animated animate__fadeInLeft">
+        <img src={logo} alt="MopArt" width={'130px'} />
+      </div>
+      <div className="isi_form_pass_baru">
         <img className="icon-lupa-pass animate__animated animate__fadeInUp" src={icon} alt="lupa password" />
         <h2 className="judul-lupa-pass animate__animated animate__fadeInUp animate__delay-1s">Lupa Kata Sandi</h2>
         <p className="sub-lupa-pass animate__animated animate__fadeInUp animate__delay-1s">Masukkan kata sandi baru anda</p>
