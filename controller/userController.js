@@ -60,11 +60,7 @@ const getUserValidationForGetId = async (email, password) => {
     }
 }
 const getProfileandName = async (req, res) => {
-    // [
-    //     { message: 'Hallo', room: { listroom: 1, usertarget: 2 } },
-    //     { message: null, room: { listroom: 2, usertarget: 3 } }
-    // ]
-    try {
+        try {
         const listuser = req.resultlistroom.map(result => result.room.usertarget)
         console.log(listuser)
         const resultphoto = await users.findAll({
@@ -159,7 +155,7 @@ const getUserValidation = async (req, res, next) => {
 // getting users data
 const getDataUser = async (req, res, next) => {
     try {
-        const { userId } = req.query
+        const { userId } = req.query??{}
         if (!userId) {
             return res.status(400).json({
                 status : 'failed',
@@ -190,7 +186,7 @@ const getDataUser = async (req, res, next) => {
 }
 
 const getUsers = async (req, res) => {
-    const { startUserId, direction } = req.query
+    const { startUserId, direction } = req.query??{}
     if (!startUserId || !direction){
         return res.status(400).json({message: 'startUserId or direction is required'})
     }
@@ -227,7 +223,7 @@ const getUsers = async (req, res) => {
 
 const EmailValidation = async (req, res) => {
     try {
-        const { email } = req.query
+        const { email } = req.query??{}
         if (email) {
             return res.status(400).json({
                 status : "failed",
@@ -246,28 +242,31 @@ const EmailValidation = async (req, res) => {
         console.log(error)
         res.status(500).json({
             status : 'error',
-            message : 'internal was error'})
+            message : 'internal was error'
+        })
     }
 }
     
 const UpdateNewUserPassword = async (req, res) => {
     try {
-        const {newPassword } = req.query
+        const { newPassword, userMail } = req.body??{}
         if (!newPassword) {
             return res.status(400).json({message: 'password is required'})
         }
         const validation = users.findOne({
             where : {
-                email : email,
-                password : newPassword
-            }
+                email : userMail
+            },
+            attributes : ["password"]
         })
         if (validation) {
-            return res.status(400).json({message : 'please input new password'})
+            if (validation.password === newPassword ) {
+                return res.status(400).json({message : 'please input new password'})
+            }
         }
         const user = findOne({
             where : {
-                email : email
+                email : userMail
             }
         })       
         await user.update({password : newPassword})
@@ -277,7 +276,8 @@ const UpdateNewUserPassword = async (req, res) => {
         console.log(error)
         res.status(500).json({
             status : 'error',
-            message : 'internal was error'})
+            message : 'internal was error'
+        })
     }
 }
 

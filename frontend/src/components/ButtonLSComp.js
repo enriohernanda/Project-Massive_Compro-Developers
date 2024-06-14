@@ -81,27 +81,22 @@ const ButtonLSComp = () => {
     try {
       console.log("location: ", location)
       if (location.pathname === '/') {
-        console.log("return collection if beranda")
         if (iscollect) {
           const response = await deleteCollection(isAuth, 1, token)
           setrigger(!trigger)
           return
         } else {
           const response = await createCollection(isAuth, 1, token)
-          console.log("Create Collection : ", response)
         }
       } else {
-        console.log("return collection else")
         if (iscollect) {
           const response = await deleteCollection(isAuth, id, token)
           setrigger(!trigger)
           return
         } else {
           const response = await createCollection(isAuth, id, token)
-          console.log("Create Collection : ", response)
         }
       }
-      console.log("return collection ")
       setrigger(!trigger)
     } catch (error) {
       console.log(error)

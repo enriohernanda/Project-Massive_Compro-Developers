@@ -9,9 +9,8 @@ const countryController = require('../controller/countryController')
 const followerController = require('../controller/followerController')
 const notificationController = require('../controller/notificationController')
 const collectionController = require('../controller/collectionController')
-const likeController = require('../controller/likeController')
 const router = express.Router();
-
+const mailer = require('nodemailer')
 
 // registrasi required username, email and password
 router.post('/registration', userController.createUser, notificationController.singleCreateNotification, userTokenController.createdTokenDB)
@@ -52,5 +51,7 @@ router.get('/profile', userController.getDataUser, countryController.getCountryN
 
 // create collection required imageId, token
 router.get('/collection',collectionController.getListImageCollection, imageController.getUserCollectionImage)
+
+router.post('/update-password',)
 
 module.exports = router;

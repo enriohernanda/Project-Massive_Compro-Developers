@@ -32,20 +32,70 @@ const veryfyToken = (req, res, next) => {
     try {
         jwt.verify(token, secretKey, (err, decoded) => {
             if (err) {
-                return 'token is invalid'
+                return
             }
             if (!decoded.id || !decoded.username || !decoded.role) {
-                return 'token is invalid'
+                return
             }
             return req.decoded = decoded
         })
     } catch (error) {
-        return "error"
+        console.log(error)
+        return res.status(500).json({status : 'error' , message: 'internal was error'})
     }   
     if (!req.decoded) {
         return res.status(400).json({status : 'error' , message: 'token is invalid'})
     }
     return next()
+}
+
+const createTokenUpdatePassword = (req, res, next) => {
+    const { userMail } = req.body?? {}
+    if (!userMail) {
+        return res.status(400).json({
+            status : "failed",
+            message : "userMail is required"
+        })
+    }
+    const token = jwt.sign({userMail : userMail}, secretKey, {expiresIn : "15m"})
+    if (!token) {
+        return res.status(500).json({
+            message : "internal was error"
+        })
+    } 
+    next()
+}
+
+const veryfyTokenUpdatePassword = (req, res, next) => {
+    const { tokenMail } = req.body?? {}
+    if (!tokenMail) {
+        return res.status(400).json({
+            status : "failed",
+            message : "tokenMail is required"
+        })
+    }
+    try {
+        jwt.verify(tokenMail, secretKey, (err, decoded) => {
+            if (err) {
+                console.log(err)
+            }
+            if (decoded.mail ) {
+                return
+            }
+            return req.decoded = decoded
+        })
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json({
+            message : "internal was error"
+        })
+    }
+    if (!req.decoded) {
+        return res.status(400).json({
+            status : "error",
+            message : "token is invalid"
+        })
+    }
 }
 
 const OptionalValidationToken = (req, res, next) => {
@@ -84,4 +134,4 @@ const OptionalValidationToken = (req, res, next) => {
     return next()
 }
 
-module.exports = { veryfyToken, signToken ,OptionalValidationToken}
+module.exports = { veryfyToken, signToken ,OptionalValidationToken, createTokenUpdatePassword, veryfyToken}
