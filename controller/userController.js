@@ -20,6 +20,13 @@ const createUser = async (req, res, next) => {
             console.log('email already exist')
             return res.status(400).json({status : "failed", message : 'Email already registered'})
         }
+        const passwordEncripted = bcrypt(password, 10, (err, hash) => {
+            if (err) {
+                return null
+            } else {
+                return hash
+            }
+        })
         const newUser = await users.create({
             id : '', 
             username : username,
@@ -37,7 +44,8 @@ const createUser = async (req, res, next) => {
         console.log(error)
         res.status(500).json({
             status : 'error',
-            message : 'internal was error'})
+            message : 'internal was error'
+        })
     }
 }
 
@@ -49,6 +57,17 @@ const getUserValidationForGetId = async (email, password) => {
             }, attributes : ['id', 'password'],
         })
         if(result){
+            // const validationPassword = bcrypt.compare(password, result.password, function (err, result){
+            //     if (err) {
+            //         return null
+            //     } else {
+            //         if (result) {
+            //             return true
+            //         } else {
+            //             return false
+            //         }
+            //     }
+            // })
             const validationPassword = result.password === password? true : false;
             if(validationPassword){
                 return result
@@ -262,6 +281,20 @@ const UpdateNewUserPassword = async (req, res) => {
             attributes : ["password"]
         })
         if (validation) {
+            // const validationPassword = bcrypt.compare(newPassword, validation.password, function(err, result){
+            //     if (err) {
+            //         return null
+            //     } else {
+            //         if (result) {
+            //             return false
+            //         } else {
+            //             return false
+            //         }
+            //     }
+            // })
+            // if (!validationPassword) {
+                
+            // }
             if (validation.password === newPassword ) {
                 return res.status(400).json({message : 'please input new password'})
             }
