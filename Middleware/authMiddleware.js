@@ -134,4 +134,4 @@ const OptionalValidationToken = (req, res, next) => {
     return next()
 }
 
-module.exports = { veryfyToken, signToken ,OptionalValidationToken, createTokenUpdatePassword, veryfyToken}
+module.exports = { veryfyToken, signToken ,OptionalValidationToken, createTokenUpdatePassword, veryfyTokenUpdatePassword}

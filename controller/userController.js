@@ -5,10 +5,11 @@
 // // buat di server.jsnya ulang lagi
 
 const { signToken } = require('../Middleware/authMiddleware')
-const { Op, where } = require('sequelize')
+const { Op } = require('sequelize')
 const { users } = require('../model/userModel')
 const { domain } = require('../config/domain')
-const { countrys } = require('../model/countryModel')
+const bcrypt = require('bcrypt')
+// bcrypt is required to prevent someone see password include admin who able to see database 
 
 const createUser = async (req, res, next) => {
     try {
@@ -221,21 +222,21 @@ const getUsers = async (req, res) => {
     }
 } 
 
-const EmailValidation = async (req, res) => {
+const EmailValidation = async (req, res, next) => {
     try {
-        const { email } = req.query??{}
-        if (email) {
+        const { userMail } = req.body??{}
+        if (userMail) {
             return res.status(400).json({
                 status : "failed",
                 message : " Email is required"})
         }
         const validation = users.findOne({
             where : {
-                email : email
+                email : userMail
             }
         })
         if (validation) {
-            return res.status(200).json({status : 'success', email : email})
+            return next()
         }
         return res.status(200).json({status : 'failed', message : "Email is not found"})
     } catch (error) {
@@ -249,7 +250,8 @@ const EmailValidation = async (req, res) => {
     
 const UpdateNewUserPassword = async (req, res) => {
     try {
-        const { newPassword, userMail } = req.body??{}
+        const { newPassword } = req.body??{}
+        const userMail = req.decoded.userMail
         if (!newPassword) {
             return res.status(400).json({message: 'password is required'})
         }
