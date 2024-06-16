@@ -39,7 +39,7 @@ const createUser = async (req, res, next) => {
         req.userId = newUser.id
         req.username = newUser.username
         req.photoprofile = newUser.photo_profile
-        req.message = 'user created successfully'
+        req.message = 'Berhasil membuat akun'
         return next()
     } catch (error) {
         console.log(error)
