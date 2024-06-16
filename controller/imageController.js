@@ -6,7 +6,7 @@ const {domain} = require('../config/domain')
 // The parameter needed is image id with query imageId 
 // The return of function is JSON 
 const getImagesLimit3 = async (req, res, next) => {
-    const { imageId, direction } = req.query
+    const { imageId, direction } = req.query?? {}
     if (!imageId || !direction){
         return res.status(400).json({message: 'imageId or direction is required'})
     }
@@ -100,7 +100,7 @@ const getImages = async (req, res, next) => {
 } 
 
 const getUserImages = async (req, res, next) => {
-    const { imageId, direction } = req.query
+    const { imageId, direction } = req.query?? {}
     const userId = req.query.userId;
     console.log(userId)
     if (!userId || !imageId || !direction){
@@ -158,7 +158,7 @@ const getUserImages = async (req, res, next) => {
 } 
 
 const getUserCollectionImage = async (req, res) => {
-    const { direction } = req.query
+    const { direction } = req.query?? {}
     const imageId = req.collectionlist
     const userId = req.query.userId ? req.query.userId  : req.decoded.id;
     if (!userId || !imageId || !direction){
@@ -218,7 +218,7 @@ const getUserCollectionImage = async (req, res) => {
 } 
 
 const getCollectionUserImagesLimit3 = async (req, res, next) => {
-    const { direction } = req.query
+    const { direction } = req.query?? {}
     const imageId = req.collectionlist
     const userId = req.query.userId ? req.query.userId  : req.decoded.id;
     if (!userId || !imageId || !direction){
@@ -266,7 +266,7 @@ const getCollectionUserImagesLimit3 = async (req, res, next) => {
 } 
 
 const getLatestUserImagesLimit3 = async (req, res, next) => {
-    const { imageId, direction } = req.query
+    const { imageId, direction } = req.query?? {}
     const userId = req.query.userId ? req.query.userId  : req.decoded.id;
     if (!userId || !imageId || !direction){
         // return res.status(400).json({message: 'imageId or direction is required'})
@@ -324,7 +324,7 @@ const getLatestUserImagesLimit3 = async (req, res, next) => {
 
 const getImageDetail = async (req, res, next) => {
     try {
-        const { imageId } = req.query
+        const { imageId } = req.query?? {}
         console.log(req.query)
         // const imageId = 3
         console.log(req.body)
@@ -399,7 +399,7 @@ const createImageRecord = async (req, res, next) => {
 
 const getImageByName = async (req, res) => {
     try {
-        const { imageName } = req.query
+        const { imageName } = req.query?? {}
         if (!imageName) {
             return res.status(400).json({message: 'image Name required'})
         }

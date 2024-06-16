@@ -40,7 +40,7 @@ const createdTokenDB = async (req, res) => {
 
 const deleteTokenDB = async (req, res) => {
     try {
-        const { token } = req.query
+        const { token } = req.query?? {}
         const userId = req.decoded.id
         const result = await userToken.destroy({
             where : {

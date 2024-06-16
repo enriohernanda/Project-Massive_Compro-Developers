@@ -51,7 +51,7 @@ const createLike = async (req, res) => {
 
 const deletelike = async (req, res) => {
     try {
-        const { imageId } = req.query
+        const { imageId } = req.query?? {}
         const userId = req.decoded.id
         if (!imageId) {
             return res.status(400).json({message: 'imageid is required'})
@@ -74,7 +74,7 @@ const deletelike = async (req, res) => {
 
 const getlike = async (req, res) => {
     try {
-        const { imageId, authstatus } = req.query 
+        const { imageId, authstatus } = req.query?? {}
         if(!imageId){
             return res.status(400).json({
                 status : "failed",

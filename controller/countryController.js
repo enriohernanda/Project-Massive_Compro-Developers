@@ -1,4 +1,3 @@
-const { where } = require('sequelize')
 const {countrys} = require('../model/countryModel')
 
 const getCountrysList = (req, res) => {

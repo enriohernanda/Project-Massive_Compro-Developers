@@ -37,7 +37,7 @@ const singleCreateNotification = async (req, res, next) => {
 
 const bulkCreateNotification = async (req, res, next) => {
     try {
-        const followerdata = req.followerdata 
+        const followerdata = req.followerdata
         if (followerdata) {
             const result = await notifications.bulkCreate(followerdata)
             return next()
@@ -53,7 +53,7 @@ const bulkCreateNotification = async (req, res, next) => {
 
 const getNotification = async (req, res) => {
     try {
-        const { startNotificationId } = req.query
+        const { startNotificationId } = req.query?? {}
         if (!req.decoded) {
             return res.status(400).json({
                 status: "failed",

@@ -1,6 +1,5 @@
 const express = require('express')
 
-
 const userRoutes = require('./userRoutes') 
 const userTokenRoutes = require('./userTokenRoutes')
 const imageRoutes = require('./imageRoutes')
@@ -18,6 +17,7 @@ const adminTokenRoutes = require('./adminTokenRoutes')
 const router = express.Router();
 
 router.use('/user/unauthorization', userTokenRoutes)
+router.use('/unauthorization', userTokenRoutes)
 router.use('/user', userRoutes)
 router.use('/image', imageRoutes)
 router.use('/collection', collectionRoutes)

@@ -25,7 +25,7 @@ const createForm = async (req, res) => {
 
 const getForm = async (req, res) => {
     try {
-        const {idForm, email} = req.query
+        const {idForm, email} = req.query?? {}
         if (!idForm) {
             return res.status(400).json({message : "idForm is required"})
         } 

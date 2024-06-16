@@ -62,7 +62,7 @@ const deleteCollection = async (req, res) =>{
 
 const getCollection = async (req, res, next) => {
     try {
-        const {imageId, authstatus} = req.query
+        const {imageId, authstatus} = req.query?? {}
         if(!imageId){
             return res.status(400).json({message : 'imageid is required'})
         }

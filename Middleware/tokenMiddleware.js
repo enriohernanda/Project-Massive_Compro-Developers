@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const { secretKey } = require('../config/secretKey')
 
 const createTokenUpdatePassword = (req, res, next) => {
     const { userMail } = req.body?? {}
@@ -14,6 +15,7 @@ const createTokenUpdatePassword = (req, res, next) => {
             message : "internal was error"
         })
     } 
+    req.tokenMail = token
     next()
 }
 
@@ -25,28 +27,23 @@ const veryfyTokenUpdatePassword = (req, res, next) => {
             message : "tokenMail is required"
         })
     }
-    try {
-        jwt.verify(tokenMail, secretKey, (err, decoded) => {
-            if (err) {
-                console.log(err)
-            }
-            if (decoded.userMail ) {
-                return
-            }
-            return req.decoded = decoded
-        })
-    } catch (err) {
-        console.log(err)
-        return res.status(500).json({
-            message : "internal was error"
-        })
-    }
-    if (!req.decoded) {
-        return res.status(400).json({
-            status : "error",
-            message : "token is invalid"
-        })
-    }
+    jwt.verify(tokenMail, secretKey, (err, decoded) => {
+        if (err) {
+            console.log(err)
+            return res.status(400).json({
+                status : "error",
+                message : "token is invalid"
+            })
+        }
+        if (!decoded.userMail ) {
+            return res.status(400).json({
+                status : "error",
+                message : "token is invalid"
+            })
+        }
+        req.decodedTokenMail = decoded
+        next()
+    })
 }
 
-module.exports = {createTokenUpdatePassword, veryfyTokenUpdatePassword}
+module.exports = { createTokenUpdatePassword, veryfyTokenUpdatePassword }

@@ -94,10 +94,11 @@ const createMessage = async (req, res, next) => {
 
 const getMessageNew = async (req, res) => {
     try {
-        const {startMessageId, receiverUserId, direction} = req.query
-        var messageRoomId = req.query.messageRoomId
+        const {startMessageId, receiverUserId, direction} = req.query?? {}
+        // var messageRoomId = req.query.messageRoomId
+        var { messageRoomId } = req.query?? {}
         const senderUserId = req.decoded.id
-        if (!messageRoomId || !req.query.messageRoomId && receiverUserId) {
+        if (!messageRoomId && receiverUserId) {
             RoomId = await messages.findOne({
                 where : {
                     [Op.or] : [

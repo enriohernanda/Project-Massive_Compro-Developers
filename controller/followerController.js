@@ -38,7 +38,7 @@ const createFollower = async (req, res) => {
 
 const deleteFollower = async (req, res) => {
     try {
-        const {followedUserId} = req.query
+        const {followedUserId} = req.query?? {}
         const userId = req.decoded.id
         console.log(userId)
         if (!userId || !followedUserId) {
@@ -159,7 +159,7 @@ const countFollowerAndFollowed = async (req, res, next) => {
 
 const getUserFollowedList = async (req, res, next) =>{
     try {
-        const { userId } = req.query
+        const { userId } = req.query?? {}
         if (!userId)   {
             return res.status(400).json({message : 'userId is required'})
         }

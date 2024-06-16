@@ -9,6 +9,7 @@ const { Op } = require('sequelize')
 const { users } = require('../model/userModel')
 const { domain } = require('../config/domain')
 const bcrypt = require('bcrypt')
+
 // bcrypt is required to prevent someone see password include admin who able to see database 
 
 const createUser = async (req, res, next) => {
@@ -266,11 +267,11 @@ const EmailValidation = async (req, res, next) => {
         })
     }
 }
-    
+
 const UpdateNewUserPassword = async (req, res) => {
     try {
         const { newPassword } = req.body??{}
-        const userMail = req.decoded.userMail
+        const userMail = req.decodedTokenMail.userMail
         if (!newPassword) {
             return res.status(400).json({message: 'password is required'})
         }
@@ -293,8 +294,9 @@ const UpdateNewUserPassword = async (req, res) => {
             //     }
             // })
             // if (!validationPassword) {
-                
             // }
+
+
             if (validation.password === newPassword ) {
                 return res.status(400).json({message : 'please input new password'})
             }
