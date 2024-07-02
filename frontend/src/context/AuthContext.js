@@ -12,9 +12,14 @@ export const AuthProvider = ({children}) => {
     const [photo_profile, setUserphoto_profile] = useState('')
     const navigate = useNavigate()
 
+    // const host = "192.168.43.232" 
+    // const host = 'http://compro-dev.productsofwebdevuiuxceleratessib6.site' 
+    const host = "localhost:5070" 
+    // Change baseurl to  another host like localhost or local network address to assure that website work properly
+
     const registration = async (username, email, password) => {
         try {
-            const response = await axios.post('http://localhost:4000/api/user/registration', {username : username, email : email, password : password })
+            const response = await axios.post(`http://${host}/api/user/registration`, {username : username, email : email, password : password })
             console.log(response)
             if (response.data.token) {
                 setAuth(true)
@@ -37,7 +42,7 @@ export const AuthProvider = ({children}) => {
     const login = async (email, password) => {
         try {
             console.log("email : ",email)
-            const response = await axios.post('http://localhost:4000/api/user/authentication', {email : email,password :password })
+            const response = await axios.post(`http://${host}/api/user/authentication`, {email : email,password :password })
             console.log(response)
             if (response.data.token) {
                 setAuth(true)
@@ -61,7 +66,7 @@ export const AuthProvider = ({children}) => {
     const logout = async () => {
     try {
         const token = localStorage.getItem('token')
-        const response = await axios.delete('http://localhost:4000/api/user/unauthorization', { params : {authstatus: isAuth, token : token} }) 
+        const response = await axios.delete(`http://${host}/api/user/unauthorization`, { params : {authstatus: isAuth, token : token} }) 
         if (response.data.status === 'success') {
             console.log('========== Erroed 3 ')
             setAuth(false)

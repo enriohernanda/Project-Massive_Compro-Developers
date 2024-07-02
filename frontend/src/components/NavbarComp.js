@@ -8,6 +8,7 @@ import Notification from './NotificationContent';
 import { useNavigate } from 'react-router-dom';
 
 import Massage from './Message';
+import Pengaturan from './Pengaturan';
 
 import { AuthContext } from '../context/AuthContext';
 import { useContext, useState, useRef, useEffect } from 'react';
@@ -70,10 +71,10 @@ useEffect(() => {
   }, []);
   return (
     <div>
-      <Navbar expand="lg">
+      <Navbar expand={true}>
         <Container>
           <Navbar.Brand href="#">
-            <img src={icon} className="animate__animated animate__fadeInLeft" />
+            <img src={icon} id='icon_web' className="animate__animated animate__fadeInLeft" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
@@ -116,42 +117,8 @@ useEffect(() => {
       </Navbar>
       <div ref={contentRef}>{massageVisible && <Massage />}</div>
       {settingVisible ? (
-        <div class="pengaturan-container" ref={contentRefSetting}>
-          <p>
-            Photo Profile
-          </p>
-          <input type="file" placeholder="File" draggable="true" />
-          <select name="" id="" draggable="true">
-            <option value="Indonesia">Indonesia</option>
-            <option value="Amerika">Amerika</option>
-            <option value="Malaysia">Malaysia</option>
-            <option value="Inggris">Inggris</option>
-        </select>
-        <select name="" id="">
-            <option value="Programer">Programer</option>
-            <option value="Petani">Petani</option>
-            <option value="Seniman">Seniman</option>
-            <option value="Designer">Designer</option>
-            <option value="Karyawan">Karyawan</option>
-            <option value="Guru">Guru</option>
-            <option value="Freelance">Freelance</option>
-            <option value="Polisi">Polisi</option>
-            <option value="Siswa">Siswa</option>
-            <option value="Mahasiswa">Mahasiswa</option>
-        </select>
-        <div>
-            <p>Instagram</p>
-            <input type="text" />
-          </div>
-          <div>
-            <p>Youtube</p>
-            <input type="text" />
-          </div>
-          <div>
-            <p>Facebook</p>
-            <input type="text" />
-          </div>
-          <button>Kirim</button>
+        <div ref={contentRefSetting}>
+          <Pengaturan />
         </div>
       ) : (
         ''

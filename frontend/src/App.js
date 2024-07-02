@@ -29,7 +29,7 @@ function App() {
         <Route path="/daftar" Component={Daftar} />
         <Route path="/masuk" Component={Masuk} />
         <Route path="/lupa-password" Component={LupaPass} />
-        <Route path="/password-baru" Component={PassBaru} />
+        <Route path="/password-baru?" Component={PassBaru} />
         <Route path="/tentang-kami" Component={TentangKami} />
         <Route path="/pameran" Component={Pameran} />
         <Route path="/galeri" Component={Galeri} />

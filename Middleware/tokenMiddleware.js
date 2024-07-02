@@ -14,13 +14,16 @@ const createTokenUpdatePassword = (req, res, next) => {
         return res.status(500).json({
             message : "internal was error"
         })
-    } 
-    req.tokenMail = token
-    next()
+    } else  {
+        req.tokenMail = token
+        console.log(token)
+        return next()
+    }
 }
 
 const veryfyTokenUpdatePassword = (req, res, next) => {
     const { tokenMail } = req.body?? {}
+    console.log("tokenMail : " , tokenMail)
     if (!tokenMail) {
         return res.status(400).json({
             status : "failed",

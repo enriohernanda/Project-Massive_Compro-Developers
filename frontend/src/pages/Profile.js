@@ -181,19 +181,27 @@ const handlebuttonfollower = async () => {
                 </div>
                 <div className='hr'></div>
                 <div className='socialcontainer'>
-                <div className='inline-space-between'>
+                    <div className='inline-space-between'>
                         <p className=''>Instagram</p>
-                        <img className='arrow' src={arrow}/>
+                        {userdata.instagram?
+                            <img className='arrow' src={arrow} onClick={() => navigate(userdata.instagram? `http://instagram.com/${userdata.instagram}` : '')}/>
+                            : <p className='arrow'>Tidak ada</p> 
+                        }
                     </div>
                     <div className='inline-space-between'>
                         <p className=''>Facebook</p>
-                        <img className='arrow' src={arrow}/>
+                        {userdata.facebook?
+                            <img className='arrow' src={arrow} onClick={() => navigate(userdata.facebook? `http://facebook.com/${userdata.facebook}` : '')}/>
+                            : <p className='arrow'>Tidak ada</p> 
+                        }
                     </div>
                     <div className='inline-space-between'>
                         <p className=''>Youtube</p>
-                        <img className='arrow' src={arrow}/>
+                        {userdata.youtube?
+                            <img className='arrow' src={arrow} onClick={() => navigate(userdata.youtube? `http://youtube.com/c/${userdata.youtube}` : '')}/>
+                            : <p className='arrow'>Tidak ada</p> 
+                        }
                     </div>
-                
                 </div>
                 <div className='hr'></div>
                 <div className='created'>

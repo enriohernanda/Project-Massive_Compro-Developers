@@ -1,8 +1,10 @@
 const express = require('express')
 
 const { veryfyToken } = require('../Middleware/authMiddleware')
-const { veryfyTokenUpdatePassword } = require('../Middleware/tokenMiddleware')
+const { veryfyTokenUpdatePassword, createTokenUpdatePassword } = require('../Middleware/tokenMiddleware')
 const { sendMail } = require('../Middleware/mailerMiddleware')
+
+const upload = require('../Middleware/uploadMiddleware')
 const { domain } = require('../config/domain')
 const userController = require('../controller/userController') 
 const userTokenController = require('../controller/userTokenController')
@@ -54,16 +56,18 @@ router.get('/profile', userController.getDataUser, countryController.getCountryN
 router.get('/collection',collectionController.getListImageCollection, imageController.getUserCollectionImage)
 
 // route validation email require userMail
-router.post('/update-password/mail-validation', userController.EmailValidation, sendMail)
+router.post('/update-password/mail-validation', userController.EmailValidation, createTokenUpdatePassword, sendMail)
+
+router.post('/update-profile',veryfyToken, upload.single('profile'), userController.UpdateDataUser)
 
 // route validation token was sended to userMail require token 
-router.post('/update-passsword/token-validation', veryfyTokenUpdatePassword, (req, res) => {
+router.post('/update-password/token-validation', veryfyTokenUpdatePassword, (req, res) => {
     res.status(200).json({
-        message : " token is valid"
+        isvalid : true
     })
 })
 
 // route validation password require token and newPassword
-router.post('/update-passsword/password-validation', veryfyTokenUpdatePassword, userController.UpdateNewUserPassword)
+router.post('/update-password/password-validation', veryfyTokenUpdatePassword, userController.UpdateNewUserPassword)
 
 module.exports = router;

@@ -15,16 +15,26 @@
 /* Navbar CSS */
 .navbar {
   position: fixed;
-  padding: 15px 0 15px 0;
+  padding: 15vw 0 15vw 0;
+  margin: 0%;
   width: 100%;
-  padding: 20px;
-  min-height: 100px;
+  padding: 2vw;
+  height: 7.5vw;
+  background-color: #aa9fc2;
   background-color: var(--secondary-color);
 }
 
+#icon_web{
+  position: absolute;
+  top: 2vw;
+  left: 2vw;
+  width: 12vw;
+  height: 4vw;
+}
+
 .navbar .nav-link a {
-  padding: 5px 10px 5px 10px;
-  font-size: 18px;
+  padding: 0.5vw 1vw 0.5px 1.5vw;
+  font-size: 1.3vw;
   font-weight: bold;
   text-decoration: none;
   color: var(--navbar-color-text);
@@ -32,8 +42,15 @@
   animation-duration: 1s;
 }
 
+.nav-link{
+  background-color: var(--primary-color);
+  padding: 0%;
+  margin: 0%;
+  gap: 0;
+}
+
 .navbar .nav-link a:hover {
-  color: #8e6ddc;
+  color:var(--navbar-hover-color-text);
 }
 
 .navbar .nav-link .active {
@@ -41,14 +58,14 @@
 }
 
 .btn_masuk {
-  width: 105px;
-  height: 55px;
-  margin-right: 10px;
+  width: 7.5vw;
+  height: 3.8vw;
+  margin-right: 1vw;
   background: transparent;
-  border: solid 2px #f7f7f7;
+  border: solid 0.2vw #f7f7f7;
   color: var(--navbar-color-text);
-  border-radius: 50px;
-  font-size: 18px;
+  border-radius: 5vw;
+  font-size: 1.3vw;
   font-weight: 500;
   animation-name: fadeInRight;
   animation-duration: 1s;
@@ -58,7 +75,9 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 200px;
+  width: 15vw;
+  height: 15vw;
+  border-radius: 1130px;
   position: absolute;
   top: 0%;
   margin: 0%;
@@ -67,32 +86,33 @@
 
 .photo-profile {
   cursor: pointer;
-  border-radius: 100%;
+  border-radius: 50%;
   background-color: #f7f7f7;
   margin: 4.5%;
-  width: 40%;
+  width: 6vw;
+  height: 6vw;
   max-height: auto;
   border: 0.2vw solid #28c763;
-  animation-name: fadeInRight;
-  animation-duration: 1s;
 }
 
 .dropdown {
-  margin-top: 40px;
-  margin-right: 10px;
+  margin-top: 5vw;
+  margin-right: 1vw;
   display: none;
-  width: fit-content;
+  width: 15vw;
+  height: fit-content;
   background-color: #f7f7f7;
   display: flex;
   flex-direction: column;
-  box-shadow: 10px 14px 20px 0 gray;
-  padding: 29px;
+  box-shadow: 1vw 1.4vw 2vw 0 gray;
+  padding: 2vw;
   position: absolute;
   z-index: 10;
 }
 
 .dropdown a {
-  margin: 10px;
+  margin: 1vw;
+  font-size: 1.2vw;
   text-decoration: none;
   font-style: normal;
   cursor: pointer;
@@ -221,7 +241,7 @@
 
 .cardSeni .cardImgSeniman {
   width: 150px;
-  height: auto;
+  height: 150px;
   border-radius: 100%;
   margin-bottom: 10px;
 }
@@ -1072,14 +1092,14 @@
   border: 1px solid rgba(128, 128, 128, 0.5);
   position: absolute;
   z-index: 6;
-  right: 220px;
-  border-radius: 20px;
+  right: 22vw;
+  border-radius: 2vw;
   width: fit-content;
-  min-height: 300px;
-  max-height: 300px;
-
-  padding: 20px;
-  top: 180px;
+  min-height: 30vw;
+  max-height: 30vw;
+  font-size: 1vw;
+  padding: 2vw;
+  top: 18vw;
   box-shadow: 0px 2px 4px 0px gray;
   display: flex;
   align-items: center;
@@ -1087,7 +1107,7 @@
   overflow: hidden;
   scrollbar-width:none;
   overflow-y: visible;
-  gap: 13px;
+  gap: 1.1vw;
 }
 .Photo_Profile{
   border-radius: 100px;
@@ -1104,25 +1124,31 @@
   font-family: "Poppins";
   color: gray;
 }
-.pengaturan-container {
+.pengaturan-container form{
   display: flex;
   flex-direction: column;
   background-color: white;
-  padding: 50px;
+  padding: 5vw;
   align-items: center;
   width: fit-content;
-  margin: 10px;
-  right: 220px;
-  border: 1px solid rgba(128, 128, 128, 0.5);
-  box-shadow: 2px 2px 2px 0px gray;
+  margin: 1vw;
+  font-size: 1.2vw;
+  right: 22vw;
+  border: 0.1vw solid rgba(128, 128, 128, 0.5);
+  box-shadow: 0.2vw 0.2vw 0.2vw 0px gray;
   position: absolute;
   z-index: 6;
-  border-radius: 20px;
-  gap: 10px;
+  border-radius: 2vw;
+  gap: 1vw;
 }
-.pengaturan-container button {
-  padding: 15px;
-  margin-top: 30px;
+
+.pengaturan-container form input,.pengaturan-container form select, .pengaturan-container form option{
+  border: 0.1vw solid gray;
+}
+.pengaturan-container form button {
+  padding: 1.5vw;
+  margin-top: 3vw;
+  font-size: 1vw;
   background-color: orange;
   color: white;
   border: none;
@@ -1137,8 +1163,8 @@
   background-color: wheat;
   display: flex;
   position: absolute;
-  right: 200px;
-  top: 150px;
+  right: 20vw;
+  top: 15vw;
   z-index: 6;
 }
 .message-body .sidebar .notif-massage {
@@ -1410,14 +1436,16 @@
 }
 .message-startbody .message-main .massage-container .massage-box {
   width: 100%;
-  height: 100%;
+  min-height: 3vw;
+  word-break: break-all;
 }
+
 .message-startbody .message-main .massage-container .massage-box .text {
   margin: 0.2vw;
   border-radius: 3vw;
   /* border-radius: calc(0.04 * 400px); */
   box-shadow: 0 0.14vw 0.14vw 0px gray;
-  padding: 0.2vw 2vw 0 2vw;
+  padding: 0.2vw 2vw 0.4vw;
   max-width: 80%;
   display: flexbox;
   color: rgb(85, 80, 80);
@@ -1428,7 +1456,7 @@
 
 .message-startbody .message-main .massage-container .massage-box .text .time {
   float: right;
-  margin: 0.4vw 1vw 0.6vw 0;
+  margin: 0.8vw 1vw 0.6vw 0;
   height: fit-content;
   position: absolute;
   bottom: 0%;

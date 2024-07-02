@@ -29,6 +29,7 @@ router.use('/follower', followerRoutes)
 router.use('/countrys', countryRoutes)
 router.use('/developers', developerRoutes)
 router.use('/user', userRoutes)
+
 router.use('/admin', adminRoutes)
 router.use('/admin/token', adminTokenRoutes)
 

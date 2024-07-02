@@ -21,19 +21,15 @@ const createUser = async (req, res, next) => {
             console.log('email already exist')
             return res.status(400).json({status : "failed", message : 'Email already registered'})
         }
-        const passwordEncripted = bcrypt(password, 10, (err, hash) => {
-            if (err) {
-                return null
-            } else {
-                return hash
-            }
-        })
+        const passwordEncrypted = await bcrypt.hash(password, 10)
+
         const newUser = await users.create({
             id : '', 
             username : username,
             email : email, 
-            password : password
+            password : passwordEncrypted
         })
+
         const token = signToken({id : newUser.id, username : newUser.username, role : 'user'})
         req.token = token
         req.userId = newUser.id
@@ -58,28 +54,20 @@ const getUserValidationForGetId = async (email, password) => {
             }, attributes : ['id', 'password'],
         })
         if(result){
-            // const validationPassword = bcrypt.compare(password, result.password, function (err, result){
-            //     if (err) {
-            //         return null
-            //     } else {
-            //         if (result) {
-            //             return true
-            //         } else {
-            //             return false
-            //         }
-            //     }
-            // })
-            const validationPassword = result.password === password? true : false;
+            const validationPassword = await bcrypt.compare(password, result.password)
+            // const validationPassword = result.password === password? true : false;
             if(validationPassword){
                 return result
             }
+        } else {
+            return 'error'
         }
-       return 'error'
     } catch (error) {
         console.log(error)
         return 'error'
     }
 }
+
 const getProfileandName = async (req, res) => {
         try {
         const listuser = req.resultlistroom.map(result => result.room.usertarget)
@@ -111,10 +99,11 @@ const getProfileandName = async (req, res) => {
 }
 const UpdateDataUser = async (req, res) => {
     try {
-        const { instagram, youtube, facebook, professi } = req.body?? {}
+        const { instagram, youtube, facebook, professi } = req.query?? {}
         const userId = req.decoded.id
+        console.log(instagram, youtube, facebook, professi)
         const result = await users.update(
-           {country : 1, facebook : facebook , instagram : instagram ,youtube : youtube, professi : professi },
+           { country : 1, facebook : facebook , instagram : instagram ,youtube : youtube, professi : professi },
            { where : { 
                 id : userId
             }
@@ -245,7 +234,8 @@ const getUsers = async (req, res) => {
 const EmailValidation = async (req, res, next) => {
     try {
         const { userMail } = req.body??{}
-        if (userMail) {
+        console.log("User Mail : ", userMail)
+        if (!userMail) {
             return res.status(400).json({
                 status : "failed",
                 message : " Email is required"})
@@ -275,40 +265,33 @@ const UpdateNewUserPassword = async (req, res) => {
         if (!newPassword) {
             return res.status(400).json({message: 'password is required'})
         }
-        const validation = users.findOne({
+        const validation = await users.findOne({
             where : {
                 email : userMail
             },
             attributes : ["password"]
         })
+        let NewEncryptedPassword;
         if (validation) {
-            // const validationPassword = bcrypt.compare(newPassword, validation.password, function(err, result){
-            //     if (err) {
-            //         return null
-            //     } else {
-            //         if (result) {
-            //             return false
-            //         } else {
-            //             return false
-            //         }
-            //     }
-            // })
-            // if (!validationPassword) {
-            // }
-
-
-            if (validation.password === newPassword ) {
-                return res.status(400).json({message : 'please input new password'})
+            console.log(validation)
+            console.log("=====", validation.password, newPassword)
+            const validationPassword = await bcrypt.compare(newPassword, validation.password)
+            if (validationPassword) {
+                return res.status(400).json({message : 'Tolong masukan kata sandi baru'})
             }
+            NewEncryptedPassword = await bcrypt.hash(newPassword, 10)
+            // if (validation.password === newPassword ) {
+            //     return res.status(400).json({message : 'Tolong masukan password baru'})
+            // }
         }
-        const user = findOne({
+        const user = await users.findOne({
             where : {
                 email : userMail
             }
         })       
-        await user.update({password : newPassword})
+        await user.update({password : NewEncryptedPassword})
         await user.save()
-        return res.status(200).json({message : 'update new password sucessfully' })
+        return res.status(200).json({message : 'Berhasil menggubah sandi baru' })
     } catch (error) {
         console.log(error)
         res.status(500).json({

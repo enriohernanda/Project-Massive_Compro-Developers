@@ -1,6 +1,10 @@
 import axios from "axios";
 const api = axios.create({
-    baseURL : 'http://localhost:4000'
+    baseURL : 'http://localhost:5070'
+    // baseURL : 'http://192.168.43.232:5070'
+    // baseURL : 'http://compro-dev.productsofwebdevuiuxceleratessib6.site'
+    // Change baseurl to  another host like localhost or local network address to assure that website work properly 
+
 })
 
 
@@ -8,11 +12,11 @@ const api = axios.create({
 export const createImage = async (authstatus, formdata, token, name, description, image) => {
     try {
         const response = await api.post('/api/image',formdata, {params: {authstatus: authstatus ,token : token, imageName: name, imageDescription : description, image : image} })
-        alert(`${response.data.message} :)`)
+        alert(`${response.data.message} :) `)
         return response.data
     } catch (error) {
         console.log(error)
-        alert('Gagal mengupload gambar :(')
+        alert('Gagal mengupload gambar :( ')
     }
 }
 
@@ -26,6 +30,7 @@ export const getimagedetail = async (authstatus, imageId, token, userid) => {
         return response.data
     } catch (error) {
         console.log(error)
+
     }
 } 
 
@@ -36,8 +41,7 @@ export const createLike = async (authstatus, imageId, token) => {
         const response = await api.put('/api/like',  {authstatus : authstatus, imageId : imageId, token : token})
         return response.data
     } catch (error) {
-        console.log(error)
-        alert(error.response.data.message)
+        console.log(error) 
     }
 } 
 
@@ -48,7 +52,6 @@ export const deleteLike = async (authstatus, imageId, token) => {
         return response.data
     } catch (error) {
         console.log(error)
-        alert(error.response.data.message)
     }
 } 
 
@@ -235,5 +238,44 @@ export const deleteFollower = async (authstatus, followeduserid, token) => {
         return response.data
     } catch (error) {
         console.log(error)
+    }
+} 
+
+export const mailValidation = async (userMail) => {
+    try {
+        console.log(userMail)
+        const response = await api.post('/api/user/update-password/mail-validation', {userMail : userMail})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+export const tokenValidation = async (token) => {
+    try {
+        const response = await api.post('/api/user/update-password/token-validation', {tokenMail : token})
+        return response.data
+    } catch (error) {
+        console.log(error)
+    }
+} 
+
+export const updatePassword = async (token, newPassword) => {
+    try {
+        const response = await api.post('/api/user/update-password/password-validation', {tokenMail : token, newPassword : newPassword})
+        return response.data
+    } catch (error) {
+        console.log(error)
+        alert(error.data.message)
+    }
+} 
+
+export const updateProfile = async (formdata, photo_profile, country, professi, instagram, facebook, youtube, token, authstatus) => {
+    try {
+        const response = await api.post('/api/user//update-profile',formdata, {params : {profile : photo_profile, country : country, professi : professi, instagram : instagram, facebook : facebook, youtube : youtube, token : token, authstatus : authstatus, name : "photo_profile" }})
+        return response.data
+    } catch (error) {
+        console.log(error)
+        alert(error.data.message)
     }
 } 
