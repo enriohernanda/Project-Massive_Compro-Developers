@@ -19,7 +19,7 @@ import { useNavigate } from 'react-router-dom';
 const Galeri = () => {
   const Navigate = useNavigate();
   const [imageid, seImageId] = useState(1);
-  const [limit, setlimit] = useState(6);
+  const [limit, setlimit] = useState(16);
   const [direction, setdirection] = useState('forward');
   const [images, setimages] = useState([]);
 
