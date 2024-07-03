@@ -1,8 +1,8 @@
 import axios from "axios";
 const api = axios.create({
-    baseURL : 'http://localhost:5070'
+    // baseURL : 'http://localhost:5070'
     // baseURL : 'http://192.168.43.232:5070'
-    // baseURL : 'http://compro-dev.productsofwebdevuiuxceleratessib6.site'
+    baseURL : 'http://compro-dev.productsofwebdevuiuxceleratessib6.site'
     // Change baseurl to  another host like localhost or local network address to assure that website work properly 
 
 })

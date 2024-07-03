@@ -12,9 +12,9 @@ export const AuthProvider = ({children}) => {
     const [photo_profile, setUserphoto_profile] = useState('')
     const navigate = useNavigate()
 
+    // const host = "localhost:5070" 
     // const host = "192.168.43.232" 
-    // const host = 'http://compro-dev.productsofwebdevuiuxceleratessib6.site' 
-    const host = "localhost:5070" 
+    const host = 'http://compro-dev.productsofwebdevuiuxceleratessib6.site' 
     // Change baseurl to  another host like localhost or local network address to assure that website work properly
 
     const registration = async (username, email, password) => {
