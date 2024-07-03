@@ -78,7 +78,7 @@ useEffect(() => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-            <Nav className="mx-auto text-center">
+            <Nav id='nav' className="mx-auto text-center">
               {navLinks.map((link) => {
                 return (
                   <div className="nav-link" key={link.id}>

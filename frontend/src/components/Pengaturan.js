@@ -16,7 +16,10 @@ const Pengaturan = () => {
         const formdata = new FormData()
         formdata.append('profile' , Userphoto_profile)
         try {
-            await updateProfile(formdata, Userphoto_profile, Country, Professi, Instagram, Facebook, Youtube, token, isAuth)
+            const response = await updateProfile(formdata, Userphoto_profile, Country, Professi, Instagram, Facebook, Youtube, token, isAuth)
+            if (response) {
+                alert(response.message)
+            }
         } catch (error) {
             console.log(error)
         }

@@ -5,7 +5,7 @@
 // // buat di server.jsnya ulang lagi
 
 const { signToken } = require('../Middleware/authMiddleware')
-const { Op } = require('sequelize')
+const { Op, where } = require('sequelize')
 const { users } = require('../model/userModel')
 const { domain } = require('../config/domain')
 const bcrypt = require('bcrypt')
@@ -99,20 +99,31 @@ const getProfileandName = async (req, res) => {
 }
 const UpdateDataUser = async (req, res) => {
     try {
-        const { instagram, youtube, facebook, professi } = req.query?? {}
+        const { instagram, youtube, facebook, professi, country } = req.query?? {}
         const userId = req.decoded.id
         console.log(instagram, youtube, facebook, professi)
-        const result = await users.update(
-           { country : 1, facebook : facebook , instagram : instagram ,youtube : youtube, professi : professi },
-           { where : { 
+        const user = await users.findOne({
+            where : {
                 id : userId
             }
-            }
-        )
-        if (result[0] > 0) {
-            return res.status(200).json({status: "success"})
+        })
+        if (country) {
+            await user.update({country : country})
         }
-        return res.status(200).json({status: "success"})
+        if (professi) {
+            await user.update({professi : professi})
+        }
+        if (instagram) {
+            await user.update({instagram : instagram})
+        }
+        if (facebook) {
+            await user.update({facebook : facebook})
+        }
+        if (youtube) {
+            await user.update({youtube : youtube})
+        }
+        await user.save()
+        return res.status(200).json({status: "success", message : "berhasil menggubah profile"})
     } catch (error) {
         console.log(error)
     }

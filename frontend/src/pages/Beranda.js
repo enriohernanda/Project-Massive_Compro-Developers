@@ -42,7 +42,7 @@ const Beranda = () => {
         <div className="imagecover">
           <img className="image" src={url === '0' ? konten : `http://${url}`} alt="The Scream" />
         </div>
-        <h2>{name ? name : 'The Scream'}</h2>
+        <h2>{name ? name : 'Malam Berbintang'}</h2>
         <p>{description}</p>
         {/* <p>
           Jeritan (bahasa Norwegia: Skrik, 1893; judul bahasa Inggris: The Scream) adalah sebutan untuk empat buah versi lukisan ekspresionis oleh seniman Norwegia Edward Munch yang menjadi sumber inspirasi bagi banyak pelukis lainnya dalam
