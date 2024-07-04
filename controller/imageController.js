@@ -1,4 +1,4 @@
-const { Op, where } = require('sequelize')
+const { Op } = require('sequelize')
 const { images } = require('../model/imageModel')
 const {domain} = require('../config/domain')
 
@@ -33,7 +33,7 @@ const getImagesLimit3 = async (req, res, next) => {
             limit : 4
         })
         const arrayresult = result.map(image => ({
-            url : `${domain}/image/${image.user_id}/${imageId}.jpg`,
+            url : `${domain}/api/image/${image.user_id}/${imageId}.jpg`,
             user_id : image.user_id,
             name : image.image_name,
             description : image.description
@@ -75,7 +75,7 @@ const getImages = async (req, res, next) => {
             limit: newLimit
         })
         const arrayresult = result.map(image => ({
-            url : `${domain}/image/${image.user_id}/${image.id}.jpg`,
+            url : `${domain}/api/image/${image.user_id}/${image.id}.jpg`,
             id : image.id,
             user_id : image.user_id,
             name : image.image_name,
@@ -134,7 +134,7 @@ const getUserImages = async (req, res, next) => {
                 limit : 31
             })
             const arrayresult = result.map(image => ({
-                url : `${domain}/image/${userId}/${image.id}.jpg`,
+                url : `${domain}/api/image/${userId}/${image.id}.jpg`,
                 user_id : image.user_id,
                 name : image.image_name,
                 description : image.description
@@ -193,7 +193,7 @@ const getUserCollectionImage = async (req, res) => {
                 limit : 31
             })
             const arrayresult = result.map(image => ({
-                url : `${domain}/image/${image.user_id}/${image.id}.jpg`,
+                url : `${domain}/api/image/${image.user_id}/${image.id}.jpg`,
                 user_id : image.user_id,
                 name : image.image_name,
                 description : image.description
@@ -243,7 +243,7 @@ const getCollectionUserImagesLimit3 = async (req, res, next) => {
         })
         if (result.length > 0) {
             const arrayresult = result.map(image => ({
-                url : `${domain}/image/${image.user_id}/${image.id}.jpg`,
+                url : `${domain}/api/image/${image.user_id}/${image.id}.jpg`,
                 user_id : image.user_id,
                 name : image.image_name,
                 description : image.description
@@ -299,7 +299,7 @@ const getLatestUserImagesLimit3 = async (req, res, next) => {
                 limit : 4
             })
             const arrayresult = result.map(image => ({
-                url : `${domain}/image/${userId}/${image.id}.jpg`,
+                url : `${domain}/api/image/${userId}/${image.id}.jpg`,
                 user_id : image.user_id,
                 name : image.image_name,
                 description : image.description
@@ -343,7 +343,7 @@ const getImageDetail = async (req, res, next) => {
         })
        
 
-        const url = `${domain}/image/${result.user_id}/${result.id}.jpg`
+        const url = `${domain}/api/image/${result.user_id}/${result.id}.jpg`
         if (result) {
             req.imagedata = {urlimage : url, image_name : result.image_name, description : result.description}
             // res.status(200).json({url : url, image_name : result.image_name, description : result.description})
@@ -414,7 +414,7 @@ const getImageByName = async (req, res) => {
         console.log(imagesResult)
         if (imagesResult.length > 0) {
             const refix = imagesResult.map(image => ({
-                url : `${domain}/image/${image.user_id}/${image.id}.jpg`,
+                url : `${domain}/api/image/${image.user_id}/${image.id}.jpg`,
                 id : image.id,
                 userId : image.user_id,
                 description : image.description,

@@ -155,7 +155,7 @@ const handlebuttonfollower = async () => {
         </div> : ""}
         <div className='mainprofile'>
             <div className='profileboard'>
-                <img className='photoprofile' src={ userdata.photo_profile === "0" ? defaultprofile : `http://${userdata.photo_profile}` } alt='photo-profile' />
+                <img className='photoprofile' src={ userdata.photo_profile === "0" ? defaultprofile : `${userdata.photo_profile}` } alt='photo-profile' />
                 <p className='username'>{userdata?.username || 'Satomi'}</p>
                 <p className='country'>{userdata?.country || `Indonesia` }</p>
                 {/* {console.log(userdata.country)} */}
@@ -184,21 +184,21 @@ const handlebuttonfollower = async () => {
                     <div className='inline-space-between'>
                         <p className=''>Instagram</p>
                         {userdata.instagram?
-                            <img className='arrow' src={arrow} onClick={() => navigate(userdata.instagram? `http://instagram.com/${userdata.instagram}` : '')}/>
+                            <img className='arrow' src={arrow} onClick={() => window.location.href = userdata.instagram? `http://instagram.com/${userdata.instagram}` : ''}/>
                             : <p className='arrow'>Tidak ada</p> 
                         }
                     </div>
                     <div className='inline-space-between'>
                         <p className=''>Facebook</p>
                         {userdata.facebook?
-                            <img className='arrow' src={arrow} onClick={() => navigate(userdata.facebook? `http://facebook.com/${userdata.facebook}` : '')}/>
+                            <img className='arrow' src={arrow} onClick={() => window.location.href = userdata.facebook? `http://facebook.com/${userdata.facebook}` : ''}/>
                             : <p className='arrow'>Tidak ada</p> 
                         }
                     </div>
                     <div className='inline-space-between'>
                         <p className=''>Youtube</p>
                         {userdata.youtube?
-                            <img className='arrow' src={arrow} onClick={() => navigate(userdata.youtube? `http://youtube.com/c/${userdata.youtube}` : '')}/>
+                            <img className='arrow' src={arrow} onClick={() => window.location.href = userdata.youtube? `http://youtube.com/c/${userdata.youtube}` : ''}/>
                             : <p className='arrow'>Tidak ada</p> 
                         }
                     </div>
@@ -210,6 +210,7 @@ const handlebuttonfollower = async () => {
                     </p>
                 </div>
             </div>
+
             <div className='userimage'>
                 <div className='leftfloat-inline' >Unggahan Terakhir</div>
                 {imagedata !== "not found"? (<div className='rightfloat-inline' onClick={()=> navigate(`/${id}/images`)}>Lihat Semua</div>) : (<div></div>)}
@@ -218,7 +219,7 @@ const handlebuttonfollower = async () => {
                 {imagedata !==  "not found"? (imagedata.map((image, index) => (
                         <div className='imagecover-list' key={index}>
                             {console.log(image.url)}
-                            <img className='image-lists' src={`http://${image.url}`} alt={image.name} />
+                            <img className='image-lists' src={`${image.url}`} alt={image.name} />
                         </div>
                     ))) : (<div className='notif-not-found'>
                     Pengguna Belum mengupload karya
@@ -232,7 +233,7 @@ const handlebuttonfollower = async () => {
                     {collectiondata !==  "not found"? (collectiondata.map((image, index) => (
                         <div className='imagecover-list' key={index}>
                             {console.log(image.url)}
-                            <img className='image-lists' src={`http://${image.url}`} alt={image.name} />
+                            <img className='image-lists' src={`${image.url}`} alt={image.name} />
                         </div>
                     ))) : (<div className='notif-not-found'>
                     Pengguna Belum memiliki koleksi

@@ -89,7 +89,7 @@ const StartMessage = () => {
             <div className="message-startbody">
         <div className="message-main">
             <div className="user">
-                <img className='Photo_Profile ' src={ user.photo_profile === "0" ? profile : `http://${user.photo_profile}` } alt=""/>
+                <img className='Photo_Profile ' src={ user.photo_profile === "0" ? profile : `${user.photo_profile}` } alt=""/>
                 <p>
                     Bergabung pada tanggal {moment(user?.created || '').format('DD MMMM YYYY')}
                 </p>

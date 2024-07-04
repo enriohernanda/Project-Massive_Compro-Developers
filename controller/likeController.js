@@ -28,7 +28,7 @@ const createLike = async (req, res) => {
             })
         }
         const result = await likes.create({
-            id : '',
+            
             liked_by_user_id : userId,
             liked_user_id : idUserLiked,
             image_id : imageId

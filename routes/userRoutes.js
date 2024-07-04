@@ -39,7 +39,7 @@ router.get('/image', imageController.getUserImages)
 
 // getting user's data profile like (imagedata , userdata, followerdata) required (userId, imageId, direction <for image direction>, )
 router.get('/profile', userController.getDataUser, countryController.getCountryNameById,collectionController.getListImageCollection, imageController.getCollectionUserImagesLimit3, imageController.getLatestUserImagesLimit3, followerController.countFollowerAndFollowed , (req, res) =>{
-    const url = req.userdata.photo_profile? `${domain}/image/${req.userdata.id}/profile.jpg` : '0' ;
+    const url = req.userdata.photo_profile? `${domain}/api/image/${req.userdata.id}/profile.jpg` : '0' ;
     req.userdata.photo_profile = url
     console.log(req.imagedata)
     res.status(200).json({

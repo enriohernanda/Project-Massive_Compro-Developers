@@ -6,7 +6,7 @@ const singleCreateNotification = async (req, res, next) => {
         if (req.messagedata) {
             const messagedata = req.messagedata
             const newrecord = await notifications.create({
-                id : '',
+                
                 user_id : messagedata.id,
                 title : messagedata.title,
                 message : messagedata.message
@@ -21,7 +21,7 @@ const singleCreateNotification = async (req, res, next) => {
             })
         }
         const result = await notifications.create({
-            id : '',
+            
             user_id : userId,
             title : 'WELCOME TO MUSIUM OF ART',
             message : 'user was created successfully'

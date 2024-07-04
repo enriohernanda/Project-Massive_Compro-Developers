@@ -40,7 +40,7 @@ const Beranda = () => {
       <SearchComp />
       <div className="konten-beranda" data-aos="fade-up" data-aos-duration="1000">
         <div className="imagecover">
-          <img className="image" src={url === '0' ? konten : `http://${url}`} alt="The Scream" />
+          <img className="image" src={url === '0' ? konten : `${url}`} alt="The Scream" />
         </div>
         <h2>{name ? name : 'Malam Berbintang'}</h2>
         <p>{description}</p>

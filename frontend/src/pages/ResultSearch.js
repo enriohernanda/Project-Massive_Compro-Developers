@@ -51,7 +51,7 @@ const ResultSearch = () => {
   
            {images.length > 0 ? ( images.map((eachimage, index) => (
             <div key={index} className="imagecover card-galeri col-md-4 mb-4" onClick={() => Navigate(`/${eachimage.id}/detail`)}>
-              <img src={eachimage.url? `http://${eachimage.url}` : foto1} alt="foto1" className='image'/>
+              <img src={eachimage.url? `${eachimage.url}` : foto1} alt="foto1" className='image'/>
               <div className="intro-galeri">
                 <h2>{eachimage.imageName}</h2>
                 <p>

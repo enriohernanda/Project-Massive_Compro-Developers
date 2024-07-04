@@ -11,7 +11,7 @@ const createForm = async (req, res) => {
             return res.status(400).json({status : 'failed',message : 'name or email or message is required'})
         }
         const result = await contactus.create({
-            id : '',
+            
             name : name,
             email : email,
             message : message

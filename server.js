@@ -33,20 +33,21 @@ app.use(express.json())
 
 const PORT = process.env.PORT || portNumber
 
-app.get('/image/:folder/:filename', (req, res) => {
-    const {folder, filename} = req.params;
-    const filepath = path.join(__dirname,'uploads', folder, filename);
-    console.log(filepath)
-    if (fs.existsSync(filepath)) {
-        res.sendFile(filepath)
-    } else {
-        res.status(404).json({
-            message: 'file is not found'
-        })
-    }
-})
-
+// app.get('/image/:folder/:filename', (req, res) => {
+//     const {folder, filename} = req.params;
+//     const filepath = path.join(__dirname,'uploads', folder, filename);
+//     console.log(filepath)
+//     if (fs.existsSync(filepath)) {
+//         console.log("Filepath : ",filepath)
+//         res.sendFile(filepath)
+//     } else {
+//         res.status(404).json({
+//             message: 'file is not found'
+//         })
+//     }
+// })
 const routes = require('./routes')
+
 app.use('/api', routes)
 
 // // every verify Token need authstatus from frontend

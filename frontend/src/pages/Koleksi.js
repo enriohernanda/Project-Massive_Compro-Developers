@@ -42,7 +42,7 @@ const Koleksi = () => {
                 <div className='imagecover-list'>
                     {imagedata.map((image, index) => (
                         <div className='imagecover' key={index}>
-                            <img className='image' src={`http://${image.url}`} alt="The Scream" />
+                            <img className='image' src={`${image.url}`} alt="The Scream" />
                         </div>
                     ))}
                 </div>

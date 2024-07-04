@@ -9,11 +9,10 @@ const createdTokenDB = async (req, res) => {
         const message = req.message
         console.log(userId, message, token)
         const result = await userToken.create({
-            id : '',
             user_id : userId,
             token : token
         })
-        const urlPhotoProfile = req.photoprofile? `http://${domain}/image/${userId}/profile.jpg` : '' ;
+        const urlPhotoProfile = req.photoprofile? `${domain}/api/image/${userId}/profile.jpg` : '' ;
         console.log(urlPhotoProfile)
         if (result){
             return res.status(201).json({

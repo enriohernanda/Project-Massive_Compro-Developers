@@ -197,7 +197,7 @@
 }
 
 .konten-beranda h2 {
-  font-size: 2rem;
+  font-size: 1.7rem;
   font-weight: bold;
   color: var(--color-heading-text);
   margin-top: 30px;
@@ -205,7 +205,7 @@
 }
 
 .konten-beranda p {
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   color: var(--color-text);
   font-weight: 500;
   text-align: left;
@@ -581,6 +581,7 @@
   margin: 25px auto;
   max-width: 1220px;
   width: 100%;
+  min-height: 80vh;
   padding: 30px;
   background: white;
   text-align: center;
@@ -710,7 +711,8 @@
   background-color: white;
   border-radius: 20px;
   width: 37%;
-  height: 868px;
+  min-height: 86vh;
+  /* height: 868px; */
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -721,22 +723,28 @@
 
 .profileboard .photoprofile {
   cursor: pointer;
-  border-radius: 50%;
   background-color: #f7f7f7;
-  margin: 4.5%;
-  width: 118px;
-  height: 118px;
+  /* margin: 4.5%; */
+  width: 11vw;
+  min-height: 11vw;
+  font-size: 1vw;
+  border-radius: 50vw;
+  /* clip-path: circle(50%); */
   max-height: auto;
   border: 0.2vw solid #28c763;
 }
 
-.username {
+.profileboard .username {
   font-weight: bolder;
-  font-size: large;
+  font-size: 1.3vw;
+}
+
+.profileboard .country, .profileboard .professi{
+  font-size:  1.3vw;
 }
 
 .hr {
-  height: 2px;
+  height: 1.5px;
   width: 90%;
   background-color: black;
 }
@@ -756,14 +764,16 @@
   display: flex;
   justify-content: space-between;
 }
+
 .button-message,
 .button-follow {
-  padding: 10px 20px 10px 20px;
+  padding: 1vw 2vw 1vw 2vw;
   font-family: 'Poppins';
   background-color: #eda145;
   border: none;
   margin: 5px;
-  font-weight: bold;
+  font-size: 1.3vw;
+  font-weight: 900;
   border-radius: 3px;
 }
 .button-message:hover,
@@ -776,6 +786,11 @@
   width: 1vw;
   height: 1.5vw;
 }
+
+.inline-space-between p{
+  font-size: 1.3vw;
+}
+
 .socialcontainer {
   display: flex;
 }
@@ -814,10 +829,11 @@
 
 .userimage {
   width: 63%;
-  height: 868px;
+  min-height: 86vh;
+  /* height: 868px; */
   border: 1px solid #f7f7f7;
   background-color: white;
-  box-shadow: -10px 10px 20px 20px rgba(177, 173, 173, 0.15);
+  box-shadow: -1vw 1vw 2vw 2vw rgba(177, 173, 173, 0.15);
   float: right;
   border-radius: 20px;
   padding: 40px;

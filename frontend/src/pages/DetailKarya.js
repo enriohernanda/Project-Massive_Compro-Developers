@@ -50,7 +50,7 @@ const DetailKarya = () => {
       <SearchComp />
       <div className="konten-beranda">
         <div className='imagecover'>
-          <img className='image' src={url === "0" ? "" : `http://${url}` } alt="The Scream" />
+          <img className='image' src={url === "0" ? "" : `${url}` } alt="The Scream" />
         </div>
         <h2>{name? name : "The Scream"}</h2>
         <p>

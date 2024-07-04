@@ -107,7 +107,7 @@ const geUserFollowerList = async (req, res, next) => {
         console.log(result)
         if (result) {
             const array = result.map(follower  =>({
-                id : '',
+                
                 user_id : follower.following_user_id,
                 title : req.title,
                 message : req.message

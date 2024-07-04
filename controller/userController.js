@@ -24,7 +24,6 @@ const createUser = async (req, res, next) => {
         const passwordEncrypted = await bcrypt.hash(password, 10)
 
         const newUser = await users.create({
-            id : '', 
             username : username,
             email : email, 
             password : passwordEncrypted
@@ -84,7 +83,7 @@ const getProfileandName = async (req, res) => {
             lastmassage : result.message ? result.message : null ,
             room : result.room,
             username : resultphoto[index].username,
-            photo : resultphoto[index].photo_profile? `${domain}/image/${result.room.usertarget}/profile.jpg` : null
+            photo : resultphoto[index].photo_profile? `${domain}/api/image/${result.room.usertarget}/profile.jpg` : null
         }))
         // console.log(arrayresultlistroom)
         // console.log(arrayresultlistroom.reverse())
@@ -229,7 +228,7 @@ const getUsers = async (req, res) => {
         const array = result.map(user => ({
             id : user.id,
             username : user.username,
-            photo : user.photo_profile? `${domain}/image/${user.id}/profile.jpg` : '' 
+            photo : user.photo_profile? `${domain}/api/image/${user.id}/profile.jpg` : '' 
         }))
         res.status(200).json({
             isLast : isLastResult,

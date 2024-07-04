@@ -75,7 +75,7 @@ const Message = () => {
                 </div>
                 ) : responsesave.map(responsemap => (
                     <div className="user" onClick={() => handleclicluser(responsemap.room.listroom, responsemap.room.usertarget)}>
-                        <img src={responsemap.photo? `http://${responsemap.photo}`: profile } alt=""/>
+                        <img src={responsemap.photo? `${responsemap.photo}`: profile } alt=""/>
                         <div className="userdetail">
                             <div className="username">{responsemap.username }</div>
                             <div className="lastmassage">{responsemap.lastmassage? responsemap.username + " : " + responsemap.lastmassage : ""}</div>

@@ -41,7 +41,7 @@ const createMessage = async (req, res, next) => {
             if (RoomId) {
                 console.log(RoomId.message_room_id,'dwadawdwa')
                 const result = await messages.create({
-                    id : '',
+                    
                     message_room_id : RoomId.message_room_id,
                     sender_user_id : senderuserId,
                     receiver_user_id : receiverUserId,
@@ -59,7 +59,7 @@ const createMessage = async (req, res, next) => {
             console.log('Latest Room Id : ',latestRoomId)
             const newLatestRoomId = latestRoomId? latestRoomId + 1 : 1;
             const result = await messages.create({
-                id : '',
+                
                 message_room_id : newLatestRoomId,
                 sender_user_id : senderuserId,
                 receiver_user_id : receiverUserId,
@@ -73,7 +73,7 @@ const createMessage = async (req, res, next) => {
             return next()
         }
         const result = await messages.create({
-            id : '',
+            
             message_room_id : messageRoomId,
             sender_user_id : senderuserId,
             receiver_user_id : receiverUserId,
