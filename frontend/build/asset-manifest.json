@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.872ed345.css",
-    "main.js": "/static/js/main.9557e8b5.js",
+    "main.css": "/static/css/main.8f320962.css",
+    "main.js": "/static/js/main.40aa77eb.js",
     "static/media/header-3.png": "/static/media/header-3.5732e2fefb0525c58144.png",
     "static/media/pameran-trending2.png": "/static/media/pameran-trending2.48902b67dcb43e90ea48.png",
     "static/media/header-4.png": "/static/media/header-4.dea076838d5bc6b5f944.png",
@@ -37,11 +37,11 @@
     "static/media/slick.ttf": "/static/media/slick.c94f7671dcc99dce43e2.ttf",
     "static/media/slick.woff": "/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/index.html",
-    "main.872ed345.css.map": "/static/css/main.872ed345.css.map",
-    "main.9557e8b5.js.map": "/static/js/main.9557e8b5.js.map"
+    "main.8f320962.css.map": "/static/css/main.8f320962.css.map",
+    "main.40aa77eb.js.map": "/static/js/main.40aa77eb.js.map"
   },
   "entrypoints": [
-    "static/css/main.872ed345.css",
-    "static/js/main.9557e8b5.js"
+    "static/css/main.8f320962.css",
+    "static/js/main.40aa77eb.js"
   ]
 }

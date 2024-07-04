@@ -26,7 +26,7 @@ const sendMail = async (req, res, next) => {
         to : `${userMail}`,
         subject : "verifikasi token ",
         text : ` Silahkan klik link berikut ini :  
-            http://${ webdomain }/password-baru?token=${token}
+            https://${ webdomain }/password-baru?token=${token}
             note : jangan menyebarkan link diatas karena bersifat rahasia dan token hanya berlaku selama 15 menit`
     }
     

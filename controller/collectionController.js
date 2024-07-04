@@ -1,4 +1,3 @@
-const { where } = require('sequelize')
 const {collections} = require('../model/collectionModel')
 
 const createCollection = async (req, res) =>{
@@ -20,7 +19,6 @@ const createCollection = async (req, res) =>{
             return res.status(300).json()
         }
         const result = await collections.create({
-            id: '',
             user_id : userId,
             image_id : imageId
         })

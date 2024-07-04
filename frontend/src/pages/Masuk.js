@@ -18,7 +18,7 @@ const Masuk = () => {
     await login(email, password);
   };
   return (
-    <div className=".masuk-bg">
+    <div className="masuk-bg">
       <div className="logo animate__animated animate__fadeInLeft">
         <img src={logo} alt="MopArt" width={'130px'} />
       </div>
@@ -61,10 +61,10 @@ const Masuk = () => {
           </p>
         </form>
       </div>
-      <img src={image} alt="" id="background-login" className="ms-auto masuk-image align-self-end d-block animate__animated animate__fadeInRight" height={'600px'} width={'52%'} />
-      <a className="btn_skip animate__animated animate__fadeInRight animate__delay-1s" onClick={() => navigate('/')}>
-        Skip Now
-      </a>
+        <img src={image} alt="" id="background-login" className="ms-auto masuk-image align-self-end d-block animate__animated animate__fadeInRight"  />
+        <a className="btn_skip animate__animated animate__fadeInRight animate__delay-1s" onClick={() => navigate('/')}>
+          Skip Now
+        </a>
     </div>
   );
 };

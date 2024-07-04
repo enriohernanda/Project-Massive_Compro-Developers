@@ -1,6 +1,7 @@
 const express = require('express')
 
-
+const path = require('path')
+const fs = require('fs')
 const upload = require('../Middleware/uploadMiddleware')
 const { veryfyToken , OptionalValidationToken} = require('../Middleware/authMiddleware')
 const imageController = require('../controller/imageController')
@@ -30,7 +31,8 @@ router.post('/', veryfyToken, upload.single('image'), followerController.geUserF
 
 router.get('/:folder/:filename', (req, res) => {
     const {folder, filename} = req.params;
-    const filepath = path.join(__dirname,'uploads', folder, filename);
+    const dirUploads = path.resolve(__dirname, '..', 'uploads')
+    const filepath = path.join(dirUploads, folder, filename);
     console.log(filepath)
     if (fs.existsSync(filepath)) {
         console.log("Filepath : ",filepath)
