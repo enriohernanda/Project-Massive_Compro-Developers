@@ -102,6 +102,8 @@
 }
 
 .photo-profile {
+  width: 100%;
+  object-fit: contain;
   cursor: pointer;
   border-radius: 50%;
   background-color: #f7f7f7;
@@ -555,6 +557,8 @@
   width: 100%;
 }
 
+
+
 .intro {
   border-bottom-left-radius: 40px;
   border-bottom-right-radius: 40px;
@@ -589,6 +593,18 @@
   font-size: 14px;
   font-weight: 600;
   text-align: left;
+}
+
+@media screen and (max-width:800px) {
+  .card-pameran img{
+    border-radius: 4vw;
+  }
+  .intro h2{
+    font-size: 2vw;
+  }
+  .intro p{
+    font-size: 1.4vw;
+  }
 }
 
 .slider-pameran .card-pameran:hover {
@@ -758,7 +774,8 @@
 
 .profileboard .username {
   font-weight: bolder;
-  font-size: 1.3vw;
+  font-size: 1.6vw;
+  margin-top: 0.5vw;
 }
 
 .profileboard .country, .profileboard .professi{
@@ -1202,6 +1219,12 @@
   flex-direction: column;
   overflow: hidden;
   scrollbar-width:none;
+  scrollbar-base-color: rgba(255, 255, 255, 0) ;
+  scrollbar-track-color: rgba(255, 255, 255, 0);
+  scrollbar-highlight-color: rgba(255, 255, 255, 0);
+  scrollbar-shadow-color: rgba(255, 255, 255, 0);
+  scrollbar-face-color: rgba(255, 255, 255, 0);
+  scrollbar-color: rgba(255, 255, 255, 0);
   overflow-y: visible;
   gap: 1.1vw;
 }
@@ -1241,6 +1264,7 @@
 .pengaturan-container form input,.pengaturan-container form select, .pengaturan-container form option{
   border: 0.1vw solid gray;
 }
+
 .pengaturan-container form button {
   padding: 1.5vw;
   margin-top: 3vw;
@@ -1248,7 +1272,11 @@
   background-color: orange;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 1vw;
+}
+.pengaturan-container form button :hover{
+  animation-duration: 1s;
+  background-color: rgb(170, 117, 18);
 }
 /* END Floating Content CSS */
 
@@ -1285,6 +1313,13 @@
   overflow: hidden;
   overflow-y: visible;
   scrollbar-width: none;
+  scrollbar-base-color: rgba(255, 255, 255, 0) ;
+  scrollbar-track-color: rgba(255, 255, 255, 0);
+  scrollbar-highlight-color: rgba(255, 255, 255, 0);
+  scrollbar-shadow-color: rgba(255, 255, 255, 0);
+  scrollbar-face-color: rgba(255, 255, 255, 0);
+  scrollbar-color: rgba(255, 255, 255, 0);
+  scrollbar-color: rgba(255, 255, 255, 0);
 }
 .close {
   width: 5%;
@@ -1307,6 +1342,13 @@
   font-size: 1vw;
   margin: 0%;
   scrollbar-width: none;
+  scrollbar-base-color: rgba(255, 255, 255, 0) ;
+  scrollbar-track-color: rgba(255, 255, 255, 0);
+  scrollbar-highlight-color: rgba(255, 255, 255, 0);
+  scrollbar-shadow-color: rgba(255, 255, 255, 0);
+  scrollbar-face-color: rgba(255, 255, 255, 0);
+  scrollbar-color: rgba(255, 255, 255, 0);
+  scrollbar-color: rgba(255, 255, 255, 0);
   resize: none;
 }
 .message-body .message-main .input-wrap img {
@@ -1478,6 +1520,13 @@
   overflow-y: scroll;
   /* scrollbar-color : transparent transparent; */
   scrollbar-width: none;
+  scrollbar-base-color: rgba(255, 255, 255, 0) ;
+  scrollbar-track-color: rgba(255, 255, 255, 0);
+  scrollbar-highlight-color: rgba(255, 255, 255, 0);
+  scrollbar-shadow-color: rgba(255, 255, 255, 0);
+  scrollbar-face-color: rgba(255, 255, 255, 0);
+  scrollbar-color: rgba(255, 255, 255, 0);
+  scrollbar-color: rgba(255, 255, 255, 0);
   scroll-margin-block: 0px;
   scroll-padding: 0px;
 }

@@ -156,7 +156,7 @@ const handlebuttonfollower = async () => {
         <div className='mainprofile'>
             <div className='profileboard'>
                 <img className='photoprofile' src={ userdata.photo_profile === "0" ? defaultprofile : `${userdata.photo_profile}` } alt='photo-profile' />
-                <p className='username'>{userdata?.username || 'Satomi'}</p>
+                <p className='username'>{userdata?.username || ''}</p>
                 <p className='country'>{userdata?.country || `Indonesia` }</p>
                 {/* {console.log(userdata.country)} */}
                 <p className='professi'>{userdata?.professi || ''}</p>
