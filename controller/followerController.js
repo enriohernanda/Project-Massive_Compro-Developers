@@ -20,7 +20,7 @@ const createFollower = async (req, res) => {
             return res.status(400).json({status : 'error',message : 'you have been followed'})
         }
         const result = await followers.create({
-            id: '',
+
             following_user_id : userId,
             followed_user_id : followedUserId
         })
